@@ -39,6 +39,11 @@ backend/logs/
 .env
 .git_token
 
+# Data and Extraction Scripts
+*.csv
+extract_social_data.py
+generate_final_csv.py
+
 # Large Art/Doc assets (Exceeded GitHub limits)
 docs/*.pptx
 docs/*.docx
