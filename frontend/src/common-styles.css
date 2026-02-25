@@ -1,0 +1,94 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans SC', sans-serif;
+  background-color: #f8f4e6;
+  color: #333;
+}
+
+/* 卡片样式 */
+.hbh-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.hbh-card-header {
+  background-color: #8B4513;
+  color: #fff;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.hbh-card-body {
+  padding: 20px;
+}
+
+.hbh-card-footer {
+  padding: 15px 20px;
+  background-color: #f5f0e6;
+  border-top: 1px solid #d2b48c;
+}
+
+/* 面包屑导航 */
+.hbh-breadcrumb {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #8B4513;
+}
+
+.hbh-breadcrumb a {
+  color: #8B4513;
+  text-decoration: none;
+}
+
+.hbh-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* 按钮样式 */
+.hbh-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #d2b48c;
+  color: #5c4033;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hbh-btn:hover {
+  background-color: #8B4513;
+  color: #fff;
+}
+
+/* 图片懒加载样式 */
+img[v-lazy] {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[v-lazy].lazy-loaded {
+  opacity: 1;
+}
+
+img[v-lazy].lazy-error {
+  opacity: 0.5;
+  filter: grayscale(100%);
+}
+
+/* 响应式基础样式 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}

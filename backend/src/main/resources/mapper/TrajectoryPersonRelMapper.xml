@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.qingliul.digitalhuangbinhon.mapper.TrajectoryPersonRelMapper">
+
+    <select id="findByPointIds" resultType="org.qingliul.digitalhuangbinhon.entity.TrajectoryPersonRel">
+        SELECT * FROM trajectory_person_rel
+        WHERE point_id IN
+        <foreach collection="pointIds" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>

@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黄宾虹数字艺术展 - 3D展厅开发计划</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #5c4033 0%, #3d2817 100%);
+            color: #f5f0e6;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        header h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .header-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .header-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #ffd700;
+            transition: all 0.3s;
+        }
+        
+        .header-link:hover {
+            background: rgba(255, 215, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        section {
+            background: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        section h2 {
+            color: #5c4033;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        section h3 {
+            color: #8b7355;
+            margin: 20px 0 10px;
+            font-size: 20px;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .status.done {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .status.inprogress {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .status.pending {
+            background: #9e9e9e;
+            color: white;
+        }
+        
+        .status.blocked {
+            background: #f44336;
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #5c4033;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .priority-high {
+            color: #f44336;
+            font-weight: bold;
+        }
+        
+        .priority-medium {
+            color: #ff9800;
+            font-weight: bold;
+        }
+        
+        .priority-low {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .code-block {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            transition: width 0.3s ease;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .prototype-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .prototype-item {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .prototype-canvas {
+            width: 100%;
+            height: 300px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .prototype-description {
+            padding: 15px;
+            background: #f9f9f9;
+        }
+        
+        .prototype-description h4 {
+            color: #5c4033;
+            margin-bottom: 10px;
+        }
+        
+        .prototype-description ul {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>黄宾虹数字艺术展 - 3D展厅开发计划</h1>
+            <p>基于国博数字展厅标准 | Three.js实现 | 2026年2月</p>
+            <div class="header-links">
+                <a href="3D展厅详细设计.html" class="header-link">查看详细设计</a>
+            </div>
+        </header>
+
+        <!-- 项目概览 -->
+        <section>
+            <h2>1. 项目概览</h2>
+            <h3>1.1 项目目标</h3>
+            <ul>
+                <li>创建一个高质量的3D数字展厅，展示黄宾虹的艺术作品</li>
+                <li>实现沉浸式的浏览体验，参考国博数字展厅的交互方式和空间设计</li>
+                <li>支持多展厅切换（序厅、早期展厅、盛期展厅、晚期展厅、尾厅）</li>
+                <li>提供流畅的用户交互和视觉效果，真实复现线下展览体验</li>
+                <li>每个展厅包含多个展示区域，如国博展厅的多层次结构</li>
+            </ul>
+            
+            <h3>1.1.1 国博数字展厅参考要点</h3>
+            <div class="info">
+                <strong>国博展厅结构分析：</strong>
+                <ul>
+                    <li><strong>序厅</strong> - 入口大厅，提供展览导览和背景介绍</li>
+                    <li><strong>主题分区</strong> - 每个部分包含多个子主题区域</li>
+                    <li><strong>互动展示</strong> - 使用互动屏等多媒体形式</li>
+                    <li><strong>空间层次</strong> - 通过隔断、拱门、柱子划分空间</li>
+                    <li><strong>命名风格</strong> - 富有文学性和艺术性的展厅名称</li>
+                </ul>
+            </div>
+            
+            <h3>1.3 观展路线设计</h3>
+            <div class="info">
+                <strong>观展路线原则：</strong>
+                <ul>
+                    <li><strong>顺序性</strong>：从序厅→早期→盛期→晚期→尾厅，每个展厅内部按时间顺序参观</li>
+                    <li><strong>引导性</strong>：使用隔断墙、拱门、柱子等元素引导观展路线</li>
+                    <li><strong>探索性</strong>：S形或Z形路线，避免直线型布局的单调</li>
+                    <li><strong>完整性</strong>：确保观众不会错过任何展区</li>
+                </ul>
+            </div>
+            
+            <h3>1.4 当前状态（2026-02-22）</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+            <div class="metric">
+                <span>总体进度：60%</span>
+                <span>已完成：基础功能</span>
+            </div>
+            
+            <table>
+                <tr>
+                    <th>功能模块</th>
+                    <th>状态</th>
+                    <th>优先级</th>
+                    <th>说明</th>
+                </tr>
+                <tr>
+                    <td>3D场景渲染</td>
+                    <td><span class="status done">已完成</span></td>
+                    <td><span class="priority-high">高</span></td>
+                    <td>地面、墙壁、柱子、拱门等建筑元素</td>
+                </tr>
+                <tr>
+                    <td>相机控制</td>
+                    <td><span class="status done">已完成</span></td>
+                    <td><span class="priority-high">高</span></td>
+                    <td>OrbitControls支持旋转、缩放</td>
+                </tr>
+                <tr>
+                    <td>键盘移动</td>
+                    <td><span class="status done">已完成</span></td>
+                    <td><span class="priority-high">高</span></td>
+                    <td>WASD移动</td>
+                </tr>
+                <tr>
+                    <td>展厅切换</td>
+                    <td><span class="status done">已完成</span></td>
+                    <td><span class="priority-high">高</span></td>
+                    <td>4个展厅切换功能</td>
+                </tr>
+                <tr>
+                    <td>画框显示</td>
+                    <td><span class="status inprogress">进行中</span></td>
+                    <td><span class="priority-high">高</span></td>
+                    <td>位置需要优化，材质需要升级</td>
+                </tr>
+                <tr>
+                    <td>光影效果</td>
+                    <td><span class="status pending">待开发</span></td>
+                    <td><span class="priority-medium">中</span></td>
+                    <td>需要从BasicMaterial升级到StandardMaterial</td>
+                </tr>
+                <tr>
+                    <td>入口标记</td>
+                    <td><span class="status done">已完成</span></td>
+                    <td><span class="priority-medium">中</span></td>
+                    <td>金色入口标记</td>
+                </tr>
+                <tr>
+                    <td>测试验证</td>
+                    <td><span class="status pending">待开发</span></td>
+                    <td><span class="priority-high">高</span></td>
+                    <td>需要系统化测试</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 原型效果图 -->
+        <section>
+            <h2>1.3 原型效果图</h2>
+            <p>以下为预期的展厅效果示意图（基于SVG绘制的简化版原型）：</p>
+            
+            <div class="prototype-grid">
+                <!-- 序厅详细布局图 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#2a1f1a"/>
+                        
+                        <!-- 序厅布局（俯视图） -->
+                        <!-- 外墙 -->
+                        <rect x="10" y="10" width="380" height="280" fill="none" stroke="#5c4033" stroke-width="3"/>
+                        
+                        <!-- 主入口 -->
+                        <rect x="180" y="280" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="295" text-anchor="middle" fill="#ffd700" font-size="8">主入口</text>
+                        
+                        <!-- 中轴线 -->
+                        <line x1="200" y1="20" x2="200" y2="290" stroke="#ffd700" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- 区域划分 - 中央展示区 -->
+                        <rect x="140" y="40" width="120" height="100" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="200" y="75" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">黄宾虹简介</text>
+                        <text x="200" y="90" text-anchor="middle" fill="#f5f0e6" font-size="8">中央展示区</text>
+                        <rect x="160" y="110" width="80" height="20" fill="#4a3728"/>
+                        
+                        <!-- 左侧展区1 -->
+                        <rect x="20" y="40" width="110" height="80" fill="none" stroke="#8b7355" stroke-width="1.5" rx="3"/>
+                        <text x="75" y="65" text-anchor="middle" fill="#ffd700" font-size="9">艺术成就</text>
+                        <text x="75" y="80" text-anchor="middle" fill="#f5f0e6" font-size="7">展板A</text>
+                        <rect x="30" y="95" width="90" height="20" fill="#4a3728"/>
+                        
+                        <!-- 右侧展区1 -->
+                        <rect x="270" y="40" width="110" height="80" fill="none" stroke="#8b7355" stroke-width="1.5" rx="3"/>
+                        <text x="325" y="65" text-anchor="middle" fill="#ffd700" font-size="9">展览导览</text>
+                        <text x="325" y="80" text-anchor="middle" fill="#f5f0e6" font-size="7">互动屏</text>
+                        <rect x="280" y="95" width="90" height="20" fill="#4a3728"/>
+                        
+                        <!-- 左侧展区2 -->
+                        <rect x="20" y="130" width="110" height="70" fill="none" stroke="#8b7355" stroke-width="1.5" rx="3"/>
+                        <text x="75" y="155" text-anchor="middle" fill="#ffd700" font-size="9">参观提示</text>
+                        <text x="75" y="170" text-anchor="middle" fill="#f5f0e6" font-size="7">信息板</text>
+                        
+                        <!-- 右侧展区2 -->
+                        <rect x="270" y="130" width="110" height="70" fill="none" stroke="#8b7355" stroke-width="1.5" rx="3"/>
+                        <text x="325" y="155" text-anchor="middle" fill="#ffd700" font-size="9">纪念品</text>
+                        <text x="325" y="170" text-anchor="middle" fill="#f5f0e6" font-size="7">展示架</text>
+                        
+                        <!-- 柱子布局 -->
+                        <circle cx="50" cy="220" r="8" fill="#d4c4a8" stroke="#c4b498" stroke-width="2"/>
+                        <circle cx="150" cy="220" r="8" fill="#d4c4a8" stroke="#c4b498" stroke-width="2"/>
+                        <circle cx="250" cy="220" r="8" fill="#d4c4a8" stroke="#c4b498" stroke-width="2"/>
+                        <circle cx="350" cy="220" r="8" fill="#d4c4a8" stroke="#c4b498" stroke-width="2"/>
+                        
+                        <!-- 入口标记区域 -->
+                        <rect x="40" y="210" width="50" height="60" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <circle cx="65" cy="240" r="12" fill="#ffd700" opacity="0.6"/>
+                        <text x="65" y="244" text-anchor="middle" fill="#3d2817" font-size="8">早期</text>
+                        
+                        <rect x="175" y="210" width="50" height="60" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <circle cx="200" cy="240" r="12" fill="#ffd700" opacity="0.6"/>
+                        <text x="200" y="244" text-anchor="middle" fill="#3d2817" font-size="8">盛期</text>
+                        
+                        <rect x="310" y="210" width="50" height="60" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <circle cx="335" cy="240" r="12" fill="#ffd700" opacity="0.6"/>
+                        <text x="335" y="244" text-anchor="middle" fill="#3d2817" font-size="8">晚期</text>
+                        
+                        <!-- 装饰元素 -->
+                        <rect x="10" y="145" width="380" height="3" fill="#8b7355"/>
+                        <text x="200" y="155" text-anchor="middle" fill="#ffd700" font-size="7">序厅 - 黄宾虹数字艺术展</text>
+                        
+                        <!-- 比例尺 -->
+                        <line x1="20" y1="275" x2="70" y2="275" stroke="#f5f0e6" stroke-width="2"/>
+                        <text x="45" y="270" text-anchor="middle" fill="#f5f0e6" font-size="7">5米</text>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>序厅 - 详细布局（俯视图）</h4>
+                        <ul>
+                            <li>宽24米，长50米，高10米</li>
+                            <li>中央展示区：黄宾虹生平简介</li>
+                            <li>左侧展区：艺术成就、参观提示</li>
+                            <li>右侧展区：展览导览（互动屏）、纪念品</li>
+                            <li>4根装饰柱子</li>
+                            <li>3个金色入口标记通向各个展厅</li>
+                            <li>中轴线引导观众</li>
+                            <li>隔断墙划分空间</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 早期展厅详细布局图 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#2a1f1a"/>
+                        
+                        <!-- 展厅布局（俯视图）-->
+                        <!-- 外墙 -->
+                        <rect x="10" y="10" width="380" height="280" fill="none" stroke="#5c4033" stroke-width="3"/>
+                        
+                        <!-- 中轴线 -->
+                        <line x1="200" y1="20" x2="200" y2="290" stroke="#ffd700" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- 入口/出口 -->
+                        <rect x="180" y="280" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="295" text-anchor="middle" fill="#ffd700" font-size="8">入口</text>
+                        
+                        <rect x="180" y="10" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="8" text-anchor="middle" fill="#ffd700" font-size="8">出口</text>
+                        
+                        <!-- 区域1：宗法新安 -->
+                        <rect x="20" y="30" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="100" y="55" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域1：宗法新安</text>
+                        <text x="100" y="70" text-anchor="middle" fill="#f5f0e6" font-size="8">早期学习阶段</text>
+                        <!-- 左墙画作 -->
+                        <rect x="25" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="45" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="65" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 说明板 -->
+                        <rect x="90" y="75" width="85" height="30" fill="#5c4033"/>
+                        
+                        <!-- 区域2：花鸟探索 -->
+                        <rect x="220" y="30" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="300" y="55" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域2：花鸟探索</text>
+                        <text x="300" y="70" text-anchor="middle" fill="#f5f0e6" font-size="8">花鸟画实践</text>
+                        <!-- 右墙画作 -->
+                        <rect x="320" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="340" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="360" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 说明板 -->
+                        <rect x="225" y="75" width="85" height="30" fill="#5c4033"/>
+                        
+                        <!-- 区域3：画风转变 -->
+                        <rect x="20" y="130" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="100" y="155" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域3：画风转变</text>
+                        <text x="100" y="170" text-anchor="middle" fill="#f5f0e6" font-size="8">由白入黄</text>
+                        <!-- 左墙画作 -->
+                        <rect x="25" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="45" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 说明板 -->
+                        <rect x="70" y="175" width="105" height="30" fill="#5c4033"/>
+                        
+                        <!-- 互动展示区 -->
+                        <rect x="220" y="130" width="160" height="80" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="300" y="155" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">互动展示</text>
+                        <text x="300" y="170" text-anchor="middle" fill="#f5f0e6" font-size="8">五笔七墨理论</text>
+                        <rect x="250" y="175" width="100" height="30" fill="#4a3728"/>
+                        
+                        <!-- 主展示区 -->
+                        <rect x="100" y="230" width="200" height="40" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="200" y="250" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">早期展厅 - 疏淡清逸</text>
+                        <text x="200" y="265" text-anchor="middle" fill="#f5f0e6" font-size="8">1865-1930年</text>
+                        
+                        <!-- 返回标记 -->
+                        <circle cx="50" cy="265" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="50" y="269" text-anchor="middle" fill="#3d2817" font-size="7">返回</text>
+                        
+                        <!-- 前进标记 -->
+                        <circle cx="350" cy="265" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="350" y="269" text-anchor="middle" fill="#3d2817" font-size="7">前进</text>
+                        
+                        <!-- 比例尺 -->
+                        <line x1="20" y1="285" x2="70" y2="285" stroke="#f5f0e6" stroke-width="2"/>
+                        <text x="45" y="280" text-anchor="middle" fill="#f5f0e6" font-size="7">10米</text>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>早期展厅 - 详细布局（俯视图）</h4>
+                        <ul>
+                            <li>宽16米，长80米，高12米</li>
+                            <li>区域1：宗法新安（3幅画+说明板）</li>
+                            <li>区域2：花鸟探索（3幅画+说明板）</li>
+                            <li>区域3：画风转变（2幅画+说明板）</li>
+                            <li>互动展示区：五笔七墨理论</li>
+                            <li>主展示区：展厅主题介绍</li>
+                            <li>隔断墙划分3个主题区域</li>
+                            <li>左右墙面交替挂画</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="prototype-grid">
+                <!-- 盛期展厅详细布局图 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#2a1f1a"/>
+                        
+                        <!-- 展厅布局（俯视图）-->
+                        <!-- 外墙 -->
+                        <rect x="10" y="10" width="380" height="280" fill="none" stroke="#5c4033" stroke-width="3"/>
+                        
+                        <!-- 中轴线 -->
+                        <line x1="200" y1="20" x2="200" y2="290" stroke="#ffd700" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- 入口/出口 -->
+                        <rect x="180" y="280" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="295" text-anchor="middle" fill="#ffd700" font-size="8">入口</text>
+                        
+                        <rect x="180" y="10" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="8" text-anchor="middle" fill="#ffd700" font-size="8">出口</text>
+                        
+                        <!-- 区域1：五笔七墨 -->
+                        <rect x="20" y="30" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="100" y="55" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域1：五笔七墨</text>
+                        <text x="100" y="70" text-anchor="middle" fill="#f5f0e6" font-size="8">理论创新</text>
+                        <!-- 左墙画作 -->
+                        <rect x="25" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="45" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 互动屏 -->
+                        <rect x="70" y="75" width="100" height="30" fill="#4a3728"/>
+                        
+                        <!-- 区域2：黄山情结 -->
+                        <rect x="220" y="30" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="300" y="55" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域2：黄山情结</text>
+                        <text x="300" y="70" text-anchor="middle" fill="#f5f0e6" font-size="8">山水画实践</text>
+                        <!-- 右墙画作 -->
+                        <rect x="320" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="340" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="360" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 说明板 -->
+                        <rect x="225" y="75" width="85" height="30" fill="#5c4033"/>
+                        
+                        <!-- 区域3：浑厚华滋 -->
+                        <rect x="20" y="130" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="100" y="155" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域3：浑厚华滋</text>
+                        <text x="100" y="170" text-anchor="middle" fill="#f5f0e6" font-size="8">风格成熟</text>
+                        <!-- 左墙画作 -->
+                        <rect x="25" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="45" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="65" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 说明板 -->
+                        <rect x="90" y="175" width="85" height="30" fill="#5c4033"/>
+                        
+                        <!-- 互动展示区 -->
+                        <rect x="220" y="130" width="160" height="80" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="300" y="155" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">互动展示</text>
+                        <text x="300" y="170" text-anchor="middle" fill="#f5f0e6" font-size="8">黄山写生360°</text>
+                        <rect x="250" y="175" width="100" height="30" fill="#4a3728"/>
+                        
+                        <!-- 主展示区 -->
+                        <rect x="100" y="230" width="200" height="40" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="200" y="250" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">盛期展厅 - 浑厚华滋</text>
+                        <text x="200" y="265" text-anchor="middle" fill="#f5f0e6" font-size="8">1930-1948年</text>
+                        
+                        <!-- 返回标记 -->
+                        <circle cx="50" cy="265" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="50" y="269" text-anchor="middle" fill="#3d2817" font-size="7">返回</text>
+                        
+                        <!-- 前进标记 -->
+                        <circle cx="350" cy="265" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="350" y="269" text-anchor="middle" fill="#3d2817" font-size="7">前进</text>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>盛期展厅 - 详细布局（俯视图）</h4>
+                        <ul>
+                            <li>宽16米，长80米，高12米</li>
+                            <li>区域1：五笔七墨（2幅画+互动屏）</li>
+                            <li>区域2：黄山情结（3幅画+说明板）</li>
+                            <li>区域3：浑厚华滋（3幅画+说明板）</li>
+                            <li>互动展示区：黄山写生360°全景</li>
+                            <li>主展示区：展厅主题介绍</li>
+                            <li>隔断墙划分3个主题区域</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 晚期展厅详细布局图 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#2a1f1a"/>
+                        
+                        <!-- 展厅布局（俯视图）-->
+                        <!-- 外墙 -->
+                        <rect x="10" y="10" width="380" height="280" fill="none" stroke="#5c4033" stroke-width="3"/>
+                        
+                        <!-- 中轴线 -->
+                        <line x1="200" y1="20" x2="200" y2="290" stroke="#ffd700" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- 入口/出口 -->
+                        <rect x="180" y="280" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="295" text-anchor="middle" fill="#ffd700" font-size="8">入口</text>
+                        
+                        <rect x="180" y="10" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="8" text-anchor="middle" fill="#ffd700" font-size="8">出口</text>
+                        
+                        <!-- 区域1：积墨大成 -->
+                        <rect x="20" y="30" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="100" y="55" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域1：积墨大成</text>
+                        <text x="100" y="70" text-anchor="middle" fill="#f5f0e6" font-size="8">技法巅峰</text>
+                        <!-- 左墙画作 -->
+                        <rect x="25" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="45" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 说明板 -->
+                        <rect x="70" y="75" width="100" height="30" fill="#5c4033"/>
+                        
+                        <!-- 区域2：焦墨宿墨 -->
+                        <rect x="220" y="30" width="160" height="80" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="300" y="55" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域2：焦墨宿墨</text>
+                        <text x="300" y="70" text-anchor="middle" fill="#f5f0e6" font-size="8">技法突破</text>
+                        <!-- 右墙画作 -->
+                        <rect x="320" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="340" y="75" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 互动屏 -->
+                        <rect x="225" y="75" width="85" height="30" fill="#4a3728"/>
+                        
+                        <!-- 区域3：艺术升华 -->
+                        <rect x="20" y="130" width="160" height="80" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="100" y="155" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">区域3：艺术升华</text>
+                        <text x="100" y="170" text-anchor="middle" fill="#f5f0e6" font-size="8">人画合一</text>
+                        <!-- 左墙画作 -->
+                        <rect x="25" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="45" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="65" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <rect x="85" y="175" width="15" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="1"/>
+                        <!-- 说明板 -->
+                        <rect x="110" y="175" width="65" height="30" fill="#5c4033"/>
+                        
+                        <!-- 互动展示区 -->
+                        <rect x="220" y="130" width="160" height="80" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="300" y="155" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">互动展示</text>
+                        <text x="300" y="170" text-anchor="middle" fill="#f5f0e6" font-size="8">绝笔作品</text>
+                        <rect x="250" y="175" width="100" height="30" fill="#4a3728"/>
+                        
+                        <!-- 主展示区 -->
+                        <rect x="100" y="230" width="200" height="40" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="200" y="250" text-anchor="middle" fill="#ffd700" font-size="10" font-weight="bold">晚期展厅 - 黑密厚重</text>
+                        <text x="200" y="265" text-anchor="middle" fill="#f5f0e6" font-size="8">1948-1955年</text>
+                        
+                        <!-- 返回标记 -->
+                        <circle cx="50" cy="265" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="50" y="269" text-anchor="middle" fill="#3d2817" font-size="7">返回</text>
+                        
+                        <!-- 前往尾厅 -->
+                        <circle cx="350" cy="265" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="350" y="269" text-anchor="middle" fill="#3d2817" font-size="7">尾厅</text>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>晚期展厅 - 详细布局（俯视图）</h4>
+                        <ul>
+                            <li>宽16米，长80米，高12米</li>
+                            <li>区域1：积墨大成（2幅画+说明板）</li>
+                            <li>区域2：焦墨宿墨（2幅画+互动屏）</li>
+                            <li>区域3：艺术升华（4幅画+说明板）</li>
+                            <li>互动展示区：绝笔作品</li>
+                            <li>主展示区：展厅主题介绍</li>
+                            <li>隔断墙划分3个主题区域</li>
+                            <li>连接尾厅</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="prototype-grid">
+                <!-- 尾厅布局图 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#2a1f1a"/>
+                        
+                        <!-- 尾厅布局（俯视图）-->
+                        <!-- 外墙 -->
+                        <rect x="10" y="10" width="380" height="280" fill="none" stroke="#5c4033" stroke-width="3"/>
+                        
+                        <!-- 入口 -->
+                        <rect x="180" y="280" width="40" height="10" fill="#ffd700"/>
+                        <text x="200" y="295" text-anchor="middle" fill="#ffd700" font-size="8">入口</text>
+                        
+                        <!-- 中轴线 -->
+                        <line x1="200" y1="20" x2="200" y2="290" stroke="#ffd700" stroke-width="2" stroke-dasharray="5,5"/>
+                        
+                        <!-- 中央纪念区 -->
+                        <rect x="100" y="80" width="200" height="140" fill="none" stroke="#ffd700" stroke-width="3" rx="10"/>
+                        <text x="200" y="110" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">黄宾虹艺术成就</text>
+                        <text x="200" y="130" text-anchor="middle" fill="#f5f0e6" font-size="10">1865-1955</text>
+                        
+                        <!-- 荣誉展示 -->
+                        <rect x="120" y="150" width="70" height="60" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="155" y="175" text-anchor="middle" fill="#ffd700" font-size="9">荣誉</text>
+                        <text x="155" y="190" text-anchor="middle" fill="#f5f0e6" font-size="7">奖章</text>
+                        
+                        <!-- 代表作展示 -->
+                        <rect x="210" y="150" width="70" height="60" fill="none" stroke="#8b7355" stroke-width="2" rx="5"/>
+                        <text x="245" y="175" text-anchor="middle" fill="#ffd700" font-size="9">代表作</text>
+                        <text x="245" y="190" text-anchor="middle" fill="#f5f0e6" font-size="7">精选</text>
+                        
+                        <!-- 左侧展区 -->
+                        <rect x="20" y="30" width="70" height="220" fill="none" stroke="#8b7355" stroke-width="1.5" rx="5"/>
+                        <text x="55" y="140" text-anchor="middle" fill="#ffd700" font-size="9" writing-mode="tb">年表</text>
+                        <text x="55" y="160" text-anchor="middle" fill="#f5f0e6" font-size="7" writing-mode="tb">时间轴</text>
+                        
+                        <!-- 右侧展区 -->
+                        <rect x="310" y="30" width="70" height="220" fill="none" stroke="#8b7355" stroke-width="1.5" rx="5"/>
+                        <text x="345" y="140" text-anchor="middle" fill="#ffd700" font-size="9" writing-mode="tb">影响</text>
+                        <text x="345" y="160" text-anchor="middle" fill="#f5f0e6" font-size="7" writing-mode="tb">传承</text>
+                        
+                        <!-- 感谢参观 -->
+                        <rect x="120" y="240" width="160" height="30" fill="none" stroke="#ffd700" stroke-width="2" rx="5"/>
+                        <text x="200" y="260" text-anchor="middle" fill="#ffd700" font-size="12" font-weight="bold">感谢参观</text>
+                        
+                        <!-- 返回标记 -->
+                        <circle cx="50" cy="265" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="50" y="269" text-anchor="middle" fill="#3d2817" font-size="7">返回</text>
+                        
+                        <!-- 重新开始 -->
+                        <circle cx="200" cy="35" r="10" fill="#ffd700" opacity="0.8"/>
+                        <text x="200" y="39" text-anchor="middle" fill="#3d2817" font-size="7">序厅</text>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>尾厅 - 艺术总结（俯视图）</h4>
+                        <ul>
+                            <li>宽24米，长50米，高10米</li>
+                            <li>中央纪念区：艺术成就、荣誉奖章、代表作</li>
+                            <li>左侧展区：年表时间轴</li>
+                            <li>右侧展区：影响传承</li>
+                            <li>感谢参观区域</li>
+                            <li>返回序厅重新开始</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 展厅空间结构透视 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#2a1f1a"/>
+                        
+                        <!-- 展厅透视示意图 -->
+                        <!-- 后墙 -->
+                        <polygon points="100,50 300,50 280,100 120,100" fill="#3d2f25" stroke="#8b7355" stroke-width="2"/>
+                        
+                        <!-- 左墙 -->
+                        <polygon points="100,50 120,100 120,250 100,280" fill="#3d2f25" stroke="#8b7355" stroke-width="2"/>
+                        
+                        <!-- 右墙 -->
+                        <polygon points="300,50 280,100 280,250 300,280" fill="#3d2f25" stroke="#8b7355" stroke-width="2"/>
+                        
+                        <!-- 地面 -->
+                        <polygon points="120,250 280,250 300,280 100,280" fill="#c9b896"/>
+                        
+                        <!-- 天花板 -->
+                        <polygon points="120,100 280,100 300,50 100,50" fill="#faf8f0" opacity="0.6"/>
+                        
+                        <!-- 中轴线地砖 -->
+                        <polygon points="190,250 210,250 215,280 185,280" fill="#a89880"/>
+                        
+                        <!-- 后墙画作 -->
+                        <rect x="150" y="60" width="40" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="2"/>
+                        <rect x="210" y="60" width="40" height="30" fill="#4a3728" stroke="#ffd700" stroke-width="2"/>
+                        
+                        <!-- 左墙画作 -->
+                        <polygon points="110,120 115,140 115,180 110,200" fill="#4a3728" stroke="#ffd700" stroke-width="1.5"/>
+                        
+                        <!-- 右墙画作 -->
+                        <polygon points="290,120 285,140 285,180 290,200" fill="#4a3728" stroke="#ffd700" stroke-width="1.5"/>
+                        
+                        <!-- 柱子 -->
+                        <polygon points="150,150 155,140 155,240 150,250" fill="#d4c4a8"/>
+                        <polygon points="250,150 245,140 245,240 250,250" fill="#d4c4a8"/>
+                        
+                        <!-- 柱头 -->
+                        <rect x="145" y="140" width="15" height="10" fill="#c4b498"/>
+                        <rect x="240" y="140" width="15" height="10" fill="#c4b498"/>
+                        
+                        <!-- 拱门 -->
+                        <path d="M160,100 Q200,70 240,100" stroke="#8b7355" stroke-width="2" fill="none"/>
+                        
+                        <!-- 聚光灯效果 -->
+                        <polygon points="170,30 160,160 180,160" fill="white" opacity="0.2"/>
+                        <polygon points="230,30 220,160 240,160" fill="white" opacity="0.2"/>
+                        
+                        <!-- 阴影 -->
+                        <ellipse cx="200" cy="265" rx="60" ry="8" fill="black" opacity="0.3"/>
+                        
+                        <!-- 入口标记 -->
+                        <circle cx="200" cy="265" r="8" fill="#ffd700" opacity="0.8"/>
+                        
+                        <!-- 文字说明 -->
+                        <text x="200" y="25" text-anchor="middle" fill="#ffd700" font-size="12" font-weight="bold">展厅透视示意图</text>
+                        <text x="60" y="280" text-anchor="middle" fill="#f5f0e6" font-size="8">入口</text>
+                        <text x="340" y="280" text-anchor="middle" fill="#f5f0e6" font-size="8">出口</text>
+                        
+                        <!-- 标注 -->
+                        <line x1="280" y1="130" x2="350" y2="110" stroke="#ffd700" stroke-width="1"/>
+                        <text x="355" y="115" fill="#ffd700" font-size="7">画框</text>
+                        
+                        <line x1="155" y1="170" x2="80" y2="150" stroke="#ffd700" stroke-width="1"/>
+                        <text x="40" y="155" fill="#ffd700" font-size="7">柱子</text>
+                        
+                        <line x1="200" y1="70" x2="200" y2="35" stroke="#ffd700" stroke-width="1"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#ffd700" font-size="7">聚光灯</text>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>展厅透视 - 空间结构</h4>
+                        <ul>
+                            <li>前后墙面展示画作</li>
+                            <li>两侧墙面交替挂画</li>
+                            <li>2根装饰柱子</li>
+                            <li>拱形门廊分割空间</li>
+                            <li>聚光灯照亮画作</li>
+                            <li>地面反射和阴影</li>
+                            <li>中轴线引导路线</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="prototype-grid">
+                <!-- 材质效果图 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#1a1a1a"/>
+                        
+                        <!-- 材质样本网格 -->
+                        <!-- 地面材质 -->
+                        <g transform="translate(20, 20)">
+                            <rect x="0" y="0" width="170" height="100" fill="#c9b896"/>
+                            <text x="85" y="50" text-anchor="middle" fill="#3d2817" font-size="14" font-weight="bold">地面材质</text>
+                            <text x="85" y="70" text-anchor="middle" fill="#5c4033" font-size="10">米黄色 | roughness: 0.7</text>
+                        </g>
+                        
+                        <!-- 墙壁材质 -->
+                        <g transform="translate(210, 20)">
+                            <rect x="0" y="0" width="170" height="100" fill="#e8e0d0"/>
+                            <text x="85" y="50" text-anchor="middle" fill="#3d2817" font-size="14" font-weight="bold">墙壁材质</text>
+                            <text x="85" y="70" text-anchor="middle" fill="#5c4033" font-size="10">暖米白 | roughness: 0.8</text>
+                        </g>
+                        
+                        <!-- 画框外框材质 -->
+                        <g transform="translate(20, 140)">
+                            <rect x="0" y="0" width="170" height="100" fill="#4a3728"/>
+                            <rect x="10" y="10" width="150" height="80" fill="#3d2817" stroke="#ffd700" stroke-width="2"/>
+                            <text x="85" y="50" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">画框外框</text>
+                            <text x="85" y="70" text-anchor="middle" fill="#f5f0e6" font-size="10">深棕色 | metalness: 0.7</text>
+                        </g>
+                        
+                        <!-- 画框内框材质 -->
+                        <g transform="translate(210, 140)">
+                            <rect x="0" y="0" width="170" height="100" fill="#ff9800"/>
+                            <rect x="10" y="10" width="150" height="80" fill="#ffd700" stroke="#ff9800" stroke-width="2"/>
+                            <circle cx="85" cy="50" r="30" fill="white" opacity="0.3"/>
+                            <text x="85" y="50" text-anchor="middle" fill="#3d2817" font-size="14" font-weight="bold">画框内框</text>
+                            <text x="85" y="70" text-anchor="middle" fill="#3d2817" font-size="10">金色 | emissive: 0.1</text>
+                        </g>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>材质系统设计</h4>
+                        <ul>
+                            <li>所有材质使用MeshStandardMaterial</li>
+                            <li>支持光照、阴影、反射</li>
+                            <li>画框内框带发光效果</li>
+                            <li>材质参数根据参考优化</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 光影效果图 -->
+                <div class="prototype-item">
+                    <svg class="prototype-canvas" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 背景 -->
+                        <rect width="400" height="300" fill="#2a1f1a"/>
+                        
+                        <!-- 简化的展厅场景 -->
+                        <rect x="50" y="100" width="300" height="150" fill="#c9b896"/>
+                        <rect x="50" y="100" width="300" height="10" fill="#4a3f35"/>
+                        <rect x="50" y="240" width="300" height="10" fill="#8b7355"/>
+                        
+                        <!-- 画作 -->
+                        <rect x="100" y="120" width="60" height="80" fill="#d4c5a9" stroke="#ffd700" stroke-width="2"/>
+                        <rect x="240" y="120" width="60" height="80" fill="#d4c5a9" stroke="#ffd700" stroke-width="2"/>
+                        
+                        <!-- 聚光灯效果 -->
+                        <defs>
+                            <radialGradient id="spotlight1" cx="50%" cy="0%" r="70%">
+                                <stop offset="0%" stop-color="white" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="white" stop-opacity="0"/>
+                            </radialGradient>
+                            <radialGradient id="spotlight2" cx="50%" cy="0%" r="70%">
+                                <stop offset="0%" stop-color="white" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="white" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                        
+                        <ellipse cx="130" cy="160" rx="50" ry="80" fill="url(#spotlight1)"/>
+                        <ellipse cx="270" cy="160" rx="50" ry="80" fill="url(#spotlight2)"/>
+                        
+                        <!-- 阴影效果 -->
+                        <ellipse cx="130" cy="245" rx="35" ry="5" fill="black" opacity="0.3"/>
+                        <ellipse cx="270" cy="245" rx="35" ry="5" fill="black" opacity="0.3"/>
+                        
+                        <!-- 环境光 -->
+                        <rect x="0" y="0" width="400" height="300" fill="#fff5e6" opacity="0.1"/>
+                        
+                        <!-- 文字说明 -->
+                        <text x="200" y="40" text-anchor="middle" fill="#ffd700" font-size="16" font-weight="bold">光影系统</text>
+                        <text x="200" y="280" text-anchor="middle" fill="#f5f0e6" font-size="12">聚光灯 + 阴影 + 环境光</text>
+                    </svg>
+                    <div class="prototype-description">
+                        <h4>光影系统设计</h4>
+                        <ul>
+                            <li>环境光：0.5强度，柔和基础光</li>
+                            <li>主方向光：1.0强度，带阴影</li>
+                            <li>聚光灯：2.0强度，照亮画作</li>
+                            <li>壁灯：0.8强度，沿墙壁分布</li>
+                            <li>PCFSoftShadowMap阴影类型</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info">
+                <strong>原型说明：</strong>以上SVG示意图为简化版原型，展示预期的布局、材质和光影效果。实际3D效果会更加精细和真实。
+            </div>
+        </section>
+
+        <!-- 需求分析 -->
+        <section>
+            <h2>2. 需求分析</h2>
+            <h3>2.1 功能需求</h3>
+            <ol>
+                <li><strong>观展路线设计</strong>
+                    <ul>
+                        <li>整体路线：序厅 → 早期展厅 → 盛期展厅 → 晚期展厅 → 尾厅</li>
+                        <li>展厅内路线：入口 → 区域1 → 区域2 → 区域3 → 出口（按时间顺序）</li>
+                        <li>路线引导：使用隔断墙、拱门、柱子等元素引导观展路线</li>
+                        <li>S形/Z形路线：避免直线型布局，增强探索性和引导性</li>
+                    </ul>
+                </li>
+                <li><strong>场景展示</strong>
+                    <ul>
+                        <li><strong>序厅</strong>：入口大厅，提供展览导览和黄宾虹简介（宽24米，长50米，高10米）</li>
+                        <li><strong>早期展厅 - 疏淡清逸</strong>：展示白宾虹时期作品（1865-1930）
+                            <ul>
+                                <li>区域1：宗法新安（1870-1890）- 介绍早期学习</li>
+                                <li>区域2：花鸟探索（1890-1910）- 展示花鸟画作品</li>
+                                <li>区域3：画风转变（1910-1930）- 展示由白入黄的过渡</li>
+                            </ul>
+                        </li>
+                        <li><strong>盛期展厅 - 浑厚华滋</strong>：展示黄宾虹时期作品（1930-1948）
+                            <ul>
+                                <li>区域1：五笔七墨（1930-1940）- 介绍理论创新</li>
+                                <li>区域2：黄山情结（1935-1948）- 展示黄山主题作品</li>
+                                <li>区域3：浑厚华滋（1940-1948）- 展示成熟期作品</li>
+                            </ul>
+                        </li>
+                        <li><strong>晚期展厅 - 黑密厚重</strong>：展示黑宾虹时期作品（1948-1955）
+                            <ul>
+                                <li>区域1：积墨大成（1948-1952）- 展示积墨技法作品</li>
+                                <li>区域2：焦墨宿墨（1952-1954）- 展示焦墨宿墨作品</li>
+                                <li>区域3：艺术升华（1954-1955）- 展示晚期巅峰作品</li>
+                            </ul>
+                        </li>
+                        <li><strong>尾厅</strong>：艺术总结，展示黄宾虹的艺术成就和影响</li>
+                        <li><strong>建筑细节</strong>：地面、墙壁、柱子、拱门、踢脚线、天花板、隔断、展示墙</li>
+                        <li><strong>展品展示</strong>：画框、画作、说明牌、互动展示屏、介绍面板</li>
+                    </ul>
+                </li>
+                <li><strong>交互控制</strong>
+                    <ul>
+                        <li>键盘移动：W/A/S/D 或 方向键</li>
+                        <li>鼠标控制：拖动旋转、滚轮缩放</li>
+                        <li>点击交互：点击入口标记切换展厅，点击画作查看信息，点击说明牌了解详情</li>
+                        <li><strong>导航模式</strong>：自主漫游、展览构成、三位场景三种模式切换</li>
+                        <li>自动导览：按指定路线自动浏览（可选）</li>
+                    </ul>
+                </li>
+                <li><strong>视觉效果</strong>
+                    <ul>
+                        <li>真实的光影效果（阴影、反射、高光）</li>
+                        <li>合适的材质（金属、木材、纸张、石材）</li>
+                        <li>氛围效果（尘埃粒子、光线束）</li>
+                        <li>空间层次感（隔断、拱门、柱子划分区域）</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>2.2 非功能需求</h3>
+            <ul>
+                <li><strong>性能</strong>：帧率 ≥ 30fps，加载时间 < 5秒</li>
+                <li><strong>兼容性</strong>：支持主流浏览器（Chrome、Firefox、Safari）</li>
+                <li><strong>响应式</strong>：适配不同屏幕尺寸</li>
+                <li><strong>用户体验</strong>：操作流畅，无明显卡顿</li>
+            </ul>
+        </section>
+
+        <!-- 技术设计 -->
+        <section>
+            <h2>3. 技术设计</h2>
+            <h3>3.1 技术栈</h3>
+            <ul>
+                <li><strong>3D引擎</strong>：Three.js (r128+)</li>
+                <li><strong>控制器</strong>：OrbitControls</li>
+                <li><strong>渲染器</strong>：WebGLRenderer</li>
+                <li><strong>材质</strong>：MeshStandardMaterial（支持光照）</li>
+                <li><strong>阴影</strong>：PCFSoftShadowMap</li>
+                <li><strong>框架</strong>：Vue 3</li>
+            </ul>
+            
+            <h3>3.2 架构设计</h3>
+            <div class="code-block">
+ThreeDExhibition.vue
+├── 初始化 (init)
+│   ├── 创建场景
+│   ├── 创建相机
+│   ├── 创建渲染器
+│   ├── 创建控制器
+│   └── 加载配置
+├── 场景构建
+│   ├── createHall() - 创建展厅
+│   ├── addLights() - 添加灯光
+│   ├── createArtworkMarkers() - 创建展品
+│   ├── createEntranceMarkers() - 创建入口标记
+│   └── createAtmosphereEffects() - 创建氛围效果
+├── 交互控制
+│   ├── 键盘事件
+│   ├── 鼠标事件
+│   └── 射线检测
+├── 动画循环
+│   ├── 控制器更新
+│   ├── 相机移动
+│   ├── 动画效果
+│   └── 渲染场景
+└── 资源管理
+    ├── 切换展厅
+    └── 清理资源
+            </div>
+            
+            <h3>3.3 材质系统</h3>
+            <table>
+                <tr>
+                    <th>元素</th>
+                    <th>材质类型</th>
+                    <th>颜色</th>
+                    <th>roughness</th>
+                    <th>metalness</th>
+                    <th>说明</th>
+                </tr>
+                <tr>
+                    <td>地面</td>
+                    <td>MeshStandardMaterial</td>
+                    <td>0xc9b896</td>
+                    <td>0.7</td>
+                    <td>0.1</td>
+                    <td>米黄色，略带粗糙</td>
+                </tr>
+                <tr>
+                    <td>墙壁</td>
+                    <td>MeshStandardMaterial</td>
+                    <td>0xe8e0d0</td>
+                    <td>0.8</td>
+                    <td>0.05</td>
+                    <td>暖米白色</td>
+                </tr>
+                <tr>
+                    <td>踢脚线</td>
+                    <td>MeshStandardMaterial</td>
+                    <td>0x8b7355</td>
+                    <td>0.4</td>
+                    <td>0.2</td>
+                    <td>深棕色</td>
+                </tr>
+                <tr>
+                    <td>画框外框</td>
+                    <td>MeshStandardMaterial</td>
+                    <td>0x4a3728</td>
+                    <td>0.3</td>
+                    <td>0.7</td>
+                    <td>深色金属</td>
+                </tr>
+                <tr>
+                    <td>画框内框</td>
+                    <td>MeshStandardMaterial</td>
+                    <td>0xffd700</td>
+                    <td>0.2</td>
+                    <td>0.9</td>
+                    <td>金色，带发光</td>
+                </tr>
+                <tr>
+                    <td>柱子</td>
+                    <td>MeshStandardMaterial</td>
+                    <td>0xd4c4a8</td>
+                    <td>0.6</td>
+                    <td>0.2</td>
+                    <td>浅色石材</td>
+                </tr>
+            </table>
+            
+            <h3>3.4 灯光系统</h3>
+            <ul>
+                <li><strong>环境光</strong>：0xfff5e6, intensity 0.5（柔和基础光）</li>
+                <li><strong>主方向光</strong>：0xfff8e1, intensity 1.0（主光源，带阴影）</li>
+                <li><strong>补光</strong>：0xffffff, intensity 0.4（填充阴影）</li>
+                <li><strong>聚光灯</strong>：0xfff5e0, intensity 2.0（照亮画作，带阴影）</li>
+                <li><strong>壁灯</strong>：0xfffaf0, intensity 0.8（沿墙壁）</li>
+                <li><strong>底部反射光</strong>：HemisphereLight（增加地面反射感）</li>
+            </ul>
+        </section>
+
+        <!-- 开发计划 -->
+        <section>
+            <h2>4. 开发计划</h2>
+            
+            <h3>4.1 第一阶段：材质系统重构（优先级：高）</h3>
+            <table>
+                <tr>
+                    <th>任务</th>
+                    <th>描述</th>
+                    <th>预计时间</th>
+                    <th>依赖</th>
+                </tr>
+                <tr>
+                    <td>4.1.1</td>
+                    <td>将所有BasicMaterial改为StandardMaterial</td>
+                    <td>1小时</td>
+                    <td>无</td>
+                </tr>
+                <tr>
+                    <td>4.1.2</td>
+                    <td>优化材质参数（roughness, metalness）</td>
+                    <td>1小时</td>
+                    <td>4.1.1</td>
+                </tr>
+                <tr>
+                    <td>4.1.3</td>
+                    <td>移除测试对象（绿色球体）</td>
+                    <td>0.5小时</td>
+                    <td>无</td>
+                </tr>
+                <tr>
+                    <td>4.1.4</td>
+                    <td>验证光照效果</td>
+                    <td>0.5小时</td>
+                    <td>4.1.2</td>
+                </tr>
+            </table>
+            
+            <h3>4.2 第二阶段：画框优化（优先级：高）</h3>
+            <table>
+                <tr>
+                    <th>任务</th>
+                    <th>描述</th>
+                    <th>预计时间</th>
+                    <th>依赖</th>
+                </tr>
+                <tr>
+                    <td>4.2.1</td>
+                    <td>精确调整画框位置（贴在墙面）</td>
+                    <td>1小时</td>
+                    <td>无</td>
+                </tr>
+                <tr>
+                    <td>4.2.2</td>
+                    <td>优化画框比例和尺寸</td>
+                    <td>0.5小时</td>
+                    <td>4.2.1</td>
+                </tr>
+                <tr>
+                    <td>4.2.3</td>
+                    <td>增强画框发光效果</td>
+                    <td>0.5小时</td>
+                    <td>4.1.2</td>
+                </tr>
+                <tr>
+                    <td>4.2.4</td>
+                    <td>验证所有展厅的画框显示</td>
+                    <td>0.5小时</td>
+                    <td>4.2.2</td>
+                </tr>
+            </table>
+            
+            <h3>4.3 第三阶段：交互优化（优先级：中）</h3>
+            <table>
+                <tr>
+                    <th>任务</th>
+                    <th>描述</th>
+                    <th>预计时间</th>
+                    <th>依赖</th>
+                </tr>
+                <tr>
+                    <td>4.3.1</td>
+                    <td>优化移动速度和边界检测</td>
+                    <td>0.5小时</td>
+                    <td>无</td>
+                </tr>
+                <tr>
+                    <td>4.3.2</td>
+                    <td>优化相机参数（FOV、角度限制）</td>
+                    <td>0.5小时</td>
+                    <td>无</td>
+                </tr>
+                <tr>
+                    <td>4.3.3</td>
+                    <td>改进切换展厅的过渡效果</td>
+                    <td>1小时</td>
+                    <td>无</td>
+                </tr>
+            </table>
+            
+            <h3>4.4 第四阶段：测试验证（优先级：高）</h3>
+            <table>
+                <tr>
+                    <th>任务</th>
+                    <th>描述</th>
+                    <th>预计时间</th>
+                    <th>依赖</th>
+                </tr>
+                <tr>
+                    <td>4.4.1</td>
+                    <td>功能测试清单</td>
+                    <td>1小时</td>
+                    <td>4.1-4.3</td>
+                </tr>
+                <tr>
+                    <td>4.4.2</td>
+                    <td>视觉质量评估</td>
+                    <td>0.5小时</td>
+                    <td>4.4.1</td>
+                </tr>
+                <tr>
+                    <td>4.4.3</td>
+                    <td>性能测试（帧率、加载）</td>
+                    <td>0.5小时</td>
+                    <td>无</td>
+                </tr>
+                <tr>
+                    <td>4.4.4</td>
+                    <td>修复发现的问题</td>
+                    <td>根据问题</td>
+                    <td>4.4.1-4.4.3</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 测试方案 -->
+        <section>
+            <h2>5. 测试方案</h2>
+            
+            <h3>5.1 功能测试清单</h3>
+            <table>
+                <tr>
+                    <th>测试项</th>
+                    <th>测试步骤</th>
+                    <th>预期结果</th>
+                    <th>状态</th>
+                </tr>
+                <tr>
+                    <td>场景渲染</td>
+                    <td>打开展厅，检查地面、墙壁、柱子</td>
+                    <td>所有建筑元素正常显示</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+                <tr>
+                    <td>键盘移动</td>
+                    <td>按W/A/S/D键</td>
+                    <td>相机前后左右移动，不旋转</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+                <tr>
+                    <td>鼠标旋转</td>
+                    <td>拖动鼠标</td>
+                    <td>相机围绕目标点旋转</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+                <tr>
+                    <td>滚轮缩放</td>
+                    <td>滚动鼠标滚轮</td>
+                    <td>相机远近变化，在限制范围内</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+                <tr>
+                    <td>展厅切换</td>
+                    <td>点击入口标记</td>
+                    <td>切换到目标展厅，场景正确加载</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+                <tr>
+                    <td>画框显示</td>
+                    <td>进入有画作的展厅</td>
+                    <td>画框贴在墙面，金色内框可见</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+                <tr>
+                    <td>光影效果</td>
+                    <td>观察阴影和高光</td>
+                    <td>有明显的阴影和光照效果</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+                <tr>
+                    <td>边界检测</td>
+                    <td>尝试移出展厅范围</td>
+                    <td>相机被限制在展厅内</td>
+                    <td>⬜ 待测试</td>
+                </tr>
+            </table>
+            
+            <h3>5.2 视觉质量检查</h3>
+            <ul>
+                <li>☐ 材质质感是否真实（木纹、金属光泽等）</li>
+                <li>☐ 光影是否自然（阴影柔和、高光适当）</li>
+                <li>☐ 配色是否协调（参考国博标准）</li>
+                <li>☐ 比例是否合理（画框、柱子、展厅尺寸）</li>
+                <li>☐ 细节是否丰富（踢脚线、装饰条等）</li>
+            </ul>
+            
+            <h3>5.3 性能测试</h3>
+            <ul>
+                <li>☐ 帧率：≥ 30fps（理想≥ 60fps）</li>
+                <li>☐ 加载时间：< 5秒</li>
+                <li>☐ 内存占用：合理范围</li>
+                <li>☐ CPU占用：合理范围</li>
+            </ul>
+        </section>
+
+        <!-- 风险评估 -->
+        <section>
+            <h2>6. 风险评估</h2>
+            <table>
+                <tr>
+                    <th>风险</th>
+                    <th>影响</th>
+                    <th>可能性</th>
+                    <th>应对措施</th>
+                </tr>
+                <tr>
+                    <td>材质升级后场景变暗</td>
+                    <td>高</td>
+                    <td>中</td>
+                    <td>增加灯光强度，调整材质参数</td>
+                </tr>
+                <tr>
+                    <td>性能下降</td>
+                    <td>中</td>
+                    <td>中</td>
+                    <td>优化几何体细分，减少不必要的效果</td>
+                </tr>
+                <tr>
+                    <td>画框位置错误</td>
+                    <td>高</td>
+                    <td>低</td>
+                    <td>仔细计算坐标，添加调试日志</td>
+                </tr>
+                <tr>
+                    <td>浏览器兼容性问题</td>
+                    <td>中</td>
+                    <td>低</td>
+                    <td>测试主流浏览器，添加polyfill</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 回归测试 -->
+        <section>
+            <h2>7. 回归测试计划</h2>
+            <div class="info">
+                <strong>回归测试原则：</strong>每次修改后，必须完整执行功能测试清单，确保没有引入新问题。
+            </div>
+            
+            <h3>7.1 回归测试触发条件</h3>
+            <ul>
+                <li>每次代码提交前</li>
+                <li>每个开发阶段完成后</li>
+                <li>修复bug后</li>
+                <li>上线前</li>
+            </ul>
+            
+            <h3>7.2 回归测试步骤</h3>
+            <ol>
+                <li>执行完整的功能测试清单</li>
+                <li>执行视觉质量检查</li>
+                <li>执行性能测试</li>
+                <li>记录所有发现的问题</li>
+                <li>评估问题优先级</li>
+                <li>修复高优先级问题</li>
+                <li>再次回归测试</li>
+            </ol>
+        </section>
+
+        <!-- 进度追踪 -->
+        <section>
+            <h2>8. 进度追踪</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+            <div class="metric">
+                <span>总体进度：60%</span>
+                <span>预计完成时间：2026-02-23</span>
+            </div>
+            
+            <h3>8.1 已完成任务</h3>
+            <ul>
+                <li>✅ 基础场景搭建</li>
+                <li>✅ OrbitControls集成</li>
+                <li>✅ WASD移动功能</li>
+                <li>✅ 厅切换功能</li>
+                <li>✅ 建筑细节（柱子、拱门）</li>
+                <li>✅ 入口标记</li>
+            </ul>
+            
+            <h3>8.2 进行中任务</h3>
+            <ul>
+                <li>🔄 画框位置优化</li>
+                <li>🔄 材质系统测试</li>
+            </ul>
+            
+            <h3>8.3 待完成任务</h3>
+            <ul>
+                <li>⬜ 材质系统重构</li>
+                <li>⬜ 光影效果优化</li>
+                <li>⬜ 交互体验优化</li>
+                <li>⬜ 系统化测试</li>
+                <li>⬜ 回归测试</li>
+            </ul>
+        </section>
+
+        <!-- 备注 -->
+        <section>
+            <h2>9. 备注</h2>
+            <div class="note">
+                <strong>重要提醒：</strong>
+                <ul>
+                    <li>所有修改后必须执行回归测试</li>
+                    <li>保持代码简洁，避免过度设计</li>
+                    <li>优先完成核心功能，再优化细节</li>
+                    <li>及时记录问题和解决方案</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>当前问题：</strong>
+                <ul>
+                    <li>所有材质使用BasicMaterial，需要升级到StandardMaterial</li>
+                    <li>画框位置需要进一步精确调整</li>
+                    <li>绿色测试球体需要移除</li>
+                    <li>缺乏系统化测试验证</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            <p>文档版本：v1.0 | 最后更新：2026-02-22 | 黄宾虹数字艺术展项目组</p>
+        </footer>
+    </div>
+</body>
+</html>

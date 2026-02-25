@@ -1,0 +1,1051 @@
+<template>
+  <div class="corridor-container">
+    <!-- 美化加载页面 -->
+    <div class="loading-overlay" v-if="loading">
+      <div class="loading-content">
+        <div class="loader">
+          <div class="loader-spinner"></div>
+          <div class="loader-text">加载中...</div>
+        </div>
+        <div class="loading-tip">
+          <p>🎨 黄宾虹艺术长廊</p>
+          <p>使用 W/S 或 ↑/↓ 键前后移动</p>
+          <p>鼠标左键拖动可旋转视角</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 标签关闭按钮 -->
+    <div v-if="activeIntro" class="intro-close-btn" @click="closeIntro">
+      ×
+    </div>
+
+    <div ref="sceneContainer" id="scene-container"></div>
+
+    <!-- 展厅导航栏 -->
+    <div class="hall-nav">
+      <div
+        v-for="hall in allHalls"
+        :key="hall.id"
+        :class="['hall-nav-item', { active: currentHallId === hall.id }]"
+        @click="switchHall(hall.id)"
+      >
+        <div class="hall-nav-name">{{ hall.name }}</div>
+        <div class="hall-nav-desc">{{ hall.description }}</div>
+      </div>
+    </div>
+
+    <!-- 当前展厅信息 -->
+    <div class="hall-info" v-if="currentHall">
+      <div class="hall-info-title">{{ currentHall.name }}</div>
+      <div class="hall-info-desc">{{ currentHall.description }}</div>
+    </div>
+
+    <!-- 操作提示 -->
+    <div class="controls-hint">
+      <div class="hint-item">W/S 或 ↑/↓：前后移动</div>
+      <div class="hint-item">鼠标拖动：旋转视角</div>
+    </div>
+  </div>
+</template>
+
+<script>
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer';
+import createPersonIntroduction from './charactor.js';
+import { IntroManager } from './charactor.js';
+import { getHallConfig, getAllHalls } from '../config/exhibitionHalls.js';
+
+export default {
+  name: 'CorridorScene',
+  data() {
+    return {
+      loading: true,
+      currentHallId: 'entrance', // 当前展厅ID
+      moveSpeed: 0.15,
+      keys: { w: false, s: false, ArrowUp: false, ArrowDown: false },
+      paintingParams: {
+        spacing: 12,
+        offsetY: 4.5,
+        thickness: 0.05
+      },
+      paintingSizes: [],
+      animationId: null,
+      activeIntro: null,
+      loadingProgress: 0,
+      totalResources: 0,
+      loadedResources: 0
+    };
+  },
+
+  // Three.js 对象作为组件属性，避免 Vue 响应式包装
+  scene: null,
+  camera: null,
+  renderer: null,
+  controls: null,
+  labelRenderer: null,
+  introManager: null,
+
+  computed: {
+    // 当前展厅配置
+    currentHall() {
+      return getHallConfig(this.currentHallId);
+    },
+    // 所有展厅列表
+    allHalls() {
+      return getAllHalls();
+    },
+    // 当前展厅的空间参数
+    spaceParams() {
+      return this.currentHall?.space || { length: 200, width: 14, height: 14, wallThickness: 0.1 };
+    },
+    // 当前展厅的展品
+    hallPaintings() {
+      return this.currentHall?.paintings || [];
+    }
+  },
+  mounted() {
+    this.initScene();
+    this.initListeners();
+    
+    // 模拟加载进度
+    this.simulateLoading();
+  },
+  beforeUnmount() {
+    this.cleanup();
+  },
+  methods: {
+    simulateLoading() {
+      const interval = setInterval(() => {
+        this.loadingProgress += 5;
+        if (this.loadingProgress >= 100) {
+          clearInterval(interval);
+          setTimeout(() => {
+            this.loading = false;
+            this.animate();
+          }, 500);
+        }
+      }, 100);
+    },
+
+    initScene() {
+      // 1. 初始化基础组件
+      this.scene = new THREE.Scene();
+      // 使用当前展厅的背景色，默认为0xF0E6D2
+      this.scene.background = new THREE.Color(0xF0E6D2);
+      this.initInteraction();
+
+      // 透视相机 - 使用当前展厅配置
+      this.camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      const camPos = this.currentHall?.camera?.position || { x: 0, y: 10.6, z: 0 };
+      const camTarget = this.currentHall?.camera?.target || { x: 0, y: 0, z: 100 };
+      this.camera.position.set(camPos.x, camPos.y, camPos.z);
+      this.camera.lookAt(camTarget.x, camTarget.y, camTarget.z);
+
+      // 渲染器
+      this.renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+      });
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      this.$refs.sceneContainer.appendChild(this.renderer.domElement);
+
+      // 创建展厅结构（根据当前展厅配置）
+      this.createHall();
+
+      // 添加光照系统（根据当前展厅配置）
+      this.addLighting();
+
+      // 初始化CSS2DRenderer
+      this.initCSS2DRenderer();
+
+      // 创建人物介绍
+      this.createPersonIntros();
+
+      // 加载画作
+      this.loadAndCreatePaintings();
+
+      // 创建展厅入口标记
+      this.createEntranceMarkers();
+
+      // 添加相机控制器
+      this.initControls();
+    },
+
+    createHall() {
+      const materials = this.currentHall?.materials || {
+        wall: { color: 0xFfF5F0, roughness: 0.6, metalness: 0.1 },
+        floor: { color: 0xF0E6D2, roughness: 0.2, metalness: 0.7, opacity: 0.9, transparent: true },
+        ceiling: { color: 0xFfF5F0, roughness: 0.8, metalness: 0.5 }
+      };
+
+      const wallMaterial = new THREE.MeshStandardMaterial(materials.wall);
+      const floorMaterial = new THREE.MeshStandardMaterial(materials.floor);
+      const ceilMaterial = new THREE.MeshStandardMaterial(materials.ceiling);
+
+      // 左侧墙体
+      const leftWall = new THREE.Mesh(
+        new THREE.BoxGeometry(this.spaceParams.wallThickness, this.spaceParams.height, this.spaceParams.length),
+        wallMaterial
+      );
+      leftWall.position.set(
+        -this.spaceParams.width / 2 + this.spaceParams.wallThickness / 2,
+        this.spaceParams.height / 2,
+        this.spaceParams.length / 2
+      );
+      leftWall.receiveShadow = true;
+      leftWall.castShadow = true;
+      this.scene.add(leftWall);
+
+      // 右侧墙体
+      const rightWall = new THREE.Mesh(
+        new THREE.BoxGeometry(this.spaceParams.wallThickness, this.spaceParams.height, this.spaceParams.length),
+        wallMaterial
+      );
+      rightWall.position.set(
+        this.spaceParams.width / 2 - this.spaceParams.wallThickness / 2,
+        this.spaceParams.height / 2,
+        this.spaceParams.length / 2
+      );
+      rightWall.receiveShadow = true;
+      rightWall.castShadow = true;
+      this.scene.add(rightWall);
+
+      // 地面
+      const floor = new THREE.Mesh(
+        new THREE.BoxGeometry(this.spaceParams.width, this.spaceParams.wallThickness, this.spaceParams.length),
+        floorMaterial
+      );
+      floor.position.set(0, this.spaceParams.wallThickness / 2, this.spaceParams.length / 2);
+      floor.receiveShadow = true;
+      this.scene.add(floor);
+
+      // 天花板
+      const ceiling = new THREE.Mesh(
+        new THREE.BoxGeometry(this.spaceParams.width, this.spaceParams.wallThickness, this.spaceParams.length),
+        ceilMaterial
+      );
+      ceiling.position.x = 0;
+      ceiling.position.y = this.spaceParams.height - (this.spaceParams.wallThickness / 2);
+      ceiling.position.z = this.spaceParams.length / 2;
+      ceiling.receiveShadow = true;
+      this.scene.add(ceiling);
+
+      // 展厅尽头
+      const endWall = new THREE.Mesh(
+        new THREE.BoxGeometry(this.spaceParams.width, this.spaceParams.height, this.spaceParams.wallThickness),
+        wallMaterial
+      );
+      endWall.position.set(0, this.spaceParams.height / 2, this.spaceParams.length - this.spaceParams.wallThickness / 2);
+      endWall.receiveShadow = true;
+      this.scene.add(endWall);
+    },
+
+    addLighting() {
+      const lightingConfig = this.currentHall?.lighting || {
+        ambient: { color: 0xfffff0, intensity: 0.8 },
+        directional: []
+      };
+
+      // 环境光
+      const ambientLight = new THREE.AmbientLight(
+        lightingConfig.ambient.color,
+        lightingConfig.ambient.intensity
+      );
+      this.scene.add(ambientLight);
+
+      // 方向光
+      lightingConfig.directional.forEach(lightConfig => {
+        const dirLight = new THREE.DirectionalLight(
+          lightConfig.color,
+          lightConfig.intensity
+        );
+        dirLight.position.set(
+          lightConfig.position.x,
+          lightConfig.position.y,
+          lightConfig.position.z
+        );
+        dirLight.target.position.set(0, this.spaceParams.height / 2, this.spaceParams.length / 2);
+        this.scene.add(dirLight.target);
+        dirLight.castShadow = false;
+        dirLight.shadow.mapSize.width = 2048;
+        dirLight.shadow.mapSize.height = 2048;
+        this.scene.add(dirLight);
+      });
+    },
+
+    initCSS2DRenderer() {
+      this.labelRenderer = new CSS2DRenderer();
+      this.labelRenderer.setSize(window.innerWidth, window.innerHeight);
+      this.labelRenderer.domElement.style.position = 'absolute';
+      this.labelRenderer.domElement.style.top = '0';
+      this.labelRenderer.domElement.style.left = '0';
+      this.labelRenderer.domElement.style.pointerEvents = 'none';
+      this.labelRenderer.domElement.id = 'css2d-renderer';
+      document.body.appendChild(this.labelRenderer.domElement);
+    },
+
+    createPersonIntros() {
+      this.introManager = new IntroManager(this.camera);
+      
+      // 修改IntroManager以支持关闭功能
+      const originalShowIntro = this.introManager.showIntro.bind(this.introManager);
+      const originalHideIntro = this.introManager.hideIntro.bind(this.introManager);
+      
+      this.introManager.showIntro = (intro) => {
+        originalShowIntro(intro);
+        this.activeIntro = intro;
+
+        // 添加关闭按钮到文字元素
+        try {
+          if (intro.textElement && intro.textElement.element) {
+            const element = intro.textElement.element;
+
+            // 检查是否已有关闭按钮
+            if (!element.querySelector('.intro-close-button')) {
+              const closeBtn = document.createElement('div');
+              closeBtn.className = 'intro-close-button';   // 统一类名
+              closeBtn.innerHTML = '×';
+              closeBtn.style.cssText = `
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                background: rgba(139, 69, 19, 0.9);
+                color: white;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 24px;
+                cursor: pointer;
+                z-index: 1000;
+                pointer-events: auto;   /* 关键：允许点击 */
+                transition: all 0.3s;
+              `;
+              closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();     // 防止冒泡
+                this.closeIntro();
+              });
+              closeBtn.addEventListener('mouseenter', () => {
+                closeBtn.style.background = 'rgba(139, 69, 19, 1)';
+                closeBtn.style.transform = 'scale(1.1)';
+              });
+              closeBtn.addEventListener('mouseleave', () => {
+                closeBtn.style.background = 'rgba(139, 69, 19, 0.9)';
+                closeBtn.style.transform = 'scale(1)';
+              });
+              element.style.position = 'relative';
+              element.appendChild(closeBtn);
+            }
+          }
+        } catch (error) {
+          console.error('添加关闭按钮时出错:', error);
+        }
+      };
+      
+      this.introManager.hideIntro = (intro) => {
+        originalHideIntro(intro);
+        if (this.activeIntro === intro) {
+          this.activeIntro = null;
+        }
+      };
+
+// 1. 白宾虹阶段（1865-1930 左右）
+const introPanel = createPersonIntroduction(this.scene, {
+  position: new THREE.Vector3(0, 5, 10),
+  corridorLength: 80,
+  corridorHeight: 12,
+  panelWidth: 7,
+  panelHeight: 8,
+  content: {
+    name: "白宾虹",
+    lifespan: "1865-1930",
+    title: "早期·白宾虹",
+    honor: "“白宾虹”时期",
+    detail: "以疏淡清逸的“白宾虹”面貌著称，宗法新安画派，用笔轻灵、设色淡雅，画面留白多，尚未形成后来浑厚华滋的风格。"
+  }
+});
+this.introManager.addIntro(introPanel);
+
+// 2. 黄宾虹阶段（1930-1948 左右）
+const introPanel2 = createPersonIntroduction(this.scene, {
+  position: new THREE.Vector3(0, 5, 40),
+  corridorLength: 80,
+  corridorHeight: 12,
+  panelWidth: 7,
+  panelHeight: 8,
+  content: {
+    name: "黄宾虹",
+    lifespan: "1930-1948",
+    title: "盛期·黄宾虹",
+    honor: "“黄宾虹”时期",
+    detail: "由“白”入“黄”，积墨、破墨、渍墨并用，画面趋于苍润浑厚；提出“五笔七墨”说，山水浑厚华滋，形成标志性的“黄宾虹调”。"
+  }
+});
+this.introManager.addIntro(introPanel2);
+
+// 3. 黑宾虹阶段（1948-1955 晚年）
+const introPanel3 = createPersonIntroduction(this.scene, {
+  position: new THREE.Vector3(0, 5, 80),
+  corridorLength: 80,
+  corridorHeight: 12,
+  panelWidth: 7,
+  panelHeight: 8,
+  content: {
+    name: "黑宾虹",
+    lifespan: "1948-1955",
+    title: "晚期·黑宾虹",
+    honor: "“黑宾虹”时期",
+    detail: "以浓墨、焦墨、宿墨层层积染，画面黑中透亮，所谓“黑团团里墨团团”；用笔更趋自由，形成“浑厚华滋、黑密厚重”的终极风格。"
+  }
+});
+this.introManager.addIntro(introPanel3);
+      
+    },
+
+createAdaptivePainting(texture, index, isLeft = true) {
+  const image = texture.image;
+  const imgWidth = image.width;
+  const imgHeight = image.height;
+
+  const maxWidth = 4.0;
+  const maxHeight = 5.0;
+
+  let width, height;
+  const aspectRatio = imgWidth / imgHeight;
+
+  if (aspectRatio > 1) {
+    width = Math.min(maxWidth, imgWidth / 200);
+    height = width / aspectRatio;
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * aspectRatio;
+    }
+  } else {
+    height = Math.min(maxHeight, imgHeight / 200);
+    width = height * aspectRatio;
+    if (width > maxWidth) {
+      width = maxWidth;
+      height = width / aspectRatio;
+    }
+  }
+
+  this.paintingSizes[index] = { width, height, aspectRatio };
+
+  const paintingMaterial = new THREE.MeshStandardMaterial({
+    map: texture,
+    side: THREE.DoubleSide,
+    roughness: 0.8,
+    metalness: 0.2
+  });
+
+  const frameMaterial = new THREE.MeshStandardMaterial({
+    color: 0x8b4513,
+    roughness: 0.4,
+    metalness: 0.6
+  });
+
+  const painting = new THREE.Mesh(
+    new THREE.PlaneGeometry(width, height),
+    paintingMaterial
+  );
+
+  const frame = new THREE.Mesh(
+    new THREE.BoxGeometry(
+      width + 0.12,
+      height + 0.12,
+      this.paintingParams.thickness
+    ),
+    frameMaterial
+  );
+
+  const posZ = this.paintingParams.spacing * (index + 1);
+
+  if (isLeft) {
+    painting.position.set(
+      -this.corridorParams.width / 2 + 0.5,
+      this.paintingParams.offsetY + height / 2,
+      posZ
+    );
+    painting.rotation.y = Math.PI / 2;
+
+    frame.position.copy(painting.position);
+    frame.position.x = painting.position.x - this.paintingParams.thickness / 2 - 0.01;
+    frame.rotation.y = painting.rotation.y;
+  } else {
+    painting.position.set(
+      this.corridorParams.width / 2 - 0.5,
+      this.paintingParams.offsetY + height / 2,
+      posZ
+    );
+    painting.rotation.y = -Math.PI / 2;
+
+    frame.position.copy(painting.position);
+    frame.position.x = painting.position.x + this.paintingParams.thickness / 2 + 0.01;
+    frame.rotation.y = painting.rotation.y;
+  }
+
+  painting.castShadow = true;
+  painting.receiveShadow = true;
+  frame.castShadow = true;
+
+  // ✅ 关键：把 id 挂到 mesh 上
+  painting.userData.id = this.paintingImages[index].id;
+
+  this.scene.add(painting);
+  this.scene.add(frame);
+
+  return { painting, frame, width, height };
+},
+loadAndCreatePaintings() {
+  const textureLoader = new THREE.TextureLoader();
+  let loadCount = 0;
+  const totalImages = this.paintingImages.length * 2; // ✅ 修复：原来是 .url.length
+
+  this.paintingImages.forEach((image, index) => {
+    const imagePath = image.url;
+    textureLoader.load(
+      imagePath,
+      (texture) => {
+        texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
+        this.createAdaptivePainting(texture, index, true);
+        this.createAdaptivePainting(texture, index, false);
+        loadCount += 2;
+
+        if (loadCount === totalImages) {
+          console.log('所有画作加载完成');
+        }
+      },
+      undefined,
+      (error) => {
+        console.error('图片加载失败:', error);
+      }
+    );
+  });
+},
+initInteraction() {
+  const raycaster = new THREE.Raycaster();
+  const pointer = new THREE.Vector2();
+
+  const onPointerDown = (event) => {
+    const x = event.clientX ?? event.touches?.[0]?.clientX;
+    const y = event.clientY ?? event.touches?.[0]?.clientY;
+
+    if (x === undefined || y === undefined) return;
+
+    pointer.x = (x / window.innerWidth) * 2 - 1;
+    pointer.y = -(y / window.innerHeight) * 2 + 1;
+
+    raycaster.setFromCamera(pointer, this.camera);
+    const intersects = raycaster.intersectObjects(this.scene.children, false);
+
+    for (let i = 0; i < intersects.length; i++) {
+      const obj = intersects[i].object;
+      if (obj.userData.id !== undefined) {
+        window.location.href = `/work?id=${obj.userData.id}`;
+        break;
+      }
+    }
+  };
+
+  window.addEventListener('click', onPointerDown);
+  window.addEventListener('touchstart', onPointerDown);
+},
+    initControls() {
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+      this.controls.enableDamping = true;
+      this.controls.dampingFactor = 0.05;
+      this.controls.enablePan = true;
+      this.controls.enableZoom = false;
+      this.controls.enableRotate = true;
+      this.controls.minPolarAngle = Math.PI / 2;
+      this.controls.maxPolarAngle = Math.PI / 2;
+      this.controls.minAzimuthAngle = -Infinity;
+      this.controls.maxAzimuthAngle = Infinity;
+    },
+
+    initListeners() {
+      document.addEventListener('keydown', this.handleKeyDown);
+      document.addEventListener('keyup', this.handleKeyUp);
+      window.addEventListener('resize', this.handleResize);
+    },
+
+    handleKeyDown(e) {
+      const key = e.key;
+      if (Object.prototype.hasOwnProperty.call(this.keys, key)) {
+        this.keys[key] = true;
+      }
+    },
+
+    handleKeyUp(e) {
+      const key = e.key;
+      if (Object.prototype.hasOwnProperty.call(this.keys, key)) {
+        this.keys[key] = false;
+      }
+    },
+
+    handleResize() {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.labelRenderer.setSize(window.innerWidth, window.innerHeight);
+    },
+
+    updateCameraPosition() {
+      // 修改了这里
+      const direction = new THREE.Vector3();
+      this.camera.getWorldDirection(direction);
+      let directionZ=direction.z;
+      if (directionZ<0) {
+        directionZ=-1;
+      }else{
+        directionZ=1;
+      }
+      if (this.keys.w || this.keys.ArrowUp) {
+        this.camera.position.z += this.moveSpeed*directionZ;
+        this.camera.position.z = Math.min(this.camera.position.z, this.spaceParams.length - 5);
+      }
+
+      if (this.keys.s || this.keys.ArrowDown) {
+        this.camera.position.z -= this.moveSpeed*directionZ;
+        this.camera.position.z = Math.max(this.camera.position.z, 2);
+      }
+
+      const lookDirection = new THREE.Vector3(0, 0, 1);
+      lookDirection.applyQuaternion(this.camera.quaternion);
+      this.controls.target.copy(this.camera.position).add(lookDirection.multiplyScalar(-5));
+    },
+
+    /**
+     * 切换展厅
+     * @param {string} hallId - 展厅ID
+     */
+    switchHall(hallId) {
+      if (!getHallConfig(hallId)) {
+        console.error(`展厅不存在: ${hallId}`);
+        return;
+      }
+
+      // 清理当前展厅的3D对象
+      this.clearScene();
+
+      // 切换到新展厅
+      this.currentHallId = hallId;
+
+      // 重新初始化场景
+      this.initScene();
+
+      console.log(`已切换到展厅: ${this.currentHall.name}`);
+    },
+
+    /**
+     * 清理场景中的所有3D对象
+     */
+    clearScene() {
+      // 移除场景中的所有mesh对象
+      const objectsToRemove = [];
+      this.scene.traverse((object) => {
+        if (object.isMesh) {
+          objectsToRemove.push(object);
+        }
+      });
+      objectsToRemove.forEach(obj => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) {
+            obj.material.forEach(mat => mat.dispose());
+          } else {
+            obj.material.dispose();
+          }
+        }
+        this.scene.remove(obj);
+      });
+
+      // 移除所有灯光
+      const lightsToRemove = [];
+      this.scene.traverse((object) => {
+        if (object.isLight) {
+          lightsToRemove.push(object);
+        }
+      });
+      lightsToRemove.forEach(light => {
+        this.scene.remove(light);
+      });
+
+      // 清理CSS2D标签
+      const css2dElement = document.getElementById('css2d-renderer');
+      if (css2dElement && css2dElement.innerHTML) {
+        css2dElement.innerHTML = '';
+      }
+
+      // 重置相机控制器
+      if (this.controls) {
+        this.controls.dispose();
+      }
+
+      // 重置introManager
+      if (this.introManager) {
+        this.introManager = null;
+      }
+    },
+
+    /**
+     * 创建展厅入口标记
+     */
+    createEntranceMarkers() {
+      const markers = this.currentHall?.entranceMarkers || [];
+      markers.forEach((marker) => {
+        // 创建入口标记的视觉表示
+        const markerGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+        const markerMaterial = new THREE.MeshStandardMaterial({
+          color: 0xffd700,
+          emissive: 0xffd700,
+          emissiveIntensity: 0.5
+        });
+        const markerMesh = new THREE.Mesh(markerGeometry, markerMaterial);
+        markerMesh.position.set(
+          marker.position.x,
+          marker.position.y,
+          marker.position.z
+        );
+        markerMesh.userData = {
+          type: 'entrance_marker',
+          targetHall: marker.targetHall,
+          label: marker.label
+        };
+        this.scene.add(markerMesh);
+
+        // 添加光晕效果
+        const glowGeometry = new THREE.SphereGeometry(0.7, 32, 32);
+        const glowMaterial = new THREE.MeshBasicMaterial({
+          color: 0xffd700,
+          transparent: true,
+          opacity: 0.3
+        });
+        const glowMesh = new THREE.Mesh(glowGeometry, glowMaterial);
+        glowMesh.position.copy(markerMesh.position);
+        this.scene.add(glowMesh);
+      });
+    },
+
+    closeIntro() {
+      if (this.activeIntro && this.introManager) {
+        this.introManager.hideIntro(this.activeIntro);
+        this.activeIntro = null;
+      }
+    },
+
+    animate() {
+      this.animationId = requestAnimationFrame(this.animate);
+      this.updateCameraPosition();
+      this.controls.update();
+      this.renderer.render(this.scene, this.camera);
+      this.labelRenderer.render(this.scene, this.camera);
+      
+      if (this.introManager) {
+        this.introManager.update();
+      }
+    },
+
+    cleanup() {
+      if (this.animationId) {
+        cancelAnimationFrame(this.animationId);
+      }
+      
+      document.removeEventListener('keydown', this.handleKeyDown);
+      document.removeEventListener('keyup', this.handleKeyUp);
+      window.removeEventListener('resize', this.handleResize);
+      
+      if (this.renderer) {
+        this.renderer.dispose();
+      }
+      
+      const css2dElement = document.getElementById('css2d-renderer');
+      if (css2dElement && css2dElement.parentNode) {
+        css2dElement.parentNode.removeChild(css2dElement);
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+.corridor-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 美化加载页面 */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.loading-overlay.fade-out {
+  opacity: 0;
+}
+
+.loading-content {
+  text-align: center;
+  color: white;
+  max-width: 500px;
+  padding: 40px;
+}
+
+/* 加载动画 */
+.loader {
+  margin-bottom: 40px;
+}
+
+.loader-spinner {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #FfF5F0;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+  font-size: 20px;
+  color: #FfF5F0;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* 进度条 */
+.progress-bar {
+  width: 300px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffd700, #ff8c00);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* 加载提示 */
+.loading-tip {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.loading-tip p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.loading-tip p:first-child {
+  font-size: 24px;
+  color: #FfF5F0;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* 全局关闭按钮 */
+.intro-close-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(139, 69, 19, 0.9);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.intro-close-btn:hover {
+  background: rgba(139, 69, 19, 1);
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 操作提示 */
+.controls-hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 12px 24px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  z-index: 998;
+}
+
+/* 展厅导航栏 */
+.hall-nav {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 997;
+}
+
+.hall-nav-item {
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.hall-nav-item:hover {
+  background: rgba(139, 69, 19, 0.1);
+  transform: translateX(5px);
+}
+
+.hall-nav-item.active {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.9), rgba(255, 215, 0, 0.9));
+  color: white;
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 2px 10px rgba(139, 69, 19, 0.3);
+}
+
+.hall-nav-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.hall-nav-desc {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* 当前展厅信息 */
+.hall-info {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 16px 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 997;
+  text-align: center;
+}
+
+.hall-info-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #8B4513;
+  margin-bottom: 4px;
+}
+
+.hall-info-desc {
+  font-size: 14px;
+  color: #666;
+}
+
+.hint-item {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hint-item::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ffd700;
+  border-radius: 50%;
+}
+
+#scene-container {
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* 全局CSS用于CSS2D标签 */
+:deep(.person-intro) {
+  position: relative !important;
+  pointer-events: auto !important;
+}
+
+:deep(.intro-close-button) {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  width: 30px !important;
+  height: 30px !important;
+  background: rgba(139, 69, 19, 0.8) !important;
+  color: white !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 24px !important;
+  cursor: pointer !important;
+  z-index: 1000 !important;
+  transition: all 0.3s !important;
+}
+
+:deep(.intro-close-button:hover) {
+  background: rgba(139, 69, 19, 1) !important;
+  transform: scale(1.1) !important;
+}
+</style>

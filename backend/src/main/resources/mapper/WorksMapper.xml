@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.qingliul.digitalhuangbinhon.mapper.WorksMapper">
+
+    <!-- 查询作品列表 -->
+    <!-- 查询作品列表 -->
+    <select id="selectWorksList" parameterType="map" resultType="org.qingliul.digitalhuangbinhon.entity.Works">
+        SELECT
+        works_id,
+        works_name,
+        creation_year,
+        category,
+        art_period,
+        creation_time_detail,
+        size,
+        material,
+        collection_institution,
+        collection_location,
+        works_desc,
+        create_time,
+        update_time
+        FROM works
+        <where>
+            <if test="category != null and category != ''">
+                AND category = #{category}::category_enum
+            </if>
+            <if test="creationYear != null">
+                AND creation_year = #{creationYear}
+            </if>
+
+            <!-- ✅ 新增：年份区间筛选 -->
+            <if test="startYear != null and endYear != null">
+                AND creation_year BETWEEN #{startYear} AND #{endYear}
+            </if>
+            <if test="art_period != null and art_period != ''">
+                AND art_period = #{art_period}::art_period_enum
+            </if>
+            <!-- ✅ 多关键字精确匹配：每个词都必须出现在作品名中 -->
+            <if test="worksName != null and worksName != ''">
+                <foreach collection="worksName.split(' ')" item="word" open="" close="" separator="">
+                    AND works_name LIKE CONCAT('%', #{word}, '%')
+                </foreach>
+            </if>
+
+            <!-- ✅ 标签筛选（支持多个标签ID） -->
+            <if test="tag_ids != null and tag_ids != ''">
+                AND EXISTS (
+                    SELECT 1
+                    FROM works_tag_rel r
+                    WHERE r.works_id = works.works_id
+                    AND r.tag_id IN
+                    <foreach collection="tag_ids.split(',')" item="tagId" open="(" close=")" separator=",">
+                        CAST(#{tagId} AS INTEGER)
+                    </foreach>
+                )
+            </if>
+            <!-- 兼容旧版：标签名称筛选 -->
+            <if test="tags != null and tags != ''">
+                AND EXISTS (
+                    SELECT 1
+                    FROM works_tag t
+                    JOIN works_tag_rel r ON t.tag_id = r.tag_id
+                    WHERE r.works_id = works.works_id
+                    AND t.tag_name = #{tags}
+                )
+            </if>
+        </where>
+
+        ORDER BY creation_year DESC
+        <if test="start != null and size != null">
+            LIMIT #{size} OFFSET #{start}
+        </if>
+    </select>
+
+    <!-- 查询作品总数 -->
+    <select id="countWorksList" parameterType="map" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM works
+        <where>
+            <if test="category != null and category != ''">
+                AND category = #{category}::category_enum
+            </if>
+            <if test="creationYear != null">
+                AND creation_year = #{creationYear}
+            </if>
+            <if test="art_period != null and art_period != ''">
+                AND art_period = #{art_period}::art_period_enum
+            </if>
+            <!-- ✅ 新增：年份区间筛选 -->
+            <if test="startYear != null and endYear != null">
+                AND creation_year BETWEEN #{startYear} AND #{endYear}
+            </if>
+
+            <if test="worksName != null and worksName != ''">
+                <foreach collection="worksName.split(' ')" item="word" open="" close="" separator="">
+                    AND works_name LIKE CONCAT('%', #{word}, '%')
+                </foreach>
+            </if>
+
+            <!-- ✅ 标签筛选（支持多个标签ID） -->
+            <if test="tag_ids != null and tag_ids != ''">
+                AND EXISTS (
+                    SELECT 1
+                    FROM works_tag_rel r
+                    WHERE r.works_id = works.works_id
+                    AND r.tag_id IN
+                    <foreach collection="tag_ids.split(',')" item="tagId" open="(" close=")" separator=",">
+                        CAST(#{tagId} AS INTEGER)
+                    </foreach>
+                )
+            </if>
+            <!-- 兼容旧版：标签名称筛选 -->
+            <if test="tags != null and tags != ''">
+                AND EXISTS (
+                    SELECT 1
+                    FROM works_tag t
+                    JOIN works_tag_rel r ON t.tag_id = r.tag_id
+                    WHERE r.works_id = works.works_id
+                    AND t.tag_name = #{tags}
+                )
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据ID查询作品详情 -->
+    <select id="selectWorksById" parameterType="java.lang.Integer"
+            resultType="org.qingliul.digitalhuangbinhon.entity.Works">
+        SELECT
+            works_id,
+            works_name,
+            creation_year,
+            art_period,
+            creation_time_detail,
+            size,
+            material,
+            collection_institution,
+            collection_location,
+            works_desc,
+            create_time,
+            update_time
+        FROM works
+        WHERE works_id = #{worksId}
+    </select>
+    <select id="selectImagesByWorksId" parameterType="java.lang.Integer"
+            resultType="java.util.HashMap">
+        SELECT
+            CAST(img_type AS VARCHAR) as imgType,
+            img_url as imgUrl,
+            img_desc as imgDesc
+        FROM works_image
+        WHERE works_id = #{worksId}
+        ORDER BY sort_order
+    </select>
+    <select id="selectThumbnailUrl" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT img_url FROM works_image
+        WHERE works_id = #{worksId} AND img_type = 'thumbnail'
+            LIMIT 1
+    </select>
+    <!-- 在 WorksMapper.xml 中添加 -->
+    <!-- 搜索标签（按名称模糊匹配） -->
+    <!-- ========== 新增的标签相关SQL映射 ========== -->
+
+    <!-- 查询所有标签（带作品数量统计） -->
+    <select id="selectAllTags" resultType="java.util.HashMap">
+        SELECT
+            t.tag_id as tagid,
+            t.tag_name as tagname,
+            t.tag_category as tagcategory,
+            COUNT(r.works_id) as workcount
+        FROM works_tag t
+                 LEFT JOIN works_tag_rel r ON t.tag_id = r.tag_id
+        GROUP BY t.tag_id, t.tag_name, t.tag_category
+        ORDER BY workcount DESC, t.tag_name
+    </select>
+
+    <!-- 根据标签ID查询作品列表 -->
+    <select id="selectWorksByTagId" parameterType="map" resultType="org.qingliul.digitalhuangbinhon.entity.Works">
+        SELECT
+        w.works_id,
+        w.works_name,
+        w.creation_year,
+        w.creation_time_detail,
+        w.size,
+        w.material,
+        w.collection_institution,
+        w.works_desc,
+        w.art_period
+        FROM works w
+        INNER JOIN works_tag_rel r ON w.works_id = r.works_id
+        WHERE r.tag_id = #{tagId}
+        ORDER BY w.creation_year DESC
+        <if test="start != null and size != null">
+            LIMIT #{size} OFFSET #{start}
+        </if>
+    </select>
+
+    <!-- 根据标签ID查询作品总数 -->
+    <select id="countWorksByTagId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM works_tag_rel
+        WHERE tag_id = #{tagId}
+    </select>
+
+    <!-- 根据作品ID查询标签列表 -->
+    <select id="selectTagsByWorksId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT
+            t.tag_name
+        FROM works_tag t
+                 INNER JOIN works_tag_rel r ON t.tag_id = r.tag_id
+        WHERE r.works_id = #{worksId}
+        ORDER BY t.tag_name
+    </select>
+    <select id="searchTags" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT
+        t.tag_id AS tagId,
+        t.tag_name AS tagName,
+        COUNT(r.works_id) AS workCount
+        FROM works_tag t
+        LEFT JOIN works_tag_rel r ON t.tag_id = r.tag_id
+        <if test="keyword != null and keyword != ''">
+            WHERE t.tag_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        GROUP BY t.tag_id, t.tag_name
+        ORDER BY workCount DESC, t.tag_name
+    </select>
+    <!-- 获取作品分类统计 -->
+    <select id="selectCategoryStats" resultType="java.util.HashMap">
+        SELECT
+            category as categoryName,
+            COUNT(*) as count,
+        ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM works), 2) as percentage
+        FROM works
+        GROUP BY category
+        ORDER BY count DESC
+    </select>
+
+    <!-- 按年份区间查作品 -->
+    <select id="selectWorksByYearRange" resultType="org.qingliul.digitalhuangbinhon.entity.Works">
+        SELECT *
+        FROM works
+        WHERE creation_year BETWEEN #{startYear} AND #{endYear}
+        ORDER BY creation_year DESC
+            LIMIT #{size} OFFSET #{start}
+    </select>
+
+    <!-- 统计 -->
+    <select id="countWorksByYearRange" resultType="int">
+        SELECT COUNT(*)
+        FROM works
+        WHERE creation_year BETWEEN #{startYear} AND #{endYear}
+    </select>
+</mapper>
