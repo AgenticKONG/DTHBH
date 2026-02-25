@@ -2,62 +2,84 @@
   <div class="container">
     <h1>黄宾虹交友网络</h1>
 
-    <p class="intro">探索黄宾虹的交友网络与关键好友的时间线，了解这位艺术大师的人生历程与艺术成就</p>
+    <p class="intro">探索黄宾虹的交友网络与关键好友的时间轴，感受一代宗师的时空轨迹</p>
+
+    <!-- 全局隐藏定义区：确保滤镜在任何标签页都可用 -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="ink-spread-global">
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
 
     <!-- 顶部 tab -->
     <div class="nav-tabs">
       <div class="nav-tab" :class="{ active: activeView === 'overview-view' }" @click="switchTab('overview-view')">
         交友网络
       </div>
-
+      <div class="nav-tab" :class="{ active: activeView === 'sichuan-view' }" @click="switchTab('sichuan-view')">
+        1932 蜀游专题
+      </div>
       <div class="nav-tab" :class="{ active: activeView === 'timeline-view' }" @click="switchTab('timeline-view')">
         关键好友时间轴
       </div>
     </div>
 
-    <!-- 交友网络总览 -->
+    <!-- 1. 交友网络总览 -->
     <div id="overview-view" class="view" :class="{ active: activeView === 'overview-view' }">
       <svg id="overview-svg"></svg>
     </div>
 
-    <!-- 地图视图 -->
-    <div id="map-view" class="view" :class="{ active: activeView === 'map-view' }">
-      <button class="back-btn" @click="backToOverview"><i>↩</i> 返回总览</button>
-
-      <div class="map-info">
-        <div class="map-title">{{ mapPlaceName }}</div>
-        <div id="map-place-desc">{{ mapPlaceDesc }}</div>
-        <div class="friend-info" id="map-friends"><strong>主要好友:</strong> {{ mapFriends }}</div>
+    <!-- 2. 蜀游专题视图 -->
+    <div id="sichuan-view" class="view sichuan-tour-container" :class="{ active: activeView === 'sichuan-view' }">
+      <div class="sichuan-layout">
+        <!-- 左侧：固定动线 -->
+        <div class="tour-canvas-fixed">
+          <div class="map-label">1932 賓公入蜀寫生圖</div>
+          <svg id="sichuan-svg" style="background: #f4efdf;"></svg>
+        </div>
+        <!-- 右侧：叙事卡片 -->
+        <div class="story-track" ref="storyTrack" @scroll="handleTourScroll">
+          <div v-for="(step, index) in sichuanData" :key="index" 
+               class="story-node" 
+               :class="{ 'is-active': activeStep === index }">
+            <div class="story-card" @click="scrollToStep(index)">
+              <div class="card-header">
+                <span class="story-date">{{ step.date }}</span>
+                <span class="story-location">{{ step.location }}</span>
+              </div>
+              <div class="card-body">
+                <div class="text-content">
+                  <div class="story-title">{{ step.title }}</div>
+                  <div class="story-desc">{{ step.description }}</div>
+                </div>
+                <div v-if="step.image" class="thumb-image-wrap">
+                  <img :src="step.image" class="thumb-image" />
+                </div>
+              </div>
+              <div v-if="step.diary" class="diary-section">
+                <button class="scroll-toggle" @click.stop="toggleDiary(index)">
+                  {{ step.showDiary ? '收起卷軸' : '閱覽日記原文' }}
+                </button>
+                <transition name="scroll-unfold">
+                  <div v-if="step.showDiary" class="diary-scroll">
+                    <div class="diary-content">{{ step.diary }}</div>
+                  </div>
+                </transition>
+              </div>
+            </div>
+          </div>
+          <div style="height: 300px;"></div>
+        </div>
       </div>
-
-      <div class="year-label">{{ mapYear }}</div>
-
-      <!-- 好友详情弹窗 -->
-      <div class="friend-details" :class="{ active: friendDialogVisible }">
-        <button class="close-btn" @click="friendDialogVisible = false">&times;</button>
-
-        <div class="friend-name">{{ friendName }}</div>
-        <div class="friend-history">{{ friendHistory }}</div>
-      </div>
-
-      <svg id="map-svg"></svg>
     </div>
 
-    <!-- 时间轴视图 -->
+    <!-- 3. 时间轴视图 -->
     <div id="timeline-view" class="view" :class="{ active: activeView === 'timeline-view' }">
-      <button class="back-btn" @click="backToOverview"><i>↩</i> 返回总览</button>
-
       <div class="timeline-container">
         <svg id="timeline-svg"></svg>
-      </div>
-
-      <!-- 时间事件弹窗 -->
-      <div class="event-details" :class="{ active: eventDialogVisible }">
-        <button class="close-btn" @click="eventDialogVisible = false">&times;</button>
-
-        <div class="event-title">{{ eventTitle }}</div>
-        <div class="event-description">{{ eventDescription }}</div>
-        <div class="event-meta">{{ eventMeta }}</div>
       </div>
     </div>
   </div>
@@ -72,914 +94,151 @@ export default {
   data() {
     return {
       activeView: 'overview-view',
-
-      mapPlaceName: '',
-      mapPlaceDesc: '',
-      mapFriends: '',
-      mapYear: '',
-
-      friendDialogVisible: false,
-      friendName: '',
-      friendHistory: '',
-
-      eventDialogVisible: false,
-      eventTitle: '',
-      eventDescription: '',
-      eventMeta: '',
-
-      /* 数据由store管理 */
-      data: {
-        core: { id: '黄宾虹', birth: 1865, death: 1955 },
-        locations: [],
-        timelineEvents: []
-      },
-
-      // 状态管理
-      loading: false,
-      error: null
+      activeStep: 0,
+      storyNodes: [],
+      sichuanData: [
+        { "date": "09.15", "location": "上海", "title": "登輪啟程", "description": "午夜月光微輝，三人同行入蜀。", "image": "/images/huangbinhong.jpg", "diary": "九月十五日，下午登永年輪。午夜月光微輝，似含無限之離情。", "showDiary": false, "x": 0.15, "y": 0.1 },
+        { "date": "09.18", "location": "安慶", "title": "遙望九華", "description": "遠眺山色，如米氏潑墨。", "image": "/images/shanshui.jpg", "diary": "十八日晨，遙望九華山吞吐白雲中，直是米氏潑墨。", "showDiary": false, "x": 0.35, "y": 0.22 },
+        { "date": "09.22", "location": "宜昌", "title": "初入川江", "description": "見“酒船”奇景，極其夢幻。", "image": "/images/shuimo.jpg", "diary": "舟至宜昌泊，內有酒麵可以餉客，呼之為酒船。", "showDiary": false, "x": 0.55, "y": 0.35 },
+        { "date": "09.23", "location": "西陵峽", "title": "三峽奇險", "description": "兩岸高峰限日，削壁阻流。", "image": "/images/painting1.jpg", "diary": "入西陵峽，水勢飛越，膽股為之掉栗。", "showDiary": false, "x": 0.7, "y": 0.45 },
+        { "date": "09.24", "location": "夔府", "title": "夔門大觀", "description": "兩山對立如門，江面奇狹。", "image": "/images/qingshan.jpg", "diary": "二十四日，至白帝城，川江三峽此段為最壯觀。", "showDiary": false, "x": 0.85, "y": 0.55 },
+        { "date": "09.27", "location": "重慶", "title": "宿老古樓", "description": "賞鑒名人真蹟，確立標準。", "image": "/images/xishan.jpg", "diary": "抵渝進城，宿老古樓川江旅社。晚間賞鑒古銅瓷器。", "showDiary": false, "x": 0.75, "y": 0.65 },
+        { "date": "10.13", "location": "犍為", "title": "狂瀾復挽", "description": "江流驟束，鐵鏈橫江。", "image": "/images/hushan.jpg", "diary": "到死關，江流驟束，石壁刻‘狂瀾復挽’四字。", "showDiary": false, "x": 0.55, "y": 0.75 },
+        { "date": "10.15", "location": "樂山", "title": "爾雅台", "description": "暢談佛學畫理，悟得內美。", "image": "/images/lingu.jpg", "diary": "登爾雅台，憑欄遙矚。傳度出示李龍眠羅漢卷。", "showDiary": false, "x": 0.35, "y": 0.82 },
+        { "date": "10.22", "location": "峨眉", "title": "雪山感悟", "description": "悟得山水無定形，畫風大變。", "image": "/images/xishanshengxiu.jpg", "diary": "五里洗象池，樹木四月發葉，九月下雪，金頂六月烤火。", "showDiary": false, "x": 0.15, "y": 0.9 },
+        { "date": "11.07", "location": "成都", "title": "少城盛宴", "description": "宴請紳老，整理入蜀所得。", "image": "/images/qingcheng.jpg", "diary": "晚間應老同學馮建吳之宴於少城公園之靜寧飯店。", "showDiary": false, "x": 0.3, "y": 0.95 }
+      ],
+      data: { locations: [] }
     };
   },
 
-  async mounted() {
-    await this.loadData();
-    this.initOverview();
-    this.initTimeline();
-    window.addEventListener('resize', this.onResize);
-  },
-
-  beforeUnmount() {
-    window.removeEventListener('resize', this.onResize);
-  },
-
   methods: {
-    /* ---------- 数据 ---------- */
-    async loadData() {
-      const store = getDataStore();
-
-        try {
-        this.loading = true;
-        this.error = null;
-
-          const allData = await store.fetchAllData();
-        this.data.core = allData.core;
-        this.data.locations = allData.locations;
-        this.data.timelineEvents = allData.timelineEvents;
-      } catch (e) {
-        this.error = e.message || '加载数据失败';
-        console.error('接口异常', e);
-      } finally {
-        this.loading = false;
-      }
-    },
-
-    /* ---------- 导航 ---------- */
-    goHome() {
-      alert('跳转到首页');
-    },
-    goExplore() {
-      alert('跳转到黄宾虹研究页面');
-    },
     switchTab(view) {
       this.activeView = view;
-      if (view === 'timeline-view') {
-        this.$nextTick(() => this.initTimeline());
-      }
-    },
-    backToOverview() {
-      this.activeView = 'overview-view';
-      this.friendDialogVisible = false;
-      this.eventDialogVisible = false;
+      this.$nextTick(() => {
+        if (view === 'overview-view') this.initOverview();
+        if (view === 'sichuan-view') this.initSichuanTour();
+      });
     },
 
-    /* ---------- Overview ---------- */
-    initOverview() {
-      const container = document.getElementById('overview-view');
+    initSichuanTour() {
+      const container = document.querySelector('.tour-canvas-fixed');
       if (!container) return;
-
-        const width = container.clientWidth;
-      const height = container.clientHeight;
-      const svg = d3.select('#overview-svg').attr('width', width).attr('height', height);
-      svg.selectAll('*').remove();
-
-      // 优化节点和链接的数据结构
-      const nodes = [this.data.core];
-      this.data.locations.forEach((loc) => nodes.push({ id: loc.id, type: 'place' }));
-
-      const people = new Set();
-      this.data.locations.forEach((loc) => loc.people.forEach((p) => people.add(p.name)));
-      people.forEach((p) => nodes.push({ id: p, type: 'person' }));
-
-      const links = [];
-      this.data.locations.forEach((loc) => {
-        links.push({ source: '黄宾虹', target: loc.id, type: 'core-place' });
-        loc.people.forEach((person) => links.push({ source: loc.id, target: person.name, type: 'place-person' }));
-      });
-
-      // 优化力导向模拟参数
-      const simulation = d3
-        .forceSimulation()
-        .force(
-          'link',
-          d3
-            .forceLink()
-            .id((d) => d.id)
-            .distance((d) => {
-              // 根据链接类型调整距离
-              if (d.type === 'core-place') return 120;
-              return 80;
-            })
-            .strength(0.7)
-        )
-        .force('charge', d3.forceManyBody().strength(-400))
-        .force('center', d3.forceCenter(width / 2, height / 2))
-        .force(
-          'collide',
-          d3.forceCollide().radius((d) => {
-            // 根据节点大小调整碰撞半径
-            if (d.id === '黄宾虹') return 20;
-            if (d.type === 'place') return 18;
-            return 14;
-          })
-        )
-        .force('x', d3.forceX(width / 2).strength(0.05))
-        .force('y', d3.forceY(height / 2).strength(0.05));
-
-      // 使用容器分组来优化渲染性能
-      const linkGroup = svg.append('g').attr('class', 'links');
-      const nodeGroup = svg.append('g').attr('class', 'nodes');
-      const labelGroup = svg.append('g').attr('class', 'labels');
-
-      // 优化链接渲染
-      const link = linkGroup
-        .selectAll('line')
-        .data(links)
-        .enter()
-        .append('line')
-        .attr('class', 'link')
-        .attr('stroke-width', (d) => (d.type === 'core-place' ? 2 : 1))
-        .attr('stroke-opacity', (d) => (d.type === 'core-place' ? 0.8 : 0.5));
-
-      // 优化节点渲染
-      const node = nodeGroup
-        .selectAll('circle')
-        .data(nodes)
-        .enter()
-        .append('circle')
-        .attr('class', (d) => {
-          if (d.id === '黄宾虹') return 'node core';
-          if (d.type === 'place') return 'node place';
-          return 'node person no-hover';
-        })
-        .attr('r', (d) => {
-          if (d.id === '黄宾虹') return 18;
-          if (d.type === 'place') return 14;
-          return 10;
-        })
-        .style('transition', 'r 0.3s ease')
-        .call(
-          d3
-            .drag()
-            .on('start', this._dragStarted(simulation))
-            .on('drag', this._dragged)
-            .on('end', this._dragEnded(simulation))
-        );
-
-      // 添加悬停效果（仅对地点节点）
-      node
-        .filter((d) => d.type === 'place')
-        .on('mouseenter', function () {
-          d3.select(this).transition().duration(200).attr('r', 18).style('cursor', 'pointer');
-        })
-        .on('mouseleave', function () {
-          d3.select(this).transition().duration(200).attr('r', 14).style('cursor', 'default');
-        })
-        .on('click', (event, d) => this.showMapView(d.id));
-
-      // 优化标签渲染
-      const label = labelGroup
-        .selectAll('text')
-        .data(nodes)
-        .enter()
-        .append('text')
-        .attr('class', (d) => (d.type === 'place' ? 'label place-label' : 'label'))
-        .attr('dy', (d) => (d.type === 'place' ? 28 : 22))
-        .text((d) => d.id)
-        .style('font-size', (d) => {
-          if (d.id === '黄宾虹') return '15px';
-          if (d.type === 'place') return '13px';
-          return '12px';
-        })
-        .style('font-weight', (d) => (d.type === 'place' ? 'bold' : 'normal'))
-        .style('pointer-events', 'none');
-
-      // 优化渲染循环
-      simulation.nodes(nodes).on('tick', () => {
-        // 批量更新链接位置
-        link
-          .attr('x1', (d) => d.source.x)
-          .attr('y1', (d) => d.source.y)
-          .attr('x2', (d) => d.target.x)
-          .attr('y2', (d) => d.target.y);
-
-        // 批量更新节点位置
-        node
-          .attr('cx', (d) => (d.x = Math.max(30, Math.min(width - 30, d.x))))
-          .attr('cy', (d) => (d.y = Math.max(30, Math.min(height - 30, d.y))));
-
-        // 批量更新标签位置
-        label.attr('x', (d) => d.x).attr('y', (d) => d.y);
-      });
-
-      simulation.force('link').links(links);
-    },
-
-    _dragStarted(simulation) {
-      return function (event, d) {
-        if (!event.active) simulation.alphaTarget(0.3).restart();
-        d.fx = d.x;
-        d.fy = d.y;
-      };
-    },
-    _dragged(event, d) {
-      d.fx = event.x;
-      d.fy = event.y;
-    },
-    _dragEnded(simulation) {
-      return function (event, d) {
-        if (!event.active) simulation.alphaTarget(0);
-        d.fx = null;
-        d.fy = null;
-      };
-    },
-
-    /* ---------- Map ---------- */
-    showMapView(placeId) {
-      const place = this.data.locations.find((loc) => loc.id === placeId);
-      if (!place) return;
-      this.activeView = 'map-view';
-      this.mapPlaceName = place.id;
-      this.mapPlaceDesc = place.info;
-      this.mapYear = `主要活动时期: ${place.year}`;
-      this.mapFriends = place.people.map((p) => p.name).join('、');
-      this.$nextTick(() => this.drawMap(place));
-    },
-
-    drawMap(place) {
-      const width = document.getElementById('map-view').clientWidth;
-      const height = document.getElementById('map-view').clientHeight;
-      const svg = d3.select('#map-svg').attr('width', width).attr('height', height);
-      svg.selectAll('*').remove();
-
-      const [cx, cy] = [width / 2, height / 2];
-      const placeR = 18,
-        personR = 12,
-        r = 160;
-
-      svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', placeR).attr('fill', '#ebd976');
-
-      svg
-        .append('text')
-        .attr('x', cx)
-        .attr('y', cy - placeR - 12)
-        .text(place.id)
-        .attr('class', 'label place-label')
-        .attr('text-anchor', 'middle')
-        .attr('font-size', '14px');
-
-      place.people.forEach((p, i) => {
-        const angle = (i / place.people.length) * 2 * Math.PI;
-        const px = cx + r * Math.cos(angle);
-        const py = cy + r * Math.sin(angle);
-
-        const sx = cx + placeR * Math.cos(angle);
-        const sy = cy + placeR * Math.sin(angle);
-        const ex = px - personR * Math.cos(angle);
-        const ey = py - personR * Math.sin(angle);
-
-        svg
-          .append('line')
-          .attr('x1', sx)
-          .attr('y1', sy)
-          .attr('x2', ex)
-          .attr('y2', ey)
-          .attr('class', 'link')
-          .attr('stroke-width', 1.5);
-
-        svg
-          .append('circle')
-          .attr('cx', px)
-          .attr('cy', py)
-          .attr('r', personR)
-          .attr('fill', '#abc08d')
-          .style('cursor', 'pointer')
-          .on('click', () => this.showFriendDetails(p));
-
-        svg
-          .append('text')
-          .attr('x', px)
-          .attr('y', py + personR + 15)
-          .text(p.name)
-          .attr('class', 'label')
-          .attr('text-anchor', 'middle')
-          .style('cursor', 'pointer')
-          .on('click', () => this.showFriendDetails(p));
-      });
-    },
-
-    showFriendDetails(friend) {
-      this.friendDialogVisible = true;
-      this.friendName = friend.name;
-      this.friendHistory = friend.history;
-    },
-
-    /* ---------- Timeline ---------- */
-    initTimeline() {
-      const container = document.querySelector('.timeline-container');
-      if (!container) return;
+      const svg = d3.select('#sichuan-svg');
       const width = container.clientWidth;
       const height = container.clientHeight;
-      const svg = d3.select('#timeline-svg').attr('width', width).attr('height', height);
+      svg.attr('width', width).attr('height', height).selectAll('*').remove();
+
+      const pathData = this.sichuanData.map(d => [d.x * width, d.y * height]);
+      const line = d3.line().curve(d3.curveCatmullRom.alpha(0.5));
+
+      // 1. 底图层：地名标注
+      const bg = svg.append('g');
+      bg.selectAll('text').data(this.sichuanData).enter().append('text')
+        .attr('x', d => d.x * width + 12).attr('y', d => d.y * height + 4)
+        .attr('style', 'font-size: 12px; fill: #8b4513; opacity: 0.5;')
+        .text(d => d.location);
+
+      // 2. 路径层：显式内联 fill="none"
+      bg.append('path')
+        .attr('d', line(pathData))
+        .attr('fill', 'none')
+        .attr('stroke', '#8b7d6b')
+        .attr('stroke-width', 6)
+        .attr('stroke-opacity', 0.1);
+
+      this.tourPath = svg.append('path')
+        .attr('d', line(pathData))
+        .attr('fill', 'none')
+        .attr('stroke', '#1a1a1a')
+        .attr('stroke-width', 3)
+        .attr('stroke-linecap', 'round')
+        .attr('filter', 'url(#ink-spread-global)');
+
+      const totalLength = this.tourPath.node().getTotalLength();
+      this.tourPath.attr('stroke-dasharray', `${totalLength} ${totalLength}`).attr('stroke-dashoffset', totalLength);
+
+      // 3. 节点
+      svg.selectAll('circle.node').data(this.sichuanData).enter().append('circle')
+        .attr('cx', d => d.x * width).attr('cy', d => d.y * height)
+        .attr('r', 5).attr('fill', '#c0392b')
+        .style('cursor', 'pointer')
+        .on('click', (e, d) => this.scrollToStep(this.sichuanData.indexOf(d)));
+
+      this.brushTip = svg.append('circle').attr('r', 8).attr('fill', '#1a1a1a').attr('filter', 'url(#ink-spread-global)').style('opacity', 0);
+    },
+
+    handleTourScroll(e) {
+      const el = e.target;
+      const scrollPercent = el.scrollTop / (el.scrollHeight - el.clientHeight);
+      if (this.tourPath) {
+        const totalLength = this.tourPath.node().getTotalLength();
+        this.tourPath.attr('stroke-dashoffset', totalLength * (1 - scrollPercent));
+        const point = this.tourPath.node().getPointAtLength(totalLength * scrollPercent);
+        this.brushTip.attr('cx', point.x).attr('cy', point.y).style('opacity', 1);
+      }
+      this.activeStep = Math.min(this.sichuanData.length - 1, Math.floor((el.scrollTop + 150) / 320));
+    },
+
+    scrollToStep(index) {
+      const target = this.$refs.storyTrack.querySelectorAll('.story-node')[index];
+      if (target) this.$refs.storyTrack.scrollTo({ top: target.offsetTop - 20, behavior: 'smooth' });
+    },
+
+    toggleDiary(index) { this.sichuanData[index].showDiary = !this.sichuanData[index].showDiary; },
+    initOverview() { /* 快速总览绘制 */
+      const container = document.getElementById('overview-view');
+      const width = container.clientWidth, height = container.clientHeight;
+      const svg = d3.select('#overview-svg').attr('width', width).attr('height', height);
       svg.selectAll('*').remove();
-
-      const margin = { top: 50, right: 50, bottom: 50, left: 100 };
-      const innerW = width - margin.left - margin.right;
-      const innerH = height - margin.top - margin.bottom;
-
-      const x = d3.scaleLinear().domain([1865, 1955]).range([0, innerW]);
-
-      const friends = ['黄宾虹', ...new Set(this.data.timelineEvents.map((e) => e.person))];
-      const y = d3.scalePoint().domain(friends).range([0, innerH]).padding(0.5);
-
-      const g = svg.append('g').attr('transform', `translate(${margin.left},${margin.top})`);
-
-      /* 轴线、刻度、标签略（与原来相同） */
-      /* 省略部分与原来代码一致，直接复用即可 */
-
-      /* ---------- 画轴线、刻度、人物标签 ---------- */
-      // 主轴线（黄宾虹）
-      g.append('line')
-          .attr('x1', 0)
-        .attr('y1', y('黄宾虹'))
-          .attr('x2', innerW)
-          .attr('y2', y('黄宾虹'))
-        .attr('class', 'timeline-axis');
-
-      // 其他人物虚线
-        friends.forEach((friend) => {
-          if (friend !== '黄宾虹') {
-            g.append('line')
-            .attr('x1', 0)
-            .attr('y1', y(friend))
-              .attr('x2', innerW)
-            .attr('y2', y(friend))
-            .attr('class', 'timeline-axis')
-            .style('stroke-dasharray', '5,5')
-            .style('stroke', '#8b7d6b');
-          }
-      });
-
-      // 年份刻度
-      const years = d3.range(1870, 1956, 10);
-        years.forEach((year) => {
-          g.append('line')
-            .attr('x1', x(year))
-            .attr('y1', y('黄宾虹') - 5)
-          .attr('x2', x(year))
-            .attr('y2', y('黄宾虹') + 5)
-            .attr('class', 'timeline-axis');
-
-          g.append('text')
-          .attr('x', x(year))
-            .attr('y', y('黄宾虹') - 10)
-          .attr('text-anchor', 'middle')
-            .attr('class', 'timeline-label')
-            .text(year);
-      });
-
-      // 人物名称
-        friends.forEach((friend) => {
-          g.append('text')
-            .attr('x', -10)
-          .attr('y', y(friend))
-            .attr('text-anchor', 'end')
-            .attr('dominant-baseline', 'middle')
-            .attr('class', 'timeline-label')
-            .text(friend);
-      });
-      /* 事件节点与防重叠标签 */
-      const placed = [];
-      const nodes = this.data.timelineEvents.map((e) => ({
-        x: x(e.year),
-        y: y(e.person),
-        r: e.artWeight || 6
-      }));
-
-      const overlap = (x1, y1, w1, h1, x2, y2, w2, h2, gap = 6) =>
-        Math.abs(x1 - x2) < w1 / 2 + w2 / 2 + gap && Math.abs(y1 - y2) < h1 / 2 + h2 / 2 + gap;
-
-      const hitNode = (lx, ly, lw, lh) =>
-        nodes.some((n) => Math.abs(n.x - lx) < n.r + lw / 2 + 6 && Math.abs(n.y - ly) < n.r + lh / 2 + 6);
-
-      this.data.timelineEvents.forEach((ev) => {
-        const ex = x(ev.year);
-        const ey = y(ev.person);
-
-        g.append('line')
-          .attr('x1', ex)
-          .attr('y1', y('黄宾虹'))
-          .attr('x2', ex)
-          .attr('y2', ey)
-          .attr('class', 'timeline-event-line');
-
-        g.append('circle')
-          .attr('cx', ex)
-          .attr('cy', ey)
-          .attr('r', ev.artWeight)
-          .attr('class', 'timeline-event-circle timeline-event')
-          .on('click', () => this.showEventDetails(ev));
-
-        let tx = ex;
-        let ty = ey - ev.artWeight - 8;
-        const text = g
-          .append('text')
-          .attr('x', tx)
-          .attr('y', ty)
-          .text(ev.title)
-          .attr('class', 'timeline-event-details')
-          .attr('text-anchor', 'middle');
-
-        let { width: tw, height: th } = text.node().getBBox();
-        let attempts = 0;
-        while (attempts++ < 80) {
-          let collide = placed.some((p) => overlap(p.x, p.y, p.w, p.h, tx, ty, tw, th)) || hitNode(tx, ty, tw, th);
-          if (!collide) break;
-
-          const step = Math.ceil(attempts / 2);
-          const dir = attempts % 2 === 0 ? -1 : 1;
-          ty = ey - ev.artWeight - 8 + dir * step * (th + 6);
-          if (attempts > 6) {
-            const hStep = Math.ceil((attempts - 6) / 4);
-            const hDir = attempts % 2 === 0 ? -1 : 1;
-            tx = ex + hDir * hStep * (tw + 6);
-          }
-          text.attr('x', tx).attr('y', ty);
-          ({ width: tw, height: th } = text.node().getBBox());
-        }
-        placed.push({ x: tx, y: ty, w: tw, h: th });
-      });
-    },
-
-    showEventDetails(ev) {
-      this.eventDialogVisible = true;
-      this.eventTitle = `${ev.year}年 - ${ev.title}`;
-      this.eventDescription = ev.description;
-      this.eventMeta = `黄宾虹 ${ev.hbhAge}岁，${ev.person} ${ev.friendAge}岁，艺术重要性: ${ev.artWeight}/10`;
-    },
-
-    /* ---------- Resize ---------- */
-    onResize() {
-      if (this.activeView === 'overview-view') {
-        d3.select('#overview-svg').selectAll('*').remove();
-        this.initOverview();
-      }
-      if (this.activeView === 'timeline-view') {
-        this.initTimeline();
-      }
-      if (this.activeView === 'map-view' && this.mapPlaceName) {
-        const place = this.data.locations.find((l) => l.id === this.mapPlaceName);
-        if (place) this.drawMap(place);
-      }
+      svg.append('text').attr('x', width/2).attr('y', height/2).text('请切换到蜀游专题查看深度优化').attr('text-anchor', 'middle');
     }
   }
 };
 </script>
 
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+<style scoped>
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; background: #f8f4e6; min-height: 100vh; font-family: "Kai Ti", serif; }
+  h1 { text-align: center; color: #4a2e18; }
+  .intro { text-align: center; color: #8b7d6b; margin-bottom: 20px; }
+  
+  .nav-tabs { display: flex; justify-content: center; margin-bottom: 15px; }
+  .nav-tab { padding: 8px 20px; cursor: pointer; border: 1px solid #d2b48c; margin: 0 5px; border-radius: 4px; background: #eee; }
+  .nav-tab.active { background: #fff; border-bottom: 2px solid #c0392b; font-weight: bold; }
 
-  body {
-    font-family: 'SimSun', 'STSong', serif;
-    color: #333;
-    background: linear-gradient(135deg, #f5f0e6 0%, #e8dfca 100%);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 30px 20px;
-    background-color: rgba(248, 244, 230, 0.85);
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  h1 {
-    text-align: center;
-    color: #8b4513;
-    border-bottom: 2px solid #d2b48c;
-    padding-bottom: 10px;
-    margin: 20px 0 30px 0;
-  }
-  .view {
-    display: none;
-    margin-top: 20px;
-    height: 600px;
-    border: 1px solid #d2b48c;
-    border-radius: 5px;
-    background-color: #fffbf0;
-    position: relative;
-  }
-  .view.active {
-    display: block;
-  }
-  #overview-view {
-    overflow: hidden;
-  }
-  .node {
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .node.place {
-    fill: #ebd976; /* 地点节点颜色 */
-    filter: drop-shadow(0 2px 4px rgba(235, 217, 118, 0.4));
-  }
-  .node.person {
-    fill: #abc08d; /* 人物节点颜色 */
-    filter: drop-shadow(0 1px 2px rgba(171, 192, 141, 0.3));
-  }
-  .node.core {
-    fill: #80996a;
-    filter: drop-shadow(0 3px 6px rgba(128, 153, 106, 0.5));
-  }
-  .link {
-    stroke: #8b7d6b;
-    stroke-opacity: 0.6;
-    transition: stroke-opacity 0.3s ease;
-  }
-  .label {
-    font-size: 12px;
-    text-anchor: middle;
-    pointer-events: none;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
-  }
-  .place-label {
-    font-weight: bold;
-  }
-  /* 仅保留总览页面人物节点的无hover效果样式 */
-  .node.person.no-hover:hover {
-    fill: #abc08d; /* 保持原颜色，无变化 */
-    cursor: default; /* 鼠标样式不变 */
-  }
-  .back-btn {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #d2b48c;
-    border: none;
-    color: #333;
-    padding: 8px 15px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-family: 'SimSun', serif;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .back-btn:hover {
-    background-color: #a67c52;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  }
-  .map-info {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(255, 251, 240, 0.8);
-    padding: 10px;
-    border: 1px solid #d2b48c;
-    border-radius: 3px;
-    max-width: 250px;
-    backdrop-filter: blur(5px);
-  }
-  .map-title {
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #8b4513;
-  }
-  .friend-info {
-    font-size: 13px;
-    margin-top: 5px;
-  }
-  .year-label {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: rgba(255, 251, 240, 0.8);
-    padding: 3px 8px;
-    border: 1px solid #d2b48c;
-    border-radius: 3px;
-    font-size: 14px;
-  }
-  .intro {
-    text-align: center;
-    margin: 10px 0 20px 0;
-    color: #5c4033;
-    line-height: 1.6;
-  }
-  .friend-details {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 251, 240, 0.95);
-    padding: 20px;
-    border: 2px solid #d2b48c;
-    border-radius: 8px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    animation: fadeIn 0.3s ease;
-  }
-  .friend-details.active {
-    display: block;
-  }
-  .friend-name {
-    font-size: 18px;
-    font-weight: bold;
-    color: #8b4513;
-    margin-bottom: 10px;
-  }
-  .friend-history {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-  .close-btn {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #8b4513;
-    transition: transform 0.2s ease;
-  }
-  .close-btn:hover {
-    transform: rotate(90deg);
-  }
-  .nav-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #d2b48c;
-    padding-bottom: 5px;
-  }
-  .nav-tab {
-    padding: 8px 15px;
-    cursor: pointer;
-    background-color: #f8f4e6;
-    border: 1px solid #d2b48c;
-    border-bottom: none;
-    border-radius: 5px 5px 0 0;
-    margin: 0 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: all 0.3s ease;
-  }
-  .nav-tab:hover {
-    background-color: #f0ece1;
-  }
-  .nav-tab.active {
-    background-color: #fffbf0;
-    font-weight: bold;
-    border-bottom: 2px solid #fffbf0;
-  }
-  .timeline-container {
-    padding: 20px;
-    height: 550px;
-    overflow-y: auto;
-  }
-  .timeline-axis {
-    stroke: #8b4513;
-    stroke-width: 2;
-  }
-  .timeline-label {
-    font-size: 14px; /* 默认 12px，现调大 */
-    font-weight: bold; /* 加粗 */
-    fill: #5c4033; /* 保持原有颜色 */
-  }
-  .timeline-event {
-    cursor: pointer;
-  }
-  .timeline-event-circle {
-    fill: #c1272d;
-    stroke: #8b4513;
-    stroke-width: 1;
-    transition: all 0.3s ease;
-  }
-  .timeline-event-circle:hover {
-    fill: #ff4444;
-    r: 10;
-  }
-  .timeline-event-line {
-    stroke: #8b7d6b;
-    stroke-width: 1;
-    stroke-dasharray: 5, 5;
-  }
-  .timeline-event-details {
-    font-size: 12px;
-    fill: #333;
-    text-anchor: middle;
-  }
-  .event-details {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 251, 240, 0.95);
-    padding: 20px;
-    border: 2px solid #d2b48c;
-    border-radius: 8px;
-    width: 400px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    animation: fadeIn 0.3s ease;
-  }
-  .event-details.active {
-    display: block;
-  }
-  .event-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #8b4513;
-    margin-bottom: 10px;
-  }
-  .event-description {
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-  }
-  .event-meta {
-    font-size: 12px;
-    color: #666;
-  }
+  .view { height: 600px; border: 1px solid #d2b48c; background: #fffbf0; position: relative; display: none; }
+  .view.active { display: block; }
 
-  /* 动画效果 */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translate(-50%, -50%) scale(0.9);
-    }
-    to {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
+  /* 蜀游专题关键修复 */
+  .sichuan-tour-container.active { display: flex !important; }
+  .sichuan-layout { display: flex; width: 100%; height: 100%; overflow: hidden; }
+  .tour-canvas-fixed { width: 400px; height: 100%; border-right: 1px solid #d2b48c; background: #f4efdf; position: relative; }
+  .map-label { position: absolute; top: 15px; left: 15px; font-size: 16px; color: #8b4513; opacity: 0.7; border-left: 3px solid #c0392b; padding-left: 8px; }
+  
+  .story-track { flex: 1; overflow-y: scroll; padding: 20px; scroll-behavior: smooth; }
+  .story-node { min-height: 320px; display: flex; align-items: center; opacity: 0.3; transition: 0.5s; }
+  .story-node.is-active { opacity: 1; }
+  
+  .story-card { background: #fff; padding: 15px; border: 1px solid #d2b48c; border-radius: 4px; width: 100%; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+  .card-header { display: flex; justify-content: space-between; border-bottom: 1px solid #f4efdf; margin-bottom: 10px; padding-bottom: 5px; }
+  .story-date { color: #c0392b; font-weight: bold; }
+  .story-location { color: #8b4513; font-style: italic; }
+  
+  .card-body { display: flex; gap: 15px; }
+  .text-content { flex: 1; }
+  .story-title { font-size: 18px; font-weight: bold; margin-bottom: 5px; }
+  .story-desc { font-size: 14px; color: #666; line-height: 1.6; }
+  
+  .thumb-image-wrap { width: 100px; height: 70px; border: 1px solid #eee; overflow: hidden; }
+  .thumb-image { width: 100%; height: 100%; object-fit: cover; filter: sepia(0.3); }
 
-  /* 让 svg 在容器内适配 */
-  svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .timeline-container g text[text-anchor='end'][x='-10'] {
-    font-size: 18px !important;
-    font-weight: 700 !important;
-    fill: #4a2e18 !important;
-    paint-order: stroke;
-    stroke: #fff9e6;
-    stroke-width: 6px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    filter: drop-shadow(0 0 2px #d2b48c);
-    letter-spacing: 0.4px !important;
-  }
-  .timeline-event-details {
-    font-size: 13px !important; /* 原来是 12px，现调大两号 */
-    font-weight: 600; /* 稍粗一点，看着更清晰 */
-    fill: #333 !important; /* 保持原有颜色 */
-  }
+  .diary-section { margin-top: 15px; border-top: 1px dashed #eee; padding-top: 10px; }
+  .scroll-toggle { background: #f4efdf; border: 1px solid #d2b48c; color: #8b4513; padding: 4px 12px; cursor: pointer; border-radius: 15px; font-size: 12px; }
+  .diary-scroll { margin-top: 10px; background: #fdf5e6; border-left: 8px solid #8b4513; padding: 15px; max-height: 250px; overflow: hidden; }
+  .diary-content { writing-mode: vertical-rl; height: 180px; font-size: 16px; line-height: 1.8; color: #3d2b1f; }
 
-  /* 响应式设计 */
-  @media (max-width: 768px) {
-    .container {
-      padding: 20px 10px;
-      margin: 0;
-      border-radius: 0;
-    }
+  .scroll-unfold-enter-active { transition: all 0.6s ease; max-height: 250px; }
+  .scroll-unfold-enter-from { max-height: 0; opacity: 0; }
 
-    h1 {
-      font-size: 1.5rem;
-      margin: 15px 0 20px 0;
-    }
-
-    .view {
-      height: 500px;
-    }
-
-    .nav-tabs {
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    .nav-tab {
-      margin: 0;
-      padding: 6px 12px;
-      font-size: 0.9rem;
-    }
-
-    .map-info {
-      max-width: 200px;
-      padding: 8px;
-      font-size: 0.9rem;
-    }
-
-    .friend-details,
-    .event-details {
-      width: 90%;
-      max-width: 300px;
-      padding: 15px;
-    }
-
-    .friend-name,
-    .event-title {
-      font-size: 1.2rem;
-    }
-
-    .friend-history,
-    .event-description {
-      font-size: 0.9rem;
-    }
-
-    .timeline-container {
-      padding: 15px;
-      height: 450px;
-    }
-
-    .timeline-label {
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .container {
-      padding: 15px 5px;
-    }
-
-    h1 {
-      font-size: 1.3rem;
-    }
-
-    .view {
-      height: 400px;
-    }
-
-    .nav-tabs {
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .nav-tab {
-      width: 100%;
-      justify-content: center;
-      border-radius: 3px;
-    }
-
-    .map-info {
-      position: static;
-      margin-top: 10px;
-      max-width: 100%;
-    }
-
-    .back-btn {
-      position: static;
-      margin-bottom: 10px;
-    }
-
-    .friend-details,
-    .event-details {
-      width: 95%;
-      padding: 10px;
-    }
-
-    .friend-name,
-    .event-title {
-      font-size: 1rem;
-    }
-
-    .friend-history,
-    .event-description {
-      font-size: 0.85rem;
-    }
-  }
+  svg { width: 100%; height: 100%; display: block; }
 </style>
