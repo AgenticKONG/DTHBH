@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.qingliul.digitalhuangbinhon.mapper.LifeTimelineMapper">
+
+    <!-- 查询生平事件列表 -->
+    <select id="selectLifeTimelineList" parameterType="map" resultType="org.qingliul.digitalhuangbinhon.entity.LifeTimeline">
+        SELECT
+        timeline_id,
+        year,
+        month,
+        day,
+        event_title,
+        event_detail,
+        create_time,
+        update_time
+        FROM life_timeline
+        <where>
+            <if test="year != null">
+                AND year = #{year}
+            </if>
+        </where>
+        ORDER BY year, month, day
+        <if test="start != null and size != null">
+            LIMIT #{size} OFFSET #{start}
+        </if>
+    </select>
+
+    <!-- 查询生平事件总数 -->
+    <select id="countLifeTimelineList" parameterType="map" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM life_timeline
+        <where>
+            <if test="year != null">
+                AND year = #{year}
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据ID查询生平事件详情 -->
+    <select id="selectLifeTimelineById" parameterType="java.lang.Integer" resultType="org.qingliul.digitalhuangbinhon.entity.LifeTimeline">
+        SELECT * FROM life_timeline WHERE timeline_id = #{timelineId}
+    </select>
+
+    <!-- 查询生平事件关联的作品ID列表 -->
+    <select id="selectWorksIdsByTimelineId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT works_id FROM timeline_works_rel WHERE timeline_id = #{timelineId}
+    </select>
+    <select id="selectYearArtStats" resultType="map">
+        SELECT
+            lt.year,
+            SUM(CASE WHEN w.category = '山水画' THEN 1 ELSE 0 END) AS paintingCount,
+            SUM(CASE WHEN w.category = '花鸟画' THEN 1 ELSE 0 END) AS calligraphyCount
+        FROM life_timeline lt
+                 JOIN timeline_works_rel twr ON lt.timeline_id = twr.timeline_id
+                 JOIN works w ON twr.works_id = w.works_id
+        GROUP BY lt.year
+        ORDER BY lt.year
+    </select>
+</mapper>

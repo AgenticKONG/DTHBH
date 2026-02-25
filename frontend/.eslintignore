@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+dist
+build
+
+# Config files
+*.config.js
+.prettierrc
+.eslintrc.js
+
+# Lock files
+package-lock.json
+yarn.lock
+
+# Logs
+*.log
+logs
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache
+.vscode
+.idea
+
+# Test files
+coverage
+.nyc_output
+
+# Build artifacts
+*.min.js
+*.min.css
