@@ -1,4 +1,4 @@
-Sample Projet for Agentic Coding
+Sample Project for Agentic Coding
 
 Agents:
 
