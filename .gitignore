@@ -1,51 +1,17 @@
-# [User Preference] Agent Maintenance
-GEMINI.md
-
-# OS files
-.DS_Store
-Thumbs.db
-*.swp
-
-# IDEs
-.vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
-
-# Node / Frontend
+# Node
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.eslintcache
-frontend/node_modules/
-frontend/dist/
-frontend/.env
-frontend/frontend.log
+dist/
+.DS_Store
 
-# Java / Backend
-target/
-backend/target/
-backend/.env
-backend/logs/
-*.log
-*.gz
+# Python & Data (Only frontend processed data allowed)
+__pycache__/
+*.py
+data/*.csv
+!frontend/public/data/social_network_data.json
+!frontend/public/data/chronology_full.csv
 
-# Sensitive Credentials (CRITICAL)
-*.pem
-*.key
-*.p12
-*.jks
-.env
-.git_token
-
-# Data and Extraction Scripts
-*.csv
-extract_social_data.py
-generate_final_csv.py
-
-# Large Art/Doc assets (Exceeded GitHub limits)
-docs/*.pptx
-docs/*.docx
-*backup*/
-images_backup_*/
+# Temporary files
+.cursor/
+.iflow/
+.claude/
+.gemini/

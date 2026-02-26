@@ -22,13 +22,17 @@
     </svg>
 
     <!-- 2. 雅致标签页 -->
-    <div class="nav-tabs-ya">
-      <div class="nav-tab-ya" :class="{ active: activeView === 'overview-view' }" @click="switchTab('overview-view')">交友網絡</div>
+    <div class="nav-tabs-ya" style="position: relative; z-index: 1000;">
+      <div class="nav-tab-ya" :class="{ active: activeView === 'ink-sea-view' }" @click="activeView = 'ink-sea-view'">墨海星圖</div>
       <div class="nav-tab-ya" :class="{ active: activeView === 'sichuan-view' }" @click="switchTab('sichuan-view')">蜀游長卷</div>
       <div class="nav-tab-ya" :class="{ active: activeView === 'timeline-view' }" @click="switchTab('timeline-view')">好友時軸</div>
     </div>
 
     <div class="main-viewport">
+      <!-- 1. 墨海星圖 (新功能，物理隔離) -->
+      <div v-if="activeView === 'ink-sea-view'" class="view active">
+        <InkSeaMap />
+      </div>
       <!-- 蜀游专题 -->
       <div id="sichuan-view" class="view sichuan-tour-container" :class="{ active: activeView === 'sichuan-view' }">
         <div class="sichuan-h-layout">
@@ -121,12 +125,14 @@
 
 <script>
 import * as d3 from 'd3';
+import InkSeaMap from '../components/InkSeaMap.vue';
 
 export default {
   name: 'JiaoyouIndex',
+  components: { InkSeaMap },
   data() {
     return {
-      activeView: 'sichuan-view',
+      activeView: 'ink-sea-view',
       activeStep: 0,
       mapXOffset: 0,
       showAppreciation: false,

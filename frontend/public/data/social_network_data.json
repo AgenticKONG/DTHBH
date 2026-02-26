@@ -1,0 +1,6416 @@
+{
+  "nodes": [
+    {
+      "id": "黄賓虹",
+      "group": "center",
+      "weight": 100,
+      "home_city": "动态",
+      "display_name": "黄賓虹"
+    },
+    {
+      "id": "宋若嬰",
+      "group": "friend",
+      "weight": 19,
+      "home_city": "杭州",
+      "display_name": "宋若嬰"
+    },
+    {
+      "id": "許承堯",
+      "group": "friend",
+      "weight": 50,
+      "home_city": "上海",
+      "display_name": "許承堯"
+    },
+    {
+      "id": "楊仁山",
+      "group": "friend",
+      "weight": 1,
+      "home_city": "揚州",
+      "display_name": "楊仁山"
+    },
+    {
+      "id": "汪仲伊",
+      "group": "friend",
+      "weight": 4,
+      "home_city": "杭州",
+      "display_name": "汪仲伊"
+    },
+    {
+      "id": "黄節",
+      "group": "friend",
+      "weight": 36,
+      "home_city": "上海",
+      "display_name": "黄節"
+    },
+    {
+      "id": "譚嗣同",
+      "group": "friend",
+      "weight": 2,
+      "home_city": "杭州",
+      "display_name": "譚嗣同"
+    },
+    {
+      "id": "柳亞子",
+      "group": "friend",
+      "weight": 15,
+      "home_city": "上海",
+      "display_name": "柳亞子"
+    },
+    {
+      "id": "潘飛聲",
+      "group": "friend",
+      "weight": 8,
+      "home_city": "上海",
+      "display_name": "潘飛聲"
+    },
+    {
+      "id": "陸丹林",
+      "group": "friend",
+      "weight": 24,
+      "home_city": "上海",
+      "display_name": "陸丹林"
+    },
+    {
+      "id": "陳柱",
+      "group": "friend",
+      "weight": 33,
+      "home_city": "上海",
+      "display_name": "陳柱"
+    },
+    {
+      "id": "狄平子",
+      "group": "friend",
+      "weight": 6,
+      "home_city": "上海",
+      "display_name": "狄平子"
+    },
+    {
+      "id": "劉海粟",
+      "group": "friend",
+      "weight": 46,
+      "home_city": "上海",
+      "display_name": "劉海粟"
+    },
+    {
+      "id": "鄭午昌",
+      "group": "friend",
+      "weight": 8,
+      "home_city": "上海",
+      "display_name": "鄭午昌"
+    },
+    {
+      "id": "顧飛",
+      "group": "friend",
+      "weight": 12,
+      "home_city": "重慶",
+      "display_name": "顧飛"
+    },
+    {
+      "id": "張大千",
+      "group": "friend",
+      "weight": 65,
+      "home_city": "上海",
+      "display_name": "張大千"
+    },
+    {
+      "id": "陶冷月",
+      "group": "friend",
+      "weight": 6,
+      "home_city": "上海",
+      "display_name": "陶冷月"
+    },
+    {
+      "id": "張善孖",
+      "group": "friend",
+      "weight": 37,
+      "home_city": "上海",
+      "display_name": "張善孖"
+    },
+    {
+      "id": "謝玉岑",
+      "group": "friend",
+      "weight": 4,
+      "home_city": "上海",
+      "display_name": "謝玉岑"
+    },
+    {
+      "id": "李祖韓",
+      "group": "friend",
+      "weight": 6,
+      "home_city": "上海",
+      "display_name": "李祖韓"
+    },
+    {
+      "id": "葉恭綽",
+      "group": "friend",
+      "weight": 3,
+      "home_city": "上海",
+      "display_name": "葉恭綽"
+    },
+    {
+      "id": "唐天如",
+      "group": "friend",
+      "weight": 7,
+      "home_city": "上海",
+      "display_name": "唐天如"
+    },
+    {
+      "id": "吳一峰",
+      "group": "friend",
+      "weight": 14,
+      "home_city": "上海",
+      "display_name": "吳一峰"
+    },
+    {
+      "id": "馬公愚",
+      "group": "friend",
+      "weight": 7,
+      "home_city": "上海",
+      "display_name": "馬公愚"
+    },
+    {
+      "id": "陳澤霈",
+      "group": "friend",
+      "weight": 4,
+      "home_city": "上海",
+      "display_name": "陳澤霈"
+    },
+    {
+      "id": "何香凝",
+      "group": "friend",
+      "weight": 4,
+      "home_city": "上海",
+      "display_name": "何香凝"
+    },
+    {
+      "id": "林宰平",
+      "group": "friend",
+      "weight": 1,
+      "home_city": "上海",
+      "display_name": "林宰平"
+    },
+    {
+      "id": "周稷",
+      "group": "friend",
+      "weight": 4,
+      "home_city": "杭州",
+      "display_name": "周稷"
+    },
+    {
+      "id": "王濟遠",
+      "group": "friend",
+      "weight": 13,
+      "home_city": "上海",
+      "display_name": "王濟遠"
+    },
+    {
+      "id": "傳度",
+      "group": "friend",
+      "weight": 1,
+      "home_city": "重慶",
+      "display_name": "傳度"
+    },
+    {
+      "id": "林思進",
+      "group": "friend",
+      "weight": 23,
+      "home_city": "杭州",
+      "display_name": "林思進"
+    },
+    {
+      "id": "錢瘦鐵",
+      "group": "friend",
+      "weight": 4,
+      "home_city": "杭州",
+      "display_name": "錢瘦鐵"
+    },
+    {
+      "id": "龔熙台",
+      "group": "friend",
+      "weight": 6,
+      "home_city": "杭州",
+      "display_name": "龔熙台"
+    },
+    {
+      "id": "劉既明",
+      "group": "friend",
+      "weight": 2,
+      "home_city": "成都",
+      "display_name": "劉既明"
+    },
+    {
+      "id": "向楚",
+      "group": "friend",
+      "weight": 1,
+      "home_city": "杭州",
+      "display_name": "向楚"
+    },
+    {
+      "id": "方旭",
+      "group": "friend",
+      "weight": 1,
+      "home_city": "杭州",
+      "display_name": "方旭"
+    },
+    {
+      "id": "馮建吳",
+      "group": "friend",
+      "weight": 1,
+      "home_city": "杭州",
+      "display_name": "馮建吳"
+    },
+    {
+      "id": "段虚谷",
+      "group": "friend",
+      "weight": 2,
+      "home_city": "重慶",
+      "display_name": "段虚谷"
+    },
+    {
+      "id": "李秋君",
+      "group": "friend",
+      "weight": 2,
+      "home_city": "上海",
+      "display_name": "李秋君"
+    },
+    {
+      "id": "經亨頤",
+      "group": "friend",
+      "weight": 3,
+      "home_city": "上海",
+      "display_name": "經亨頤"
+    },
+    {
+      "id": "傅雷",
+      "group": "friend",
+      "weight": 22,
+      "home_city": "重慶",
+      "display_name": "傅雷"
+    }
+  ],
+  "links": [
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1877,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1877.春",
+          "location": "金華",
+          "action": "書信",
+          "summary": "在歙縣住二伯父家，從族人習拳術、劍術、馬術，遍訪書畫真蹟，習畫不輟。"
+        }
+      ],
+      "date": "1877.春",
+      "location": "金華",
+      "action": "書信",
+      "summary": "在歙縣住二伯父家，從族人習拳術、劍術、馬術，遍訪書畫真蹟，習畫不輟。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1885,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1885.春",
+          "location": "南京",
+          "action": "書信",
+          "summary": "在里聞南鄉同宗代黄次蓀家族於屯溪出售其藏書。"
+        }
+      ],
+      "date": "1885.春",
+      "location": "南京",
+      "action": "書信",
+      "summary": "在里聞南鄉同宗代黄次蓀家族於屯溪出售其藏書。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "楊仁山",
+      "year": 1885,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1885.春",
+          "location": "揚州",
+          "action": "活动",
+          "summary": "由揚江轉赴金陵，與甘元焕、楊長年及楊仁山諸學長交往。"
+        }
+      ],
+      "date": "1885.春",
+      "location": "揚州",
+      "action": "活动",
+      "summary": "由揚江轉赴金陵，與甘元焕、楊長年及楊仁山諸學長交往。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "汪仲伊",
+      "year": 1885,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1885.春",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "從西溪汪仲伊問學，課暇與其嗣汪福熙、律本研習書畫。"
+        }
+      ],
+      "date": "1885.春",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "從西溪汪仲伊問學，課暇與其嗣汪福熙、律本研習書畫。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "汪仲伊",
+      "year": 1889,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1889.夏",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "從汪仲伊問學。"
+        },
+        {
+          "date": "1889.夏",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "從汪仲伊問學，並爲其孫汪孔祁（采白）啟蒙。"
+        }
+      ],
+      "date": "1889.夏",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "從汪仲伊問學，並爲其孫汪孔祁（采白）啟蒙。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1894,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1894.春",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "春出新安江赴揚州坐館，道經杭州，請篆刻名家趙穆刻“黄質之印”、“樸丞”、“樸丞翰墨”諸印。"
+        }
+      ],
+      "date": "1894.春",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "春出新安江赴揚州坐館，道經杭州，請篆刻名家趙穆刻“黄質之印”、“樸丞”、“樸丞翰墨”諸印。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "譚嗣同",
+      "year": 1895,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1895.夏",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "夏，晤譚嗣同於貴池，作徹夜談。"
+        }
+      ],
+      "date": "1895.夏",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "夏，晤譚嗣同於貴池，作徹夜談。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "汪仲伊",
+      "year": 1897,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1897.春",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "春月，應業師汪仲伊之命，作《韜廬圖》。"
+        }
+      ],
+      "date": "1897.春",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "春月，應業師汪仲伊之命，作《韜廬圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "譚嗣同",
+      "year": 1898,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1898.06.21",
+          "location": "歙縣",
+          "action": "位移",
+          "summary": "6月21日，光緒帝頒佈“明定國是詔”，起用康有爲，宣佈維新變法。不久，以慈禧太后爲核心的統治集團發動政變，慈禧太后再度訓政，康、梁逃亡日本，譚嗣同 與楊深秀、楊銳、林旭、劉光第、康廣仁慷慨就義。噩耗傳至歙中，倍感痛心，作詩挽之。"
+        }
+      ],
+      "date": "1898.06.21",
+      "location": "歙縣",
+      "action": "位移",
+      "summary": "6月21日，光緒帝頒佈“明定國是詔”，起用康有爲，宣佈維新變法。不久，以慈禧太后爲核心的統治集團發動政變，慈禧太后再度訓政，康、梁逃亡日本，譚嗣同 與楊深秀、楊銳、林旭、劉光第、康廣仁慷慨就義。噩耗傳至歙中，倍感痛心，作詩挽之。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1905,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1905.04",
+          "location": "蕪湖",
+          "action": "聘任",
+          "summary": "4月，許承堯改歙縣貢院為新安中學堂，聘任學堂國文教習，數月後改任管理，與監學鮑振炳失和，未幾遂辭去。"
+        },
+        {
+          "date": "1905.04",
+          "location": "蕪湖",
+          "action": "活动",
+          "summary": "此際歙州革命思潮迭起，尤以蕪湖為激烈，四方志士，麕集於斯。董理堨田之餘，投身革命熱潮。"
+        },
+        {
+          "date": "1905.11.27",
+          "location": "蕪湖",
+          "action": "活动",
+          "summary": "安徽省創辦鐵路公司，與許承堯作爲歙縣兩代表參加11月27日在蕪湖召開的第一次會議。"
+        }
+      ],
+      "date": "1905.11.27",
+      "location": "蕪湖",
+      "action": "活动",
+      "summary": "安徽省創辦鐵路公司，與許承堯作爲歙縣兩代表參加11月27日在蕪湖召開的第一次會議。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1906,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1906.05.13",
+          "location": "蕪湖",
+          "action": "活动",
+          "summary": "5月13日丙午四月二十日徽郡學界集議成立徽州學會，會所暫借歙縣師範學堂。是日到會有百餘人，投票選舉許承堯為會長，程宗泗、吳棣為副會長。"
+        },
+        {
+          "date": "1906.05.13",
+          "location": "蕪湖",
+          "action": "聘任",
+          "summary": "與許承堯、汪律本、陳去病、江暐等以中學堂教習爲主幹，組織“黄社”，以詩文鼓吹革命。"
+        },
+        {
+          "date": "1906.12.17",
+          "location": "蕪湖",
+          "action": "活动",
+          "summary": "12月17日許承堯祖父許恭壽逝世，歙縣各學堂皆往吊祭。"
+        }
+      ],
+      "date": "1906.12.17",
+      "location": "蕪湖",
+      "action": "活动",
+      "summary": "12月17日許承堯祖父許恭壽逝世，歙縣各學堂皆往吊祭。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1909,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1909.暮春",
+          "location": "歙縣",
+          "action": "活动",
+          "summary": "暮春，為許承堯畫《檀干村圖》。"
+        }
+      ],
+      "date": "1909.暮春",
+      "location": "歙縣",
+      "action": "活动",
+      "summary": "暮春，為許承堯畫《檀干村圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1909,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1909.11.13",
+          "location": "歙縣",
+          "action": "雅集",
+          "summary": "11月13日，偕蔡守、馮心俠、景耀月自蘇州城聯騎赴虎丘南社第一次雅集。"
+        },
+        {
+          "date": "1909.春",
+          "location": "歙縣",
+          "action": "活动",
+          "summary": "春夏間，柳亞子來滬治病，遂與訂交。"
+        }
+      ],
+      "date": "1909.11.13",
+      "location": "歙縣",
+      "action": "雅集",
+      "summary": "11月13日，偕蔡守、馮心俠、景耀月自蘇州城聯騎赴虎丘南社第一次雅集。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1909,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1909.夏",
+          "location": "歙縣",
+          "action": "活动",
+          "summary": "夏，為黄節作《蒹葭圖》。"
+        }
+      ],
+      "date": "1909.夏",
+      "location": "歙縣",
+      "action": "活动",
+      "summary": "夏，為黄節作《蒹葭圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "潘飛聲",
+      "year": 1909,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1909.09",
+          "location": "歙縣",
+          "action": "鑒賞",
+          "summary": "9月，潘飛聲應沈宗畸（太侔）之請，赴京與編《國學萃編》，出廣州，道經香港上海。與鄧實、蔡守邀其飲於酒樓，潘氏贈詩為別。潘氏出伍德彝繪《荔支灣送別圖》卷請為題跋，"
+        },
+        {
+          "date": "1909.夏",
+          "location": "歙縣",
+          "action": "活动",
+          "summary": "夏，爲潘飛聲作《惠山訪聽松石圖》。"
+        },
+        {
+          "date": "1909.夏",
+          "location": "歙縣",
+          "action": "活动",
+          "summary": "夏，為潘飛聲作《西泠泛櫂圖》，並錄其詩。"
+        }
+      ],
+      "date": "1909.夏",
+      "location": "歙縣",
+      "action": "活动",
+      "summary": "夏，為潘飛聲作《西泠泛櫂圖》，並錄其詩。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1910,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1910.夏",
+          "location": "蕪湖",
+          "action": "活动",
+          "summary": "夏，作畫贈胡適，並托蔡守轉遞信件。"
+        }
+      ],
+      "date": "1910.夏",
+      "location": "蕪湖",
+      "action": "活动",
+      "summary": "夏，作畫贈胡適，並托蔡守轉遞信件。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1910,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1910.08.26",
+          "location": "蕪湖",
+          "action": "書信",
+          "summary": "乍見唐太宗《温泉銘》初唐拓本，驚其書法初看無奇，而尋味無窮，遂師之，自此書風丕變。"
+        }
+      ],
+      "date": "1910.08.26",
+      "location": "蕪湖",
+      "action": "書信",
+      "summary": "乍見唐太宗《温泉銘》初唐拓本，驚其書法初看無奇，而尋味無窮，遂師之，自此書風丕變。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1910,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1910.08.16",
+          "location": "蕪湖",
+          "action": "紀游",
+          "summary": "8月16日，參加上海張園舉行的南社第三次雅集。"
+        }
+      ],
+      "date": "1910.08.16",
+      "location": "蕪湖",
+      "action": "紀游",
+      "summary": "8月16日，參加上海張園舉行的南社第三次雅集。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1910,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1910.初秋",
+          "location": "蕪湖",
+          "action": "書信",
+          "summary": "初秋，黄節自廣州寄詩索畫，為作《蒹葭圖》。"
+        }
+      ],
+      "date": "1910.初秋",
+      "location": "蕪湖",
+      "action": "書信",
+      "summary": "初秋，黄節自廣州寄詩索畫，為作《蒹葭圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1911,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1911.03",
+          "location": "上海",
+          "action": "書信",
+          "summary": "作《廣雅書院圖》贈黄節，黄節作詩以報。"
+        }
+      ],
+      "date": "1911.03",
+      "location": "上海",
+      "action": "書信",
+      "summary": "作《廣雅書院圖》贈黄節，黄節作詩以報。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1911,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1911.09.17",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "9月17日，赴上海愚園參加南社第五次雅集，被推為庶務。"
+        }
+      ],
+      "date": "1911.09.17",
+      "location": "上海",
+      "action": "雅集",
+      "summary": "9月17日，赴上海愚園參加南社第五次雅集，被推為庶務。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1912,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1912.03.13",
+          "location": "廣州",
+          "action": "雅集",
+          "summary": "3月13日，赴上海愚園參加南社第六次雅集。"
+        },
+        {
+          "date": "1912.06.30",
+          "location": "廣州",
+          "action": "位移",
+          "summary": "6月30日，由高吹萬等發起的國學商兌會成立於金山張堰，文美會倂入該會。"
+        }
+      ],
+      "date": "1912.06.30",
+      "location": "廣州",
+      "action": "位移",
+      "summary": "6月30日，由高吹萬等發起的國學商兌會成立於金山張堰，文美會倂入該會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1912,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1912.03.13",
+          "location": "廣州",
+          "action": "活动",
+          "summary": "與陳柱尊訂交。"
+        }
+      ],
+      "date": "1912.03.13",
+      "location": "廣州",
+      "action": "活动",
+      "summary": "與陳柱尊訂交。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1912,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1912.03",
+          "location": "廣州",
+          "action": "位移",
+          "summary": "3月，加入由葉楚傖、柳亞子、李叔同等發起的以“研究文學美術”為宗旨的文美會。"
+        },
+        {
+          "date": "1912.06.26",
+          "location": "廣州",
+          "action": "聘任",
+          "summary": "4月，與宣哲發起以“保存國粹，發明藝術，啟人愛國之心”為宗旨的藝術團體貞社，租賃四明銀行二樓為會址，自任社長，約期聚會。自6月26日第一次聚會開始，一直堅持到二十年代前，是民初重要的學藝社團之一。"
+        },
+        {
+          "date": "1912.春",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "春，高劍父、奇峰來滬創辦以“監督共和政治，調查民生狀態，獎進社會主義，輸入世界智識”為宗旨的革命刊物《真相畫報》，邀為襄辦，為撰《真相畫報叙》，著文繪圖，並為之徵集古代金石書畫作品。"
+        },
+        {
+          "date": "1912.春",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "黄節收到寄贈之印譜兩部，覆書致謝，並對貞社寄以厚望。"
+        }
+      ],
+      "date": "1912.春",
+      "location": "廣州",
+      "action": "書信",
+      "summary": "黄節收到寄贈之印譜兩部，覆書致謝，並對貞社寄以厚望。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1913,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1913.12.23",
+          "location": "上海",
+          "action": "活动",
+          "summary": "本年創設宙合齋古玩店於七浦路，以“綢繆古懽，晉接時俊”為宗旨。"
+        }
+      ],
+      "date": "1913.12.23",
+      "location": "上海",
+      "action": "活动",
+      "summary": "本年創設宙合齋古玩店於七浦路，以“綢繆古懽，晉接時俊”為宗旨。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1914,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1914.夏",
+          "location": "上海",
+          "action": "書信",
+          "summary": "初夏，黄節北上京師，道出滬江，一傾闊別積年愫懷，並馳書金山張堰，邀高吹萬來滬叙晤不果。"
+        }
+      ],
+      "date": "1914.夏",
+      "location": "上海",
+      "action": "書信",
+      "summary": "初夏，黄節北上京師，道出滬江，一傾闊別積年愫懷，並馳書金山張堰，邀高吹萬來滬叙晤不果。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1914,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1914.夏",
+          "location": "上海",
+          "action": "活动",
+          "summary": "國是日非，前途茫茫，在政局、生計雙重壓力下，深深感受到報學兩界將無立脚之地之蒼凉。"
+        }
+      ],
+      "date": "1914.夏",
+      "location": "上海",
+      "action": "活动",
+      "summary": "國是日非，前途茫茫，在政局、生計雙重壓力下，深深感受到報學兩界將無立脚之地之蒼凉。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1915,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1915.08",
+          "location": "上海",
+          "action": "書信",
+          "summary": "8月黄節來信，對以鐵桿擁袁為帝的楊度爲首的“籌安會”傾覆共和制度的罪惡行徑大加抨擊，寄來致淪爲“籌安會六君子”之一的舊友劉師培公開信，囑分發上海各報。接信後，即交付南社刊於《南社叢刻》。"
+        },
+        {
+          "date": "1915.春",
+          "location": "上海",
+          "action": "鑒賞",
+          "summary": "春，黄節題所贈之山水畫。"
+        },
+        {
+          "date": "1915.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "春夏間，應黄節函請，為繪《祭後山圖》和《後山詩意圖册》。"
+        }
+      ],
+      "date": "1915.08",
+      "location": "上海",
+      "action": "書信",
+      "summary": "8月黄節來信，對以鐵桿擁袁為帝的楊度爲首的“籌安會”傾覆共和制度的罪惡行徑大加抨擊，寄來致淪爲“籌安會六君子”之一的舊友劉師培公開信，囑分發上海各報。接信後，即交付南社刊於《南社叢刻》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1915,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1915.夏",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "夏，高燮與柳亞子、姚光携眷同游西湖，各有吟詠，歸合刊為《三子游草》，應高燮之請，爲其《武林舊游草》題耑，並繪圖題詩贈之。"
+        },
+        {
+          "date": "1915.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "春，將《雷母陳夫人誄》寄柳亞子，並附以書，有云“稍稍研求前者樸學涯涘，兼證邇來新知物理，漸悟中國學術，蔽於時好者多，而誤於泥古者亦復不少”，以爲疑古與泥古是中國學術之所以不振之由。"
+        },
+        {
+          "date": "1915.秋",
+          "location": "上海",
+          "action": "位移",
+          "summary": "為柳亞子作《分湖歸隱圖》。"
+        }
+      ],
+      "date": "1915.春",
+      "location": "上海",
+      "action": "書信",
+      "summary": "春，將《雷母陳夫人誄》寄柳亞子，並附以書，有云“稍稍研求前者樸學涯涘，兼證邇來新知物理，漸悟中國學術，蔽於時好者多，而誤於泥古者亦復不少”，以爲疑古與泥古是中國學術之所以不振之由。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1916,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1916.09.26",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "9月26日，于右任招飲宋園，同座者尚有謝无量、胡韞玉、邵力子、葉楚傖、柳亞子、余其鏘。"
+        }
+      ],
+      "date": "1916.09.26",
+      "location": "上海",
+      "action": "聘任",
+      "summary": "9月26日，于右任招飲宋園，同座者尚有謝无量、胡韞玉、邵力子、葉楚傖、柳亞子、余其鏘。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "狄平子",
+      "year": 1916,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1916.11",
+          "location": "上海",
+          "action": "活动",
+          "summary": "11月，宣哲（古愚）、鄧實（秋枚）、毛子堅、狄平子（楚青）為定潤例。"
+        }
+      ],
+      "date": "1916.11",
+      "location": "上海",
+      "action": "活动",
+      "summary": "11月，宣哲（古愚）、鄧實（秋枚）、毛子堅、狄平子（楚青）為定潤例。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "潘飛聲",
+      "year": 1917,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1917.03",
+          "location": "上海",
+          "action": "活动",
+          "summary": "3月，與潘飛聲、狄楚青為湯臨澤定篆刻潤例。"
+        }
+      ],
+      "date": "1917.03",
+      "location": "上海",
+      "action": "活动",
+      "summary": "3月，與潘飛聲、狄楚青為湯臨澤定篆刻潤例。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1918,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1918.05.02",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "5月2日，蘇曼殊病逝於上海瑞金醫院，3日舉行大殮。曼殊瀕危際，囑咐高劍父報書黄節，黄節聞耗，匆匆從北京趕來，偕與同視曼殊殯。"
+        },
+        {
+          "date": "1918.05.02",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "旋與黄節聯袂赴杭州游西湖，黄節出友人伍莊（憲子）記其年輕時戀情故實《優曇花影事》一編，請為之叙。"
+        },
+        {
+          "date": "1918.05.02",
+          "location": "杭州",
+          "action": "位移",
+          "summary": "歸滬，爲諸貞壯繪《楊華圖》，黄節題詩。"
+        },
+        {
+          "date": "1918.09.07",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "9月7日黄節來信並詩，催撰《優曇花影序》，並告所託轉交之印譜與畫已交陳師曾等人。"
+        }
+      ],
+      "date": "1918.09.07",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "9月7日黄節來信並詩，催撰《優曇花影序》，並告所託轉交之印譜與畫已交陳師曾等人。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1918,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1918.05.02",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "上年由於柳亞子開除朱鵷雛為導火綫，南社内部發生糾紛，柳亞子暫時退社，由姚光主持社務，内部糾紛依舊，傅熊湘來信希望居間調停。"
+        }
+      ],
+      "date": "1918.05.02",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "上年由於柳亞子開除朱鵷雛為導火綫，南社内部發生糾紛，柳亞子暫時退社，由姚光主持社務，内部糾紛依舊，傅熊湘來信希望居間調停。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1918,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1918.10.06",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "10月6日，江蘇省教育會美術研究會開成立大會，在會上演說中國畫學。"
+        }
+      ],
+      "date": "1918.10.06",
+      "location": "杭州",
+      "action": "聘任",
+      "summary": "10月6日，江蘇省教育會美術研究會開成立大會，在會上演說中國畫學。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1919,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1919.04.02",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "4月2日，傅熊湘致函乞繪《紅薇感舊圖》，自此往來愈密。"
+        }
+      ],
+      "date": "1919.04.02",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "4月2日，傅熊湘致函乞繪《紅薇感舊圖》，自此往來愈密。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1919,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1919.08.16",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "8月16日，《時報》新設副刊《美術週刊》，聘為主編，撰《畫徵錄商兌》、《藝林摭談》、《篆刻麈談》等文數百篇，並改寫陳樹人譯述《新畫法》前半畫理部分為《新畫訓》，均刊於週報。"
+        }
+      ],
+      "date": "1919.08.16",
+      "location": "杭州",
+      "action": "聘任",
+      "summary": "8月16日，《時報》新設副刊《美術週刊》，聘為主編，撰《畫徵錄商兌》、《藝林摭談》、《篆刻麈談》等文數百篇，並改寫陳樹人譯述《新畫法》前半畫理部分為《新畫訓》，均刊於週報。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1919,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1919.12.20",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "12月20日天馬會第一屆繪畫展覽會開幕，以山水參加陳列。"
+        }
+      ],
+      "date": "1919.12.20",
+      "location": "杭州",
+      "action": "展覽",
+      "summary": "12月20日天馬會第一屆繪畫展覽會開幕，以山水參加陳列。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1920,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1920.1",
+          "location": "杭州",
+          "action": "位移",
+          "summary": "10月，黄節南歸省親，過滬相晤，百端交集，彼此有“憂時坐老，江湖相望”之感。"
+        },
+        {
+          "date": "1920.冬",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "冬，黄節自北京來書為羅敷庵母親慶壽代求繪圖。"
+        },
+        {
+          "date": "1920.春",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "仲春，黄節來書，以新作《春暖》詩相寄。"
+        }
+      ],
+      "date": "1920.冬",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "冬，黄節自北京來書為羅敷庵母親慶壽代求繪圖。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1920,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1920.07.04",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "7月4日，天馬會第二屆繪畫展覽會選舉審查員，未入選。"
+        }
+      ],
+      "date": "1920.07.04",
+      "location": "杭州",
+      "action": "展覽",
+      "summary": "7月4日，天馬會第二屆繪畫展覽會選舉審查員，未入選。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1920,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1920.秋",
+          "location": "杭州",
+          "action": "位移",
+          "summary": "秋，無爲宋若嬰（1905—1970）來歸。"
+        }
+      ],
+      "date": "1920.秋",
+      "location": "杭州",
+      "action": "位移",
+      "summary": "秋，無爲宋若嬰（1905—1970）來歸。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "潘飛聲",
+      "year": 1921,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1921.02.23",
+          "location": "杭州",
+          "action": "雅集",
+          "summary": "2月23日辛酉正月初四日，潘飛聲招集諸友設宴杏花春雨樓，赴宴者尚有吳昌碩、徐積餘、周夢坡、徐仲可、胡朴庵、童心安等十餘人。"
+        }
+      ],
+      "date": "1921.02.23",
+      "location": "杭州",
+      "action": "雅集",
+      "summary": "2月23日辛酉正月初四日，潘飛聲招集諸友設宴杏花春雨樓，赴宴者尚有吳昌碩、徐積餘、周夢坡、徐仲可、胡朴庵、童心安等十餘人。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1921,
+      "frequency": 3,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1921.05",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "5月，作長條畫兩幀並加長題寄贈黄節，其一款署“辛酉四月，仿元人法寫博晦聞先生粲正，賓谼質”。"
+        },
+        {
+          "date": "1921.08.03",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "黄節以劉心源《古文審》並辛亥年作《報濱虹寄畫》詩見寄。"
+        },
+        {
+          "date": "1921.春",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "春，黄節來書索畫長條細筆三青山水。"
+        }
+      ],
+      "date": "1921.08.03",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "黄節以劉心源《古文審》並辛亥年作《報濱虹寄畫》詩見寄。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "狄平子",
+      "year": 1921,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1921.夏",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "夏，狄楚青投資失手，《時報》盤與黄伯惠。"
+        }
+      ],
+      "date": "1921.夏",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "夏，狄楚青投資失手，《時報》盤與黄伯惠。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1921,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1921.12.27",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "12月27日，與宋若嬰夫人、映采侄女至杭州遊覽寫生，勾留二十餘天，旋獨自赴金華探望弟妹。"
+        },
+        {
+          "date": "1921.夏",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "離開時報和有正書局賦閑，遷居閘北香興里紹興人家樓上，並在安徽李姓家坐館教書半天，月薪只有30元，入不敷出。"
+        }
+      ],
+      "date": "1921.12.27",
+      "location": "杭州",
+      "action": "紀游",
+      "summary": "12月27日，與宋若嬰夫人、映采侄女至杭州遊覽寫生，勾留二十餘天，旋獨自赴金華探望弟妹。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1921,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1921.07.05",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "7月5日上海美術學校（即上海美術專門學校前身）舉行十周年紀念繪畫展覽會，徵集贈品，出作品贊助之。"
+        }
+      ],
+      "date": "1921.07.05",
+      "location": "杭州",
+      "action": "展覽",
+      "summary": "7月5日上海美術學校（即上海美術專門學校前身）舉行十周年紀念繪畫展覽會，徵集贈品，出作品贊助之。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1922,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1922.06.13",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "6月13日，古印失竊。"
+        },
+        {
+          "date": "1922.06.13",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "失印後，從香興里遷居寶山路寶通路口景德里二弄上虞許宅内。此際興趣轉移到繪畫上。"
+        },
+        {
+          "date": "1922.12.17",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "12月17日，家庭糾紛激化，一部分人暫遷潭渡村故里。"
+        }
+      ],
+      "date": "1922.12.17",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "12月17日，家庭糾紛激化，一部分人暫遷潭渡村故里。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1922,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1922.07.01",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "7月1日，上海美術專門學校籌建校舍募金委員會成立，旋由康有為、王一亭、劉海粟、唐熊（吉生）發起組織古今名家書畫展覽會，徵集現代名家作品，以作品多件捐助該校籌建新校舍。"
+        }
+      ],
+      "date": "1922.07.01",
+      "location": "杭州",
+      "action": "展覽",
+      "summary": "7月1日，上海美術專門學校籌建校舍募金委員會成立，旋由康有為、王一亭、劉海粟、唐熊（吉生）發起組織古今名家書畫展覽會，徵集現代名家作品，以作品多件捐助該校籌建新校舍。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1922,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1922.秋",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "秋日，為黄節寫山水扇。"
+        }
+      ],
+      "date": "1922.秋",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "秋日，為黄節寫山水扇。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1923,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1923.秋",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "孫中山開府兩粤，任命黄節為元帥府秘書長，派陳樹人專程赴北平迎接。1月南旋，過蘇州訪章太炎、王秋湄，至杭州訪諸貞壯，諸貞壯在黄節下榻處為王秋湄題扇。"
+        }
+      ],
+      "date": "1923.秋",
+      "location": "杭州",
+      "action": "聘任",
+      "summary": "孫中山開府兩粤，任命黄節為元帥府秘書長，派陳樹人專程赴北平迎接。1月南旋，過蘇州訪章太炎、王秋湄，至杭州訪諸貞壯，諸貞壯在黄節下榻處為王秋湄題扇。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1923,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1923.03.08",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "3月8日許承堯自皖蒞滬。"
+        }
+      ],
+      "date": "1923.03.08",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "3月8日許承堯自皖蒞滬。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1923,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1923.秋",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "秋，與宋若嬰夫人及親戚某游常熟虞山寫生。"
+        }
+      ],
+      "date": "1923.秋",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "秋，與宋若嬰夫人及親戚某游常熟虞山寫生。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1924,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1924.01.23",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "1月23日，江蘇省第一屆美術展覽會聘為中國畫部審查員。"
+        },
+        {
+          "date": "1924.03.05",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "3月5日，參加美術展覽會第二次審查會議。"
+        }
+      ],
+      "date": "1924.03.05",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "3月5日，參加美術展覽會第二次審查會議。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1924,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1924.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "春夏之間，辭去商務印書館職務。在商務印書館工作之近二年時間內，完成《古畫微》的寫作。"
+        }
+      ],
+      "date": "1924.春",
+      "location": "上海",
+      "action": "書信",
+      "summary": "春夏之間，辭去商務印書館職務。在商務印書館工作之近二年時間內，完成《古畫微》的寫作。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "狄平子",
+      "year": 1924,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1924.12.19",
+          "location": "上海",
+          "action": "書信",
+          "summary": "重入有正書局，遷入有正書局工廠樓上。"
+        }
+      ],
+      "date": "1924.12.19",
+      "location": "上海",
+      "action": "書信",
+      "summary": "重入有正書局，遷入有正書局工廠樓上。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1925,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1925.03.14",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "春，贈黄節、唐天如畫，3月14日黄節來信再索作《箋詩圖》，並詢欲在滬印行新著《謝康樂詩注》事。"
+        }
+      ],
+      "date": "1925.03.14",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "春，贈黄節、唐天如畫，3月14日黄節來信再索作《箋詩圖》，並詢欲在滬印行新著《謝康樂詩注》事。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1925,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1925.04.08",
+          "location": "上海",
+          "action": "鑒賞",
+          "summary": "陳柱尊爲題山水圖。"
+        }
+      ],
+      "date": "1925.04.08",
+      "location": "上海",
+      "action": "鑒賞",
+      "summary": "陳柱尊爲題山水圖。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1925,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1925.冬",
+          "location": "上海",
+          "action": "活动",
+          "summary": "冬，開始為《藝觀》畫刊與雜志組稿。"
+        }
+      ],
+      "date": "1925.冬",
+      "location": "上海",
+      "action": "活动",
+      "summary": "冬，開始為《藝觀》畫刊與雜志組稿。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1926,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1926.02.20",
+          "location": "上海",
+          "action": "書信",
+          "summary": "2月20日，《藝觀》畫刊第一號出版，由有正書局與民智書局發行。"
+        }
+      ],
+      "date": "1926.02.20",
+      "location": "上海",
+      "action": "書信",
+      "summary": "2月20日，《藝觀》畫刊第一號出版，由有正書局與民智書局發行。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1926,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1926.春",
+          "location": "歙縣",
+          "action": "書信",
+          "summary": "春，許承堯辭官歸歙縣，有詩寄贈。"
+        }
+      ],
+      "date": "1926.春",
+      "location": "歙縣",
+      "action": "書信",
+      "summary": "春，許承堯辭官歸歙縣，有詩寄贈。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1926,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1926.暮春",
+          "location": "歙縣",
+          "action": "書信",
+          "summary": "暮春，黄節書贈自作詩屏。"
+        }
+      ],
+      "date": "1926.暮春",
+      "location": "歙縣",
+      "action": "書信",
+      "summary": "暮春，黄節書贈自作詩屏。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1926,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1926.夏",
+          "location": "歙縣",
+          "action": "活动",
+          "summary": "夏日，為陸丹林作《紅樹室圖》。"
+        }
+      ],
+      "date": "1926.夏",
+      "location": "歙縣",
+      "action": "活动",
+      "summary": "夏日，為陸丹林作《紅樹室圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "鄭午昌",
+      "year": 1926,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1926.11.19",
+          "location": "上海",
+          "action": "活动",
+          "summary": "1926年11月19日鼎臠社假日本人俱樂部舉辦同人畫展，與張小樓、錢化佛在會場招待中外來賓。"
+        },
+        {
+          "date": "1926.11.20",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "11月20日，鼎臠同人書畫展覽會开幕。"
+        }
+      ],
+      "date": "1926.11.20",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "11月20日，鼎臠同人書畫展覽會开幕。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1927,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1927.春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "春，為陸丹林作《篝鐙紡讀圖》。"
+        }
+      ],
+      "date": "1927.春",
+      "location": "上海",
+      "action": "活动",
+      "summary": "春，為陸丹林作《篝鐙紡讀圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1927,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1927.春",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "春，許承堯擬北游，道出上海，在滬逗留半載，相與常作文酒之會。"
+        }
+      ],
+      "date": "1927.春",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "春，許承堯擬北游，道出上海，在滬逗留半載，相與常作文酒之會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1927,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1927.05",
+          "location": "上海",
+          "action": "書信",
+          "summary": "5月，黄節大病甫愈，以自書詩扇託胡子賢帶滬饋贈。"
+        }
+      ],
+      "date": "1927.05",
+      "location": "上海",
+      "action": "書信",
+      "summary": "5月，黄節大病甫愈，以自書詩扇託胡子賢帶滬饋贈。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1928,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.01",
+          "location": "上海",
+          "action": "書信",
+          "summary": "1月，作畫寄黄節。"
+        },
+        {
+          "date": "1928.04",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "4月初，黄節應廣東省政府主席李濟深敦請，回粤任廣東省教育廳廳長、廣東省通志館館長之職，道經上海，老友重逢，置酒話舊。"
+        },
+        {
+          "date": "1928.04",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "戊辰三月，黄節赴廣州就任教育廳廳長，過滬未值。"
+        }
+      ],
+      "date": "1928.04",
+      "location": "上海",
+      "action": "聘任",
+      "summary": "戊辰三月，黄節赴廣州就任教育廳廳長，過滬未值。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1928,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "遷居福熙路（今延安中路）近同孚路（今石門一路）口之汾陽坊四百十八號神州國光社樓上。"
+        }
+      ],
+      "date": "1928.春",
+      "location": "上海",
+      "action": "活动",
+      "summary": "遷居福熙路（今延安中路）近同孚路（今石門一路）口之汾陽坊四百十八號神州國光社樓上。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1928,
+      "frequency": 6,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.04.21",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "4月21日，參加友人許士騏主辦之中國古今名畫展覽會。"
+        },
+        {
+          "date": "1928.04.21",
+          "location": "上海",
+          "action": "鑒賞",
+          "summary": "戊辰三月，題張大千臨石濤山水圖卷。"
+        },
+        {
+          "date": "1928.06.13",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "6月13日，參加天馬會第九屆美術展覽會。"
+        },
+        {
+          "date": "1928.11.07",
+          "location": "廣州",
+          "action": "展覽",
+          "summary": "11月7日，參加秋英會第一次展覽會。"
+        },
+        {
+          "date": "1928.12.01",
+          "location": "上海",
+          "action": "活动",
+          "summary": "張大千畫山水相贈。"
+        },
+        {
+          "date": "1928.春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "春，與張善孖、張大千、馬駘、俞劍華、熊松泉、陳剛叔、蔡逸民等組織爛漫畫社，被推為社長，陳剛叔副之，集資出版《爛漫社同人畫册第一集》。"
+        }
+      ],
+      "date": "1928.11.07",
+      "location": "廣州",
+      "action": "展覽",
+      "summary": "11月7日，參加秋英會第一次展覽會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陶冷月",
+      "year": 1928,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.07.01",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "下半年，應聘為暨南大學藝術院美術史講師。"
+        },
+        {
+          "date": "1928.春",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "春，陶冷月受聘暨南大學中國藝術系主任，由徐悲鴻介，允任中國畫史講席。與陶冷月遊無錫，在梅園天心台合影。"
+        },
+        {
+          "date": "1928.秋",
+          "location": "廣州",
+          "action": "鑒賞",
+          "summary": "秋，題陶冷月新作《溪山獨釣圖》。"
+        },
+        {
+          "date": "1928.秋",
+          "location": "廣州",
+          "action": "活动",
+          "summary": "為陶冷月繪《灕江山色圖》。"
+        }
+      ],
+      "date": "1928.秋",
+      "location": "廣州",
+      "action": "活动",
+      "summary": "為陶冷月繪《灕江山色圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1928,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.11.26",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "11月26日赴汪英賓寓舍，與書畫同人祝其父五十九壽辰，是集至者甚夥，詩酒書畫，極一時之盛。"
+        },
+        {
+          "date": "1928.12",
+          "location": "廣州",
+          "action": "雅集",
+          "summary": "12月，丁衍鏞受廣州博物院之託，來滬徵集藝術作品，於小有天菜館招待上海藝術界人士。與宋若嬰夫人出席宴會，允以畫件捐贈。"
+        },
+        {
+          "date": "1928.夏",
+          "location": "上海",
+          "action": "書信",
+          "summary": "夏秋間，在葉恭綽推動下，與上海金石書畫專家黄藹農、吳待秋、劉貞晦、張善孖、樓辛壺、張紅薇、馬孟容、鄭曼青、鄭午昌、許徵白、沈仲俊、方介堪、馬公愚、王師子、商笙伯等數次商議創辦以重振中國畫學精神的中國文藝學院，以規模宏大，需資過巨，雖一時未能即付實現，籌備工作一直在默默進行中。"
+        },
+        {
+          "date": "1928.春",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "此際，與陳剛叔、蔡逸民、熊松泉、張善孖、大千、馬企周、俞劍華等組織爛漫畫社，任社長。"
+        },
+        {
+          "date": "1928.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "約此際，為張善孖畫扇。張善孖來函商借新羅山人《野燒圖》。"
+        }
+      ],
+      "date": "1928.12",
+      "location": "廣州",
+      "action": "雅集",
+      "summary": "12月，丁衍鏞受廣州博物院之託，來滬徵集藝術作品，於小有天菜館招待上海藝術界人士。與宋若嬰夫人出席宴會，允以畫件捐贈。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1928,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.06.16",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "廣西省教育廳舉辦暑期講學會，陳柱推薦講學。"
+        },
+        {
+          "date": "1928.06.16",
+          "location": "上海",
+          "action": "活动",
+          "summary": "與陳柱論畫之筆力關乎氣韻。"
+        },
+        {
+          "date": "1928.07.13",
+          "location": "上海",
+          "action": "活动",
+          "summary": "自梧州與陳柱尊、陳中凡、陳定謨買舟溯灕江而上，。一路上，雖於炎暑中，蜷縮小舟，而水色山光，怡情豁目，忘其勞頓。"
+        },
+        {
+          "date": "1928.08.19",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "講學期間，筆墨酬應，求者踵接。為陳柱作《八桂豪游圖》山水長卷。"
+        },
+        {
+          "date": "1928.12",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "12月，陳柱主編《中國學術討論》第二集由羣衆圖書公司發行，刊所繪山水畫一幅於首頁。"
+        }
+      ],
+      "date": "1928.12",
+      "location": "廣州",
+      "action": "書信",
+      "summary": "12月，陳柱主編《中國學術討論》第二集由羣衆圖書公司發行，刊所繪山水畫一幅於首頁。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1928,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.01.24",
+          "location": "廣州",
+          "action": "聘任",
+          "summary": "廣州博物院美術部主任丁衍鏞來滬徵集名家作品，以繪畫入選。"
+        },
+        {
+          "date": "1928.06.03",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "6月3日，大學院（不久改稱教育部）藝術教育委員會第四次常會議决，被推為全國美術展覽會審查委員。"
+        },
+        {
+          "date": "1928.07",
+          "location": "上海",
+          "action": "書信",
+          "summary": "7月，莫干山肺病療養院為擴建院舍募集基金，與海上書畫同人作畫贈之。"
+        }
+      ],
+      "date": "1928.01.24",
+      "location": "廣州",
+      "action": "聘任",
+      "summary": "廣州博物院美術部主任丁衍鏞來滬徵集名家作品，以繪畫入選。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "謝玉岑",
+      "year": 1928,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.11",
+          "location": "廣州",
+          "action": "活动",
+          "summary": "11月，再赴無錫，於太湖邂逅謝玉岑。"
+        }
+      ],
+      "date": "1928.11",
+      "location": "廣州",
+      "action": "活动",
+      "summary": "11月，再赴無錫，於太湖邂逅謝玉岑。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "柳亞子",
+      "year": 1928,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.11.12",
+          "location": "廣州",
+          "action": "雅集",
+          "summary": "11月12日，赴蘇州參加南社二十週年紀念雅集。"
+        }
+      ],
+      "date": "1928.11.12",
+      "location": "廣州",
+      "action": "雅集",
+      "summary": "11月12日，赴蘇州參加南社二十週年紀念雅集。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "李祖韓",
+      "year": 1928,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1928.秋",
+          "location": "廣州",
+          "action": "鑒賞",
+          "summary": "戊辰十月，李祖韓、秋君兄妹出示其父親李薇莊雙箑遺墨屬題。"
+        }
+      ],
+      "date": "1928.秋",
+      "location": "廣州",
+      "action": "鑒賞",
+      "summary": "戊辰十月，李祖韓、秋君兄妹出示其父親李薇莊雙箑遺墨屬題。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1929,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.01.04",
+          "location": "廣州",
+          "action": "活动",
+          "summary": "元旦，參加中國學會成立大會。"
+        }
+      ],
+      "date": "1929.01.04",
+      "location": "廣州",
+      "action": "活动",
+      "summary": "元旦，參加中國學會成立大會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1929,
+      "frequency": 6,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.01.03",
+          "location": "廣州",
+          "action": "展覽",
+          "summary": "1月3日“二俞、張、王國畫展覽會”開幕，是日到會畫家甚夥。"
+        },
+        {
+          "date": "1929.10.17",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "9月，被選為中日現代繪畫展覽會鑒別委員。10月17日，開始鑒別參展作品。"
+        },
+        {
+          "date": "1929.11.08",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "11月8日，參加在上海美專存天閣舉行的中日畫家歡聚活動。"
+        },
+        {
+          "date": "1929.12.16",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "新華藝術大學為募集辦校基金，12月16日至19日假座寧波同鄉會舉辦籌款書畫會，以教授身份出品相助。"
+        },
+        {
+          "date": "1929.12.22",
+          "location": "上海",
+          "action": "活动",
+          "summary": "12月22日為爛漫社社友馬駘刊登畫展啟事。"
+        },
+        {
+          "date": "1929.12.22",
+          "location": "上海",
+          "action": "活动",
+          "summary": "年底遷西門路西成里一六九號張善孖寓二樓厢房。"
+        }
+      ],
+      "date": "1929.12.22",
+      "location": "上海",
+      "action": "活动",
+      "summary": "年底遷西門路西成里一六九號張善孖寓二樓厢房。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1929,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.01.23",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "1月23日，為紀念神州國光社創建二十五週年，邀集海上文藝界、書畫界和新聞界名流百餘人，宴於大東飯店，推俞劍華致歡迎辭，劉海粟代表來賓致答辭，極一時之盛。"
+        },
+        {
+          "date": "1929.06.07",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "6月7日，參加藝苑繪畫研究所為募集基金在寧波同鄉會舉辦的現代名家捐助書畫展覽會。"
+        }
+      ],
+      "date": "1929.06.07",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "6月7日，參加藝苑繪畫研究所為募集基金在寧波同鄉會舉辦的現代名家捐助書畫展覽會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1929,
+      "frequency": 13,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.02",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "2月，張善孖、張大千、丁六陽書畫展與大風堂所藏書畫展在西門路張宅舉辦。"
+        },
+        {
+          "date": "1929.03.03",
+          "location": "廣州",
+          "action": "雅集",
+          "summary": "3月3日，藝苑繪畫研究所宴請文藝界名流，赴會揮毫。"
+        },
+        {
+          "date": "1929.03.08",
+          "location": "廣州",
+          "action": "活动",
+          "summary": "3月8日，被推為全國美展參考品部委員。"
+        },
+        {
+          "date": "1929.04.22",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "閉幕後之第二日，第一次全國美術展覽會同人雅集於狄楚青平等閣並合影。"
+        },
+        {
+          "date": "1929.05.10",
+          "location": "上海",
+          "action": "書信",
+          "summary": "5月10日，為群治大學籌建新校舍募集資金，赴曾熙、符鐵年召集的書畫家雅集。"
+        },
+        {
+          "date": "1929.06.28",
+          "location": "上海",
+          "action": "書信",
+          "summary": "6月28日，日本畫家倉橋、渡邊來華寫生，月餘後經費拮据，與上海書畫同人揮毫，售畫以助川資。"
+        },
+        {
+          "date": "1929.07.27",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "7月27日，張大千、俞劍華東渡游覽，以畫帶往，廣結墨緣，日本畫家田邊華得畫後，贈以自作山水。"
+        },
+        {
+          "date": "1929.09",
+          "location": "上海",
+          "action": "書信",
+          "summary": "9月，赴經亨頤、陳樹人、何香凝召集之海上書畫同人雅集。"
+        },
+        {
+          "date": "1929.09.25",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "9月25日，新華藝術大學為籌募基金，赴日開展覽會，應教務長俞劍華、校長俞寄凡邀，參與雅集。"
+        },
+        {
+          "date": "1929.11",
+          "location": "上海",
+          "action": "位移",
+          "summary": "11月，中國文藝出版部《中西畫集》出版，收入《桂林疊綵山》。"
+        },
+        {
+          "date": "1929.春",
+          "location": "廣州",
+          "action": "鑒賞",
+          "summary": "春，為張大千弟君綬山水遺作題詞。"
+        },
+        {
+          "date": "1929.春",
+          "location": "廣州",
+          "action": "聘任",
+          "summary": "春，上海美術專門學校聘為國畫理論教授。"
+        },
+        {
+          "date": "1929.春",
+          "location": "廣州",
+          "action": "鑒賞",
+          "summary": "春，張大千自寫小像，為其題跋。"
+        }
+      ],
+      "date": "1929.11",
+      "location": "上海",
+      "action": "位移",
+      "summary": "11月，中國文藝出版部《中西畫集》出版，收入《桂林疊綵山》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "李祖韓",
+      "year": 1929,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.04.10",
+          "location": "廣州",
+          "action": "紀游",
+          "summary": "同日，全國美展三日刊《美展》第一期發行，《畫家品格之區異》刊其上。"
+        },
+        {
+          "date": "1929.06.24",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "6月24日上海美專舉行畢業禮。"
+        },
+        {
+          "date": "1929.07.01",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "《美展》三日刊廣受各界注目，美術展覽會編輯組同人在《美展》隨着展覽會閉幕停刊後，續出《美周》週刊，由徐志摩、陳小蝶、李祖韓、楊清磬主編，仍為其撰述人之一，7月1日刊《虛與實》於《美周》第一期。"
+        }
+      ],
+      "date": "1929.06.24",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "6月24日上海美專舉行畢業禮。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1929,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1929.秋",
+          "location": "上海",
+          "action": "書信",
+          "summary": "秋，爲陸丹林書篆聯“夾岸微陽熏杜若，散林宿雨溼桐花”。"
+        }
+      ],
+      "date": "1929.秋",
+      "location": "上海",
+      "action": "書信",
+      "summary": "秋，爲陸丹林書篆聯“夾岸微陽熏杜若，散林宿雨溼桐花”。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1929,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.08",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "8月，黄節辭去廣東省教育廳廳長職，至澳門稍作逗留，旋於月初來滬，下榻東亞旅館。"
+        },
+        {
+          "date": "1929.09",
+          "location": "上海",
+          "action": "書信",
+          "summary": "9月初，寫扇面與篆聯寄贈余紹宋，並附函詢問黄節事，告以在續編《美術叢書》第四集四十册，徵求文獻。"
+        }
+      ],
+      "date": "1929.09",
+      "location": "上海",
+      "action": "書信",
+      "summary": "9月初，寫扇面與篆聯寄贈余紹宋，並附函詢問黄節事，告以在續編《美術叢書》第四集四十册，徵求文獻。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "葉恭綽",
+      "year": 1929,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.08.05",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "8月5日，於葉恭綽歡迎余紹宋之宴會上，與余氏訂交。"
+        }
+      ],
+      "date": "1929.08.05",
+      "location": "上海",
+      "action": "雅集",
+      "summary": "8月5日，於葉恭綽歡迎余紹宋之宴會上，與余氏訂交。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "唐天如",
+      "year": 1929,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.秋",
+          "location": "上海",
+          "action": "活动",
+          "summary": "秋日，為唐天如作設色山水。"
+        }
+      ],
+      "date": "1929.秋",
+      "location": "上海",
+      "action": "活动",
+      "summary": "秋日，為唐天如作設色山水。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1929,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1929.1",
+          "location": "上海",
+          "action": "書信",
+          "summary": "己巳九月廿日返申，在貴池見許承堯評汪鞠友（律本）詩甚佩服，乃寄部分整理竣工之自作粵遊詩稿與許氏，請其評閱。"
+        }
+      ],
+      "date": "1929.1",
+      "location": "上海",
+      "action": "書信",
+      "summary": "己巳九月廿日返申，在貴池見許承堯評汪鞠友（律本）詩甚佩服，乃寄部分整理竣工之自作粵遊詩稿與許氏，請其評閱。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "狄平子",
+      "year": 1929,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1929.11.01",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "11月1日，中日現代繪畫展覽會隆重開幕。"
+        }
+      ],
+      "date": "1929.11.01",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "11月1日，中日現代繪畫展覽會隆重開幕。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1930,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.冬",
+          "location": "上海",
+          "action": "活动",
+          "summary": "冬日，為陸丹林作《楓橋夜冷圖》。"
+        },
+        {
+          "date": "1930.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "春，鑒於近年中國畫壇畫家麕集，畫展、畫會此起彼伏，深感書畫家有聯合起來，成立一個全國範圍的書畫團體的必要，與葉恭綽商議，囑陸丹林起草宣言。"
+        }
+      ],
+      "date": "1930.冬",
+      "location": "上海",
+      "action": "活动",
+      "summary": "冬日，為陸丹林作《楓橋夜冷圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1930,
+      "frequency": 7,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.05.24",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "年初，顧飛正式拜師習畫，旋入中國文藝學院就學，一學期後退學，賃居張善孖寓之亭子間，昕夕面聆教益。"
+        },
+        {
+          "date": "1930.05.24",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "西畫家王濟遠將赴歐，於滬上舉辦歐游告別紀念畫展。5月24日，與上海藝術界同人江小鶼、王一亭、張善孖、楊清磬等一起舉行茶話會歡送王濟遠。"
+        },
+        {
+          "date": "1930.10.05",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "汪亞塵、榮君立伉儷1928年赴歐游學歸國，10月5日上海藝術界舉行公宴歡迎，12月5日至18日在中社俱樂部舉辦旅歐繪畫展覽會，前往觀摩並參加宴會。"
+        },
+        {
+          "date": "1930.11.05",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "11月5日，日本上海三井銀行總理土屋計左右升任東京總行，日本駐滬總領事重光葵設筵於私邸，邀集日本居滬人士以及中國藝術界名流為其餞行。"
+        },
+        {
+          "date": "1930.11.08",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "11月8日蒔菊會在南京路前市政廳開幕，虞澹涵擔任書畫部主事，有作品陳列其中。"
+        },
+        {
+          "date": "1930.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "學校寒假期間，爲俞劍華代訂“書畫特例”。"
+        },
+        {
+          "date": "1930.秋",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "秋，與張丹斧、嚴獨鶴等宴於張善孖寓。"
+        }
+      ],
+      "date": "1930.10.05",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "汪亞塵、榮君立伉儷1928年赴歐游學歸國，10月5日上海藝術界舉行公宴歡迎，12月5日至18日在中社俱樂部舉辦旅歐繪畫展覽會，前往觀摩並參加宴會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "謝玉岑",
+      "year": 1930,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.08.20",
+          "location": "上海",
+          "action": "活动",
+          "summary": "兼昌明藝術專科學校國畫理論課。"
+        }
+      ],
+      "date": "1930.08.20",
+      "location": "上海",
+      "action": "活动",
+      "summary": "兼昌明藝術專科學校國畫理論課。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "吳一峰",
+      "year": 1930,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.03.11",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "3月11日，蜜蜂畫會會刊《蜜蜂》創刊。12日，蜜蜂畫會第一屆古今名畫展覽會在西藏路巴黎舞場開幕，早期會員多爲文藝學院師生。"
+        }
+      ],
+      "date": "1930.03.11",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "3月11日，蜜蜂畫會會刊《蜜蜂》創刊。12日，蜜蜂畫會第一屆古今名畫展覽會在西藏路巴黎舞場開幕，早期會員多爲文藝學院師生。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1930,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.冬",
+          "location": "上海",
+          "action": "活动",
+          "summary": "冬，為許承堯作《石雨草堂圖》，並錄青巖、漸江遺詩。"
+        },
+        {
+          "date": "1930.春",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "春暮，許承堯自歙游滬，時常過從，許氏爲題鳳六山人《潭渡村圖》。"
+        },
+        {
+          "date": "1930.春",
+          "location": "上海",
+          "action": "鑒賞",
+          "summary": "與許承堯為丁輔之作《蔬果圖卷》題跋。"
+        },
+        {
+          "date": "1930.秋",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "新秋，許承堯倦遊，將返唐模，仿垢道人以贈行。"
+        }
+      ],
+      "date": "1930.冬",
+      "location": "上海",
+      "action": "活动",
+      "summary": "冬，為許承堯作《石雨草堂圖》，並錄青巖、漸江遺詩。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1930,
+      "frequency": 7,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.05.21",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "5月21日，張大千假寧波同鄉會舉辦展覽會，赴會參觀。"
+        },
+        {
+          "date": "1930.08.27",
+          "location": "上海",
+          "action": "活动",
+          "summary": "8月27日，曾農髯（熙）病逝，年七十三歲。張善孖、張大千、馬企周、江一平、朱大可等及門弟子發起“曾（農髯）李（瑞清）同門會”。"
+        },
+        {
+          "date": "1930.1",
+          "location": "上海",
+          "action": "書信",
+          "summary": "10月，海上書畫聯合會推為受託代售古今書畫瓷銅玉石審查員。"
+        },
+        {
+          "date": "1930.12",
+          "location": "上海",
+          "action": "書信",
+          "summary": "12月，為蜀東儒將兼書畫名家陳澤霈代訂潤格。"
+        },
+        {
+          "date": "1930.冬",
+          "location": "上海",
+          "action": "活动",
+          "summary": "冬月，張善孖、張大千母親七十壽辰，畫《洞天福地圖》以賀。"
+        },
+        {
+          "date": "1930.冬",
+          "location": "上海",
+          "action": "書信",
+          "summary": "本年，爲姜丹書《丹楓紅葉圖》卷題詩。"
+        },
+        {
+          "date": "1930.秋",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "秋，新華藝專聘為國畫教授。"
+        }
+      ],
+      "date": "1930.冬",
+      "location": "上海",
+      "action": "書信",
+      "summary": "本年，爲姜丹書《丹楓紅葉圖》卷題詩。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "馬公愚",
+      "year": 1930,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.06.04",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "法國馬古烈博士參觀中國藝術專科學校師弟作品展覽會後，6月4日赴該校演講，云“歐洲今日之藝術漸趨中國化”。"
+        },
+        {
+          "date": "1930.07.14",
+          "location": "上海",
+          "action": "活动",
+          "summary": "7月14日，中國藝術專科學校暑期研究科開學。"
+        }
+      ],
+      "date": "1930.07.14",
+      "location": "上海",
+      "action": "活动",
+      "summary": "7月14日，中國藝術專科學校暑期研究科開學。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "鄭午昌",
+      "year": 1930,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.06.28",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "6月28日，中國藝術專科學校舉行第一屆畢業典禮，與蔡元培、劉穗九、劉貞晦、馬孟容、鄭午昌、馬公愚先後演説，是晚舉行游藝會，師生同樂。"
+        }
+      ],
+      "date": "1930.06.28",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "6月28日，中國藝術專科學校舉行第一屆畢業典禮，與蔡元培、劉穗九、劉貞晦、馬孟容、鄭午昌、馬公愚先後演説，是晚舉行游藝會，師生同樂。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳澤霈",
+      "year": 1930,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1930.秋",
+          "location": "上海",
+          "action": "活动",
+          "summary": "秋日，為陳澤霈作《風軒水檻圖》。"
+        }
+      ],
+      "date": "1930.秋",
+      "location": "上海",
+      "action": "活动",
+      "summary": "秋日，為陳澤霈作《風軒水檻圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1931,
+      "frequency": 6,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1931.01.10",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "爛漫社副社長陳剛叔退居鎮江故里，1月10日至20日在寓所舉辦個人書畫展覽會，與同人撰介紹啟事於報端。"
+        },
+        {
+          "date": "1931.04.02",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "4月2日，參加藝苑第二屆美術展覽會。"
+        },
+        {
+          "date": "1931.04.18",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "中日畫展在東京上野公園美術館舉辦，王一亭、錢瘦鐵、吳湖帆、孫雪泥、李秋君、李祖韓、鄭午昌、龐萊臣、閻甘園等紛紛赴日，張善孖、張大千昆仲亦於4月18日挈眷赴日參觀元明清古畫展，便道游朝鮮金剛山，詩以送之。"
+        },
+        {
+          "date": "1931.04.28",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "4月28日，日本倡辦之元明清古畫展覽會第二屆大會暨中日現代畫展第六屆大會在東京上野公園開幕，有作品參與陳列。"
+        },
+        {
+          "date": "1931.09.20",
+          "location": "上海",
+          "action": "書信",
+          "summary": "9月20日，代表旅滬安徽水災振濟會邀請書畫同人籌商並自認捐助書畫件事宜。"
+        },
+        {
+          "date": "1931.夏",
+          "location": "上海",
+          "action": "書信",
+          "summary": "仲夏，日本畫家、詩人田邊華接獲手書與贈畫，覆信並回贈自作山水。"
+        }
+      ],
+      "date": "1931.09.20",
+      "location": "上海",
+      "action": "書信",
+      "summary": "9月20日，代表旅滬安徽水災振濟會邀請書畫同人籌商並自認捐助書畫件事宜。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1931,
+      "frequency": 7,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1931.01.10",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "仍任中國藝術專科學校教授。"
+        },
+        {
+          "date": "1931.06",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "6月，中國藝專舉辦第三屆師弟藝術展覽會於寧波同鄉會。"
+        },
+        {
+          "date": "1931.07.01",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "7月1日，參加香祖書畫社徵集名家書畫扇面展覽會。"
+        },
+        {
+          "date": "1931.07.12",
+          "location": "上海",
+          "action": "書信",
+          "summary": "7月12日張善孖五十初度，以書畫為賀。"
+        },
+        {
+          "date": "1931.07.16",
+          "location": "上海",
+          "action": "書信",
+          "summary": "九裕堂箋扇莊八週年紀念，該莊自本年7月16日至29日舉行海上名家書畫扇面展，有作品被徵集。"
+        },
+        {
+          "date": "1931.09.10",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "是年發生特大水災，9月10日湖北水災急賑會駐滬籌賑辦事處籌賑股召開徵求書畫籌賑會，受聘為徵求委員，並捐助畫件助賑。"
+        },
+        {
+          "date": "1931.10.09",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "上海籌募各省水災急賑會婦女組虞澹涵、唐冠玉發起徵集古今書畫助賑展覽會，發售書畫助賑券，以售款助賑。與書畫界同仁合力襄助，於10月9日至11日展覽，11日抽籤，旋得萬元以助賑。"
+        }
+      ],
+      "date": "1931.10.09",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "上海籌募各省水災急賑會婦女組虞澹涵、唐冠玉發起徵集古今書畫助賑展覽會，發售書畫助賑券，以售款助賑。與書畫界同仁合力襄助，於10月9日至11日展覽，11日抽籤，旋得萬元以助賑。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "李祖韓",
+      "year": 1931,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1931.04.10",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "4月10日，閻甘園舉辦個人書畫展覽會於寧波同鄉會，刊印《晚照堂書畫册》當場分送，為該册撰跋語。"
+        }
+      ],
+      "date": "1931.04.10",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "4月10日，閻甘園舉辦個人書畫展覽會於寧波同鄉會，刊印《晚照堂書畫册》當場分送，為該册撰跋語。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1931,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1931.夏",
+          "location": "上海",
+          "action": "書信",
+          "summary": "初夏，黄節聞將有天台、雁蕩之游，來書乞畫雁蕩勝景册頁。"
+        }
+      ],
+      "date": "1931.夏",
+      "location": "上海",
+      "action": "書信",
+      "summary": "初夏，黄節聞將有天台、雁蕩之游，來書乞畫雁蕩勝景册頁。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1931,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1931.08",
+          "location": "上海",
+          "action": "書信",
+          "summary": "8月，蜜蜂畫社徵集中國當代繪畫，編為《當代名人畫海（甲編）》，由中華書局出版，收入山水畫一幀。"
+        }
+      ],
+      "date": "1931.08",
+      "location": "上海",
+      "action": "書信",
+      "summary": "8月，蜜蜂畫社徵集中國當代繪畫，編為《當代名人畫海（甲編）》，由中華書局出版，收入山水畫一幀。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "馬公愚",
+      "year": 1931,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1931.09.01",
+          "location": "上海",
+          "action": "活动",
+          "summary": "9月1日，中國藝術專科學校開學。"
+        }
+      ],
+      "date": "1931.09.01",
+      "location": "上海",
+      "action": "活动",
+      "summary": "9月1日，中國藝術專科學校開學。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1931,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1931.09.18",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "9月18日劉海粟偕傅雷乘法郵輪沙拿遜號自歐歸國抵滬，下澣蔡元培設宴於威海衛路爲其洗塵，與葉恭綽、陳獨秀、許壽裳、張大千、朱屺瞻、王个簃等應邀列席。"
+        },
+        {
+          "date": "1931.11.13",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "11月13日，參加在寧波同鄉會舉辦之現代名畫家近作展覽會。"
+        },
+        {
+          "date": "1931.12",
+          "location": "上海",
+          "action": "活动",
+          "summary": "12月，介紹王味蓴鬻畫助賑。"
+        },
+        {
+          "date": "1931.12.28",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "“九一八”事變起，何香凝聞警自歐洲遄歸，在上海發起救濟國難書畫展覽會。12月28日在寧波同鄉會開幕，參加書畫家之夥，前所未有。應邀參加12月6日在華安公司舉行的第一次籌備會議。捐山水作品義賣。"
+        }
+      ],
+      "date": "1931.12.28",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "“九一八”事變起，何香凝聞警自歐洲遄歸，在上海發起救濟國難書畫展覽會。12月28日在寧波同鄉會開幕，參加書畫家之夥，前所未有。應邀參加12月6日在華安公司舉行的第一次籌備會議。捐山水作品義賣。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "吳一峰",
+      "year": 1931,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1931.秋",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "秋九，吳一峰將游浙西寫生，爲其《壯游圖》卷題跋。"
+        }
+      ],
+      "date": "1931.秋",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "秋九，吳一峰將游浙西寫生，爲其《壯游圖》卷題跋。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "何香凝",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.01.13",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "中國藝術專科學校第四屆師弟書畫展覽會在福熙路馬浪路口校内開幕。"
+        }
+      ],
+      "date": "1932.01.13",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "中國藝術專科學校第四屆師弟書畫展覽會在福熙路馬浪路口校内開幕。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1932,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.01.28",
+          "location": "上海",
+          "action": "書信",
+          "summary": "1月28日，日軍進攻上海，製造“一·二八”上海事變，駐滬第十九路軍奮起抵抗，揭開淞滬抗戰序幕，全國抗擊“暴日”的愛國浪潮風起雲湧。函屬家鄉嚴加防衛。"
+        },
+        {
+          "date": "1932.03",
+          "location": "上海",
+          "action": "書信",
+          "summary": "歸錄舊作詩稿郵寄許承堯徵集意見，並論製墨及安徽地方文獻的搜集整理。"
+        },
+        {
+          "date": "1932.03",
+          "location": "上海",
+          "action": "書信",
+          "summary": "旋錄出詩作近二十紙，包括《周浦紀游》《池陽雜詠》《粤西紀游》《雁蕩雜詠》《新安江紀游》等百餘首寄許承堯，許一一為之細按，加以眉批，極多讚語。"
+        },
+        {
+          "date": "1932.初春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "初春，開始整理累年所積詩稿，繕錄請友人指正。"
+        }
+      ],
+      "date": "1932.03",
+      "location": "上海",
+      "action": "書信",
+      "summary": "旋錄出詩作近二十紙，包括《周浦紀游》《池陽雜詠》《粤西紀游》《雁蕩雜詠》《新安江紀游》等百餘首寄許承堯，許一一為之細按，加以眉批，極多讚語。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1932,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.02",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "2月，中國藝術專科學校停辦，劉海粟歸滬後對上海美術專科學校（1930年遵教育部令改名）重加整飭，添聘教授，復邀入任國畫理論教授。"
+        },
+        {
+          "date": "1932.07.15",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "7月15日，陳樹人個人繪畫展覽會在福開森路（今武康路）世界學院開幕。7月16日晚，與上海名流及藝術家開歡迎大會於展覽會場。"
+        },
+        {
+          "date": "1932.08.01",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "8月1日，中華學藝社新樓落成，舉行慶典，並徵集書畫名家作品舉辦美術展覽會，出所藏古代書畫、金石、璽印參加展覽。"
+        },
+        {
+          "date": "1932.09",
+          "location": "上海",
+          "action": "活动",
+          "summary": "9月，上海美術專科學校為建校二十週年紀念，組織校慶籌備委員會，被推為委員。"
+        },
+        {
+          "date": "1932.11.06",
+          "location": "成都",
+          "action": "聘任",
+          "summary": "11月6日，抵成都，先至中國銀行，旋下榻陳澤霈成都别墅“一廬”，翌日，四川藝術專科學校校長周稷和校務主任劉既明來謁，聘爲該校校董兼中國畫系主任。"
+        }
+      ],
+      "date": "1932.11.06",
+      "location": "成都",
+      "action": "聘任",
+      "summary": "11月6日，抵成都，先至中國銀行，旋下榻陳澤霈成都别墅“一廬”，翌日，四川藝術專科學校校長周稷和校務主任劉既明來謁，聘爲該校校董兼中國畫系主任。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1932,
+      "frequency": 11,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.03",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "3月，與張善孖、張大千、謝玉岑、顧飛等游浦東周浦顧氏桃園，作畫賦詩，越日而歸。"
+        },
+        {
+          "date": "1932.04",
+          "location": "上海",
+          "action": "鑒賞",
+          "summary": "4月，在大風堂爲張大千題所購獲《王石谷畫〈南巡圖〉粉本》題跋，詩中對國勢頽靡、外患日亟的時局深表憂憤。"
+        },
+        {
+          "date": "1932.05",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "5月，何香凝、張紅薇、鄭曼青、張大千合作蘭竹菊紅楓圖，于右任題句以贈。"
+        },
+        {
+          "date": "1932.07.20",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "7月20日，合衆商場舉辦合衆書畫展覽會，陳列數十位書畫家作品三百餘件。"
+        },
+        {
+          "date": "1932.10.12",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "此際，上海謝夢鯉主辦之現代名家書畫扶輪展覽會第十次特約現代名家小品書畫展覽會10月12日至18日在利利公司文藝部展出，有作品陳列。"
+        },
+        {
+          "date": "1932.11.04",
+          "location": "成都",
+          "action": "書信",
+          "summary": "在成都期間，11月4日寒之友社友俞寄凡開近作展於上海，有作品同時陳列。"
+        },
+        {
+          "date": "1932.12.30",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "12月30日至1933年元旦，杭州舉行新浙江建設運動，其中有書畫展覽會一項，作品陳列其中。"
+        },
+        {
+          "date": "1932.初秋",
+          "location": "上海",
+          "action": "位移",
+          "summary": "初秋，吳一峰聞將赴川，爰改變赴廬山寫生的計劃，决意隨同入川。"
+        },
+        {
+          "date": "1932.夏",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "夏，與寒之友同人張大千等游上虞白马湖，坐雨经亨頤之长松山房，写白馬湖實景。"
+        },
+        {
+          "date": "1932.夏",
+          "location": "上海",
+          "action": "鑒賞",
+          "summary": "並為經亨頤夫人題張大千所作《仕女圖》。"
+        },
+        {
+          "date": "1932.秋",
+          "location": "上海",
+          "action": "活动",
+          "summary": "秋，與王一亭、張善孖、張大千、馬孟容等支持樓辛壺舉辦個人畫展。"
+        }
+      ],
+      "date": "1932.12.30",
+      "location": "杭州",
+      "action": "展覽",
+      "summary": "12月30日至1933年元旦，杭州舉行新浙江建設運動，其中有書畫展覽會一項，作品陳列其中。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "李祖韓",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.秋",
+          "location": "上海",
+          "action": "活动",
+          "summary": "壬申三月，李祖韓、秋君之母六十歲壽辰，作《病榻慰親圖》以祝。"
+        }
+      ],
+      "date": "1932.秋",
+      "location": "上海",
+      "action": "活动",
+      "summary": "壬申三月，李祖韓、秋君之母六十歲壽辰，作《病榻慰親圖》以祝。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳澤霈",
+      "year": 1932,
+      "frequency": 3,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1932.04.29",
+          "location": "上海",
+          "action": "書信",
+          "summary": "4月29日陳澤霈在利利公司舉辦個人書畫展。"
+        },
+        {
+          "date": "1932.09.27",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "9月27日，抵重慶，中央銀行經理周誼輔、襄理張禹九等在碼頭迎候，下榻金山飯店。受陳澤霈拜託的四川鹽運使、川軍師長王纘緒向重慶書畫界作了介紹，一時以書畫請求鑒定者紛至沓來，門限爲穿。"
+        },
+        {
+          "date": "1932.11.08",
+          "location": "成都",
+          "action": "書信",
+          "summary": "向楚得陳澤霈書，獲知下榻一廬，驅車來訪。"
+        }
+      ],
+      "date": "1932.11.08",
+      "location": "成都",
+      "action": "書信",
+      "summary": "向楚得陳澤霈書，獲知下榻一廬，驅車來訪。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.暮春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "暮春，為黄節作《湖荷憶昨圖》，狀1918年夏相偕湖亭看荷之景。"
+        }
+      ],
+      "date": "1932.暮春",
+      "location": "上海",
+      "action": "活动",
+      "summary": "暮春，為黄節作《湖荷憶昨圖》，狀1918年夏相偕湖亭看荷之景。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "唐天如",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.暮春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "為唐天如作《聽帆圖》。"
+        }
+      ],
+      "date": "1932.暮春",
+      "location": "上海",
+      "action": "活动",
+      "summary": "為唐天如作《聽帆圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "林宰平",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.夏",
+          "location": "上海",
+          "action": "活动",
+          "summary": "夏，為林宰平作設色山水。"
+        }
+      ],
+      "date": "1932.夏",
+      "location": "上海",
+      "action": "活动",
+      "summary": "夏，為林宰平作設色山水。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1932,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.07.14",
+          "location": "上海",
+          "action": "位移",
+          "summary": "7月14日，至潘飛聲翦淞閣讀畫消夏。"
+        },
+        {
+          "date": "1932.夏至",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "經亨頤重組寒之友社，委託徵集古畫寒花，於夏至日在康悌路光裕坊八號會所展覽一天，並在展覽會所與經亨頤、王一亭、俞寄凡、張善孖合影留念。"
+        }
+      ],
+      "date": "1932.07.14",
+      "location": "上海",
+      "action": "位移",
+      "summary": "7月14日，至潘飛聲翦淞閣讀畫消夏。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "周稷",
+      "year": 1932,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.12.12",
+          "location": "成都",
+          "action": "書信",
+          "summary": "12月12日壬申十一月十五日上午，林思進回拜，出所攜古書畫相賞。在座有周稷。"
+        },
+        {
+          "date": "1932.夏",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "夏，成都四川藝術專科學校校長周稷、教務長劉既明來聘入川任教，將入川。時段虚谷、馮建吳、孫吉盦、胡鎮南、劉楚秋等一批有志振興中國藝術的青年藝術家在四川成都籌建四川美術專科學校（旋遵部令改名東方美術專科學校），委派馮建吳赴上海聘請教授、購買樂器和圖書儀器，於6月中旬返蓉，聘請王个簃、關良等來川任教。"
+        }
+      ],
+      "date": "1932.12.12",
+      "location": "成都",
+      "action": "書信",
+      "summary": "12月12日壬申十一月十五日上午，林思進回拜，出所攜古書畫相賞。在座有周稷。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1932.夏",
+          "location": "上海",
+          "action": "書信",
+          "summary": "此際，畫扇由陸丹林郵寄四川詩人林思進（山腴）。"
+        }
+      ],
+      "date": "1932.夏",
+      "location": "上海",
+      "action": "書信",
+      "summary": "此際，畫扇由陸丹林郵寄四川詩人林思進（山腴）。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "王濟遠",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.07.09",
+          "location": "上海",
+          "action": "活动",
+          "summary": "7月9日王濟遠戰區遺迹寫生畫展在“濟遠薰琹畫室”開幕，赴會參觀並合影。"
+        }
+      ],
+      "date": "1932.07.09",
+      "location": "上海",
+      "action": "活动",
+      "summary": "7月9日王濟遠戰區遺迹寫生畫展在“濟遠薰琹畫室”開幕，赴會參觀並合影。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.08.04",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "8月4日，參加徽寧學校舉辦古今書畫展覽會，姪女黄映芬與門生顧飛、朱硯英聯合組織女子書畫社亦有作品參與陳列。"
+        }
+      ],
+      "date": "1932.08.04",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "8月4日，參加徽寧學校舉辦古今書畫展覽會，姪女黄映芬與門生顧飛、朱硯英聯合組織女子書畫社亦有作品參與陳列。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "吳一峰",
+      "year": 1932,
+      "frequency": 7,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.09.15",
+          "location": "上海",
+          "action": "位移",
+          "summary": "9月15日中秋晚，在宋夫人相送下，至十六鋪大通碼頭登永年輪，房艙多滿，只於大菜間得一席地，是夜囂甚，不得安睡。翌日晨啟航。"
+        },
+        {
+          "date": "1932.09.27",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "此際，因劉湘、劉文輝的軍隊在江津、永川一帶對峙，在榮城、威遠已開戰，交通中斷，在四川友人的幫助下，繞道由宜賓换乘木船溯岷江而上。"
+        },
+        {
+          "date": "1932.09.27",
+          "location": "重慶",
+          "action": "紀游",
+          "summary": "至嘉定，游樂山大佛、烏尤寺，登山頂，羅漢堂住持傳度和尚出示李龍眠《羅漢卷》。翌日游峨嵋，宿洗象池。"
+        },
+        {
+          "date": "1932.11.08",
+          "location": "成都",
+          "action": "雅集",
+          "summary": "11月8日，東方美術專科學校校長段虚谷、副校長馮建吳在晉寧酒樓設宴洗塵，與方旭、龔熙台等名流訂交。"
+        },
+        {
+          "date": "1932.12.22",
+          "location": "成都",
+          "action": "紀游",
+          "summary": "12月22日壬申十一月廿五日，偕吳一峰赴林思進招飲，在座有李亞衡、培甫昆仲、龐石帚、祝屺懷、方鶴翁、沈渻齋等。以亂後不敢夜行，傍晚即散，允作《霜柑閣歲寒雅集圖》以紀此會。"
+        },
+        {
+          "date": "1932.12.25",
+          "location": "成都",
+          "action": "活动",
+          "summary": "12月25日壬申十一月廿八日，林思進冒雨來訪，以《□澹集》《人物志》及劉申叔（師培）詩各一部相贈。適將外出赴約，小坐而別。"
+        },
+        {
+          "date": "1932.12.29",
+          "location": "成都",
+          "action": "活动",
+          "summary": "12月29日壬申十二月初三日，訪林思進談心。"
+        }
+      ],
+      "date": "1932.12.29",
+      "location": "成都",
+      "action": "活动",
+      "summary": "12月29日壬申十二月初三日，訪林思進談心。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陶冷月",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.09.15",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "於船上邂逅赴四川大學教育學院講學之陶冷月。"
+        }
+      ],
+      "date": "1932.09.15",
+      "location": "上海",
+      "action": "聘任",
+      "summary": "於船上邂逅赴四川大學教育學院講學之陶冷月。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傳度",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.09.27",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "在烏尤寺，應方丈傳度法師之請，爲篆楹聯。"
+        }
+      ],
+      "date": "1932.09.27",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "在烏尤寺，應方丈傳度法師之請，爲篆楹聯。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "林思進",
+      "year": 1932,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.12.11",
+          "location": "成都",
+          "action": "活动",
+          "summary": "12月11日壬申十一月十四日，拜訪林思進，曾其途中所作詩畫及影印《米友堂詩》一册。"
+        },
+        {
+          "date": "1932.12.21",
+          "location": "成都",
+          "action": "雅集",
+          "summary": "12月21日壬申十一月廿四日，林思進柬來約明日在其寓齋雅集。"
+        }
+      ],
+      "date": "1932.12.21",
+      "location": "成都",
+      "action": "雅集",
+      "summary": "12月21日壬申十一月廿四日，林思進柬來約明日在其寓齋雅集。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "錢瘦鐵",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.12.12",
+          "location": "成都",
+          "action": "展覽",
+          "summary": "同日，上海三友善會發起古今名家書畫展覽會在寧波同鄉會開幕，券資悉數捐助東北義勇軍。有作品展出。"
+        }
+      ],
+      "date": "1932.12.12",
+      "location": "成都",
+      "action": "展覽",
+      "summary": "同日，上海三友善會發起古今名家書畫展覽會在寧波同鄉會開幕，券資悉數捐助東北義勇軍。有作品展出。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "龔熙台",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1932.12.23",
+          "location": "成都",
+          "action": "書信",
+          "summary": "12月23日，蔡守來書問候，並索新詩。"
+        }
+      ],
+      "date": "1932.12.23",
+      "location": "成都",
+      "action": "書信",
+      "summary": "12月23日，蔡守來書問候，並索新詩。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉既明",
+      "year": 1932,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1932.11.04",
+          "location": "成都",
+          "action": "活动",
+          "summary": "約此際，與馮子潛同飲於劉既明寓齋，席中馮子潛賦長句以贈，作詩答之。"
+        }
+      ],
+      "date": "1932.11.04",
+      "location": "成都",
+      "action": "活动",
+      "summary": "約此際，與馮子潛同飲於劉既明寓齋，席中馮子潛賦長句以贈，作詩答之。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "林思進",
+      "year": 1933,
+      "frequency": 14,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.01.13",
+          "location": "杭州",
+          "action": "位移",
+          "summary": "1月13日壬申十二月十八日，夜大雪深尺許，至晨猶未已。林思進惦念遠客，遣人送家治菜肴及茅台酒，並以小詩兩首代箋。"
+        },
+        {
+          "date": "1933.01.15",
+          "location": "杭州",
+          "action": "雅集",
+          "summary": "1月15日壬申十二月二十日，雪漸融，遣人送《霜柑閣歲寒雅集圖》與林思進，林以為此畫“用意為之”，不及途中“草草”所寫。"
+        },
+        {
+          "date": "1933.01.25",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "1933年1月25日壬申除夕，林思進作箋以蒸麂、凍鯗來贈，並屬書畫扇面。"
+        },
+        {
+          "date": "1933.01.30",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "1月30日癸酉正月初五日，東城訪友未值，逕赴林思進午集，同座皆林氏摯友。席間林思進賦詩以贈。"
+        },
+        {
+          "date": "1933.02.09",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "2月9日癸酉上元節，赴華西大學燕集。同座有林思進、李培甫等。"
+        },
+        {
+          "date": "1933.02.12",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "2月12日癸酉正月十八日，約林思進後日看其藏畫。"
+        },
+        {
+          "date": "1933.02.15",
+          "location": "杭州",
+          "action": "位移",
+          "summary": "2月15日癸酉正月二十一日，與林思進赴辜宜之約飲，請觀其祖庭若翁遺畫，席罷同至林寓看其藏畫。"
+        },
+        {
+          "date": "1933.03.04",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "3月4日癸酉二月初九日，張幼荃、胡悟菴來談，林思進亦來訪。張幼荃談及蓬溪有吳道子壁畫，心極嚮往之。"
+        },
+        {
+          "date": "1933.03.09",
+          "location": "杭州",
+          "action": "鑒賞",
+          "summary": "3月9日癸酉二月十四日，冒雨赴林思進約，觀賞其藏畫。在座尚有方叔軒。"
+        },
+        {
+          "date": "1933.03.23",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "3月23日癸酉二月二十八日，訪林思進，恰李亞衡在座。林思進以所點定詩稿還來，並贈以為作詩序。"
+        },
+        {
+          "date": "1933.03.27",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "3月27日癸酉三月初二日，赴李亞衡招，座有林思進、林菊舟等。"
+        },
+        {
+          "date": "1933.04.28",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "4月28日癸酉四月初四日訪林思進，請以贈亮生、仁波畫扇轉交，並告以十日內將遊青城山。"
+        },
+        {
+          "date": "1933.06.01",
+          "location": "成都",
+          "action": "紀游",
+          "summary": "6月1日癸酉五月初九日午，將歸滬，方叔軒餞行，作陪者林思進、重民、希虞、李培甫、士珍。"
+        },
+        {
+          "date": "1933.08",
+          "location": "重慶",
+          "action": "聘任",
+          "summary": "8月上旬，自重慶致書林思進，並附近詩承教，又附兩畫轉贈龐石帚。"
+        }
+      ],
+      "date": "1933.08",
+      "location": "重慶",
+      "action": "聘任",
+      "summary": "8月上旬，自重慶致書林思進，並附近詩承教，又附兩畫轉贈龐石帚。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "周稷",
+      "year": 1933,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.01.21",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "1月21日壬申十二月二十六日，訪林思進。"
+        },
+        {
+          "date": "1933.02.04",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "2月4日立春日，文藝界人士開歡迎會於少城公園（今人民公園）通俗教育館，攝影留念。"
+        }
+      ],
+      "date": "1933.02.04",
+      "location": "杭州",
+      "action": "聘任",
+      "summary": "2月4日立春日，文藝界人士開歡迎會於少城公園（今人民公園）通俗教育館，攝影留念。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1933,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.01.26",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "道路兵沮未通，蜷伏成都。"
+        },
+        {
+          "date": "1933.春",
+          "location": "成都",
+          "action": "活动",
+          "summary": "春夏間，宋若嬰夫人來成都。"
+        }
+      ],
+      "date": "1933.春",
+      "location": "成都",
+      "action": "活动",
+      "summary": "春夏間，宋若嬰夫人來成都。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1933,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.01.30",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "為陸丹林作蜀游畫卷，林山腴（思進）為作長歌。"
+        },
+        {
+          "date": "1933.11",
+          "location": "上海",
+          "action": "書信",
+          "summary": "11月，為馮文鳳訂書例。"
+        }
+      ],
+      "date": "1933.11",
+      "location": "上海",
+      "action": "書信",
+      "summary": "11月，為馮文鳳訂書例。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "吳一峰",
+      "year": 1933,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.02.11",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "2月11日癸酉正月十七日，沈渻齋約飲，未赴。"
+        },
+        {
+          "date": "1933.03.19",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "3月19日，吳一峰舉辦個人金石書畫展覽。"
+        },
+        {
+          "date": "1933.03.19",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "任教四川藝術專科學校與東方美術專科學校。"
+        },
+        {
+          "date": "1933.03.24",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "3月24日，書蜀游小詩十三章郵寄蔡守、談月色伉儷。"
+        }
+      ],
+      "date": "1933.03.24",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "3月24日，書蜀游小詩十三章郵寄蔡守、談月色伉儷。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1933,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.02.16",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "2月16日癸酉正月二十二日，林思進以詩集三部送來，前曾索以寄友人黄晦聞、潘蘭史及許承堯。"
+        },
+        {
+          "date": "1933.10.09",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "癸酉八月十日，於重慶錄蜀游詩寄許承堯，並請為《蜀游詩草》撰序。"
+        },
+        {
+          "date": "1933.冬",
+          "location": "上海",
+          "action": "活动",
+          "summary": "冬，以清繕詩稿請許承堯、潘飛聲匡正並請惠序，兩詩家先後撰序相饋。"
+        },
+        {
+          "date": "1933.秋",
+          "location": "上海",
+          "action": "活动",
+          "summary": "仲秋，許承堯介紹程嘯天拜師習畫。"
+        }
+      ],
+      "date": "1933.冬",
+      "location": "上海",
+      "action": "活动",
+      "summary": "冬，以清繕詩稿請許承堯、潘飛聲匡正並請惠序，兩詩家先後撰序相饋。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "龔熙台",
+      "year": 1933,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.03.07",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "3月7日癸酉二月十二日花朝日，成都書畫社團蓉社假少城公園通俗教育館召開成立大會，被選爲出版部主任。"
+        },
+        {
+          "date": "1933.04.22",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "4月22日，蓉社假少城公園通俗教育館開金石書畫展覽會籌備會。"
+        },
+        {
+          "date": "1933.04.25",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "4月25日參加蓉社金石書畫展覽籌備會，議决展覽事宜。"
+        },
+        {
+          "date": "1933.05.12",
+          "location": "成都",
+          "action": "聘任",
+          "summary": "5月12日，金石書畫展覽會閉幕後，審選各陳列品準備出版事宜，任作品審查員。"
+        },
+        {
+          "date": "1933.夏",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "四川青年屈溉辭職，專程來成都拜謁，時已離成都取道龍泉驛，由合川往重慶。屈溉東望，悵然久之。"
+        }
+      ],
+      "date": "1933.夏",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "四川青年屈溉辭職，專程來成都拜謁，時已離成都取道龍泉驛，由合川往重慶。屈溉東望，悵然久之。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "向楚",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.春",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "春，爲向楚作設色花卉。"
+        }
+      ],
+      "date": "1933.春",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "春，爲向楚作設色花卉。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉既明",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.03.27",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "授劉既明夫人彭兆雲畫理，爲作課徒畫稿十二開。"
+        }
+      ],
+      "date": "1933.03.27",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "授劉既明夫人彭兆雲畫理，爲作課徒畫稿十二開。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "方旭",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.10.10",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "四川畫家作畫饋贈。"
+        }
+      ],
+      "date": "1933.10.10",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "四川畫家作畫饋贈。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1933.春",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "接獲門生顧飛上海來書與所作詩，以蜀游紀游畫册頁寄贈。"
+        }
+      ],
+      "date": "1933.春",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "接獲門生顧飛上海來書與所作詩，以蜀游紀游畫册頁寄贈。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1933,
+      "frequency": 8,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.04.15",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "4月15日，中國畫展在巴黎堡姆美術館開幕，現代名家七十一人的作品參展，歐洲為之矚目。"
+        },
+        {
+          "date": "1933.10.15",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "10月15日，劉獅個展在法國圖書館開幕，下午與文藝春秋會同人一起參觀畫展。"
+        },
+        {
+          "date": "1933.10.20",
+          "location": "上海",
+          "action": "活动",
+          "summary": "10月20日，顧蔭亭招餐劉海粟寓，座有黄炎培、王濟遠等。"
+        },
+        {
+          "date": "1933.11.11",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "預定在柏林舉行之中德美術展覽會，11月11日至12日在上海進行預展，旋由劉海粟攜往德國。。"
+        },
+        {
+          "date": "1933.11.12",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "11月12日，蔡元培及上海美專同人設宴歡送赴歐舉辦中德美展之劉海粟。"
+        },
+        {
+          "date": "1933.11.20",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "11月20日夜，黄炎培假上海地方協會公宴，同座有湯定之、夏敬觀、顧蔭亭、劉海粟、王濟遠、王一亭等。"
+        },
+        {
+          "date": "1933.12.17",
+          "location": "上海",
+          "action": "書信",
+          "summary": "12月17日，上海美術專科學校舉辦名家書畫會，售畫集資。"
+        },
+        {
+          "date": "1933.12.26",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "12月26日，應上海美專主辦名家書畫展覽會之邀，與百川書畫會同人到會場合作書畫。"
+        }
+      ],
+      "date": "1933.12.26",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "12月26日，應上海美專主辦名家書畫展覽會之邀，與百川書畫會同人到會場合作書畫。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "馮建吳",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.05.28",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "游青城山時，除鄧只淳外，尚有東方美專學生。信宿青城山常道觀，取道後山而下。"
+        }
+      ],
+      "date": "1933.05.28",
+      "location": "杭州",
+      "action": "紀游",
+      "summary": "游青城山時，除鄧只淳外，尚有東方美專學生。信宿青城山常道觀，取道後山而下。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.05.05",
+          "location": "成都",
+          "action": "展覽",
+          "summary": "因皖西受災，年前因“一·二八”日軍侵華而擱置之書畫振災之作品，在5月5日起在上海山東會館舉行展覽抽籤，以所得款振災。"
+        }
+      ],
+      "date": "1933.05.05",
+      "location": "成都",
+      "action": "展覽",
+      "summary": "因皖西受災，年前因“一·二八”日軍侵華而擱置之書畫振災之作品，在5月5日起在上海山東會館舉行展覽抽籤，以所得款振災。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "段虚谷",
+      "year": 1933,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.夏",
+          "location": "重慶",
+          "action": "紀游",
+          "summary": "夏，美專暑假，乃取道川北歸，在段虚谷與李凡丞的陪同下，六七月之際抵重慶，覽山城之姿，賦詩寫生，静觀畫理。"
+        },
+        {
+          "date": "1933.夏",
+          "location": "重慶",
+          "action": "位移",
+          "summary": "途中，偕同段虚谷、李凡丞至蓮溪考察寶梵寺壁畫，宿段虚谷母親娘家“謝氏祠”。"
+        }
+      ],
+      "date": "1933.夏",
+      "location": "重慶",
+      "action": "位移",
+      "summary": "途中，偕同段虚谷、李凡丞至蓮溪考察寶梵寺壁畫，宿段虚谷母親娘家“謝氏祠”。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "謝玉岑",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.09.25",
+          "location": "上海",
+          "action": "活动",
+          "summary": "9月25日，高吹萬、姚石子接風，在座有徐積餘、謝玉岑等。"
+        }
+      ],
+      "date": "1933.09.25",
+      "location": "上海",
+      "action": "活动",
+      "summary": "9月25日，高吹萬、姚石子接風，在座有徐積餘、謝玉岑等。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "王濟遠",
+      "year": 1933,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.11.15",
+          "location": "上海",
+          "action": "書信",
+          "summary": "11月15日，與王濟遠、鄢克昌、吳夢非、劉抗、王遠勃、梁書、張弦、陳人浩、莫運選、諸聞韻發起組織百川書畫會。初集於王濟遠畫室“黄山水南雙塘畫房”，通過簡約十條，定每隔一週集會研究一次。"
+        },
+        {
+          "date": "1933.11.26",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "11月26日，友人許士騏、楊縵華夫婦書畫展覽會在八仙橋青年會開幕，為其作品題字。"
+        },
+        {
+          "date": "1933.12.29",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "上海美專主辦之名家書畫展覽會結束後一日，該校繪畫研究所複於原址舉行畫展，與王一亭等均有作品陳列。"
+        }
+      ],
+      "date": "1933.12.29",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "上海美專主辦之名家書畫展覽會結束後一日，該校繪畫研究所複於原址舉行畫展，與王一亭等均有作品陳列。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "錢瘦鐵",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.11.27",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "11月27日，中國畫會為聯絡會員感情，在東興樓舉行首次聚餐會，决定公開徵求會員，改選執行、監察委員，出版集刊。"
+        }
+      ],
+      "date": "1933.11.27",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "11月27日，中國畫會為聯絡會員感情，在東興樓舉行首次聚餐會，决定公開徵求會員，改選執行、監察委員，出版集刊。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.02.14",
+          "location": "上海",
+          "action": "活动",
+          "summary": "此際得暇，擬埋頭作畫。"
+        }
+      ],
+      "date": "1933.02.14",
+      "location": "上海",
+      "action": "活动",
+      "summary": "此際得暇，擬埋頭作畫。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "潘飛聲",
+      "year": 1933,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1933.12.30",
+          "location": "上海",
+          "action": "活动",
+          "summary": "12月30日，約請潘飛聲、陳柱、孫仲容哲嗣孟晉，在勝利飯店小叙。"
+        }
+      ],
+      "date": "1933.12.30",
+      "location": "上海",
+      "action": "活动",
+      "summary": "12月30日，約請潘飛聲、陳柱、孫仲容哲嗣孟晉，在勝利飯店小叙。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陶冷月",
+      "year": 1934,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.01",
+          "location": "上海",
+          "action": "活动",
+          "summary": "癸酉臘月，為陶冷月《疏影寒香》巨幅署籤。"
+        }
+      ],
+      "date": "1934.01",
+      "location": "上海",
+      "action": "活动",
+      "summary": "癸酉臘月，為陶冷月《疏影寒香》巨幅署籤。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1934,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.01",
+          "location": "上海",
+          "action": "書信",
+          "summary": "1月，許承堯寄詩祝七十壽辰。"
+        },
+        {
+          "date": "1934.01",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "1月，許世英等發起籌建黄山居士林以推進旅游事業，推江振華赴徽察勘基址，江振華將行，託其帶送許承堯畫件。"
+        },
+        {
+          "date": "1934.06",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "6月，正式受聘為重修《歙縣志》分纂。"
+        },
+        {
+          "date": "1934.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "春，與許承堯書信往來甚頻，歙縣擬修縣志，許承堯爲主纂，約為分纂增補遺逸、技術兩門材料。"
+        }
+      ],
+      "date": "1934.06",
+      "location": "上海",
+      "action": "聘任",
+      "summary": "6月，正式受聘為重修《歙縣志》分纂。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1934,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.03.01",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "3月1日曼福堂主人徵集現代名人書畫，假座寧波同鄉會公開展覽，有作品陳列其中。"
+        },
+        {
+          "date": "1934.04",
+          "location": "上海",
+          "action": "鑒賞",
+          "summary": "4月，張大千、謝玉岑選《朱其石印存》由李學社出版，爲其題詞。"
+        },
+        {
+          "date": "1934.06.09",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "6月9日，俞寄凡書畫展覽會揭幕，展出近作山水、人物、翎毛、走獸及海上諸名家之作二百餘件。"
+        },
+        {
+          "date": "1934.10.01",
+          "location": "上海",
+          "action": "活动",
+          "summary": "10月1日，得知四川林思進自蜀避兵來滬，以告陸丹林，陸即往訪。"
+        },
+        {
+          "date": "1934.12.15",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "12月15日，與郎静山等組織之黄社攝影書畫展覽會在八仙橋青年會揭幕，除展出浙江省建設廳五月間組織攝影家赴黄山所拍攝照片外，同時展出書畫家以黄山為主題的作品。作《老人峰圖》參展。"
+        }
+      ],
+      "date": "1934.12.15",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "12月15日，與郎静山等組織之黄社攝影書畫展覽會在八仙橋青年會揭幕，除展出浙江省建設廳五月間組織攝影家赴黄山所拍攝照片外，同時展出書畫家以黄山為主題的作品。作《老人峰圖》參展。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "王濟遠",
+      "year": 1934,
+      "frequency": 6,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.03.06",
+          "location": "上海",
+          "action": "書信",
+          "summary": "3月6日，百川書畫會按章舉行第六次研究會，因會員漸多，决定3月12日假座八仙橋青年會舉行第一次會員大會，修訂會章，通過會章八章十九條，被推為理事。"
+        },
+        {
+          "date": "1934.09.04",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "9月4日，百川書畫會召開第二次會員大會，議定十月初旬舉行第一屆書畫展覽會。"
+        },
+        {
+          "date": "1934.10.03",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "10月3日，百川書畫會假貴州路北京東路口湖社舉辦第一屆書畫展覽會，爲展覽目録作《叙言》。"
+        },
+        {
+          "date": "1934.10.06",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "10月6日，百川書畫會舉行會員大會，建議政府從速籌辦全國美術展覽會，並聘請名譽會員。"
+        },
+        {
+          "date": "1934.11.23",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "11月23日至25日，上海美專舉行學生秋季美術習作展覽會，作為教授，有作品參與陳列。"
+        },
+        {
+          "date": "1934.秋",
+          "location": "上海",
+          "action": "活动",
+          "summary": "冬，參加上海美專秋季畫展。"
+        }
+      ],
+      "date": "1934.秋",
+      "location": "上海",
+      "action": "活动",
+      "summary": "冬，參加上海美專秋季畫展。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "潘飛聲",
+      "year": 1934,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.04.09",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "4月9日潘飛聲逝世。潘氏身後蕭條，兒輩不歸，友朋為料理後事，與其友人共同將其收藏數百件編為目錄發行紀念券，以售資作喪葬費與善後費用。"
+        },
+        {
+          "date": "1934.07.01",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "7月1日，在湖社為潘飛聲舉行追悼會。"
+        }
+      ],
+      "date": "1934.07.01",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "7月1日，在湖社為潘飛聲舉行追悼會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "李秋君",
+      "year": 1934,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.04.29",
+          "location": "上海",
+          "action": "書信",
+          "summary": "4月29日，經過數度籌備，中國女子書畫會舉行第一次同人大會。"
+        },
+        {
+          "date": "1934.06.02",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "6月2日，中國女子書畫展覽會在寧波同鄉會隆重開幕，爲之撰文介紹，譽為曠古創舉。"
+        }
+      ],
+      "date": "1934.06.02",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "6月2日，中國女子書畫展覽會在寧波同鄉會隆重開幕，爲之撰文介紹，譽為曠古創舉。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "何香凝",
+      "year": 1934,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "春，與何香凝合作《梅石圖》。"
+        }
+      ],
+      "date": "1934.春",
+      "location": "上海",
+      "action": "活动",
+      "summary": "春，與何香凝合作《梅石圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1934,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.05",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "5月，上海美術專科學校受聘為暑期藝術教師進修講習會講師。"
+        },
+        {
+          "date": "1934.06.25",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "6月25日，上海美術專科學校舉辦第四十三屆師生作品展覽會與現代名家書畫展覽會。德國漢堡博物館來華考察美術之孔鐸（亦譯作孔德、孔達）博士蒞臨仔細觀摩。"
+        },
+        {
+          "date": "1934.07.19",
+          "location": "上海",
+          "action": "活动",
+          "summary": "7月19日，由劉海粟赴歐舉辦之中國畫展移往日内瓦市立歷史美術館開幕，羅曼·羅蘭參觀後，稱中國畫為“真的藝術”。"
+        }
+      ],
+      "date": "1934.07.19",
+      "location": "上海",
+      "action": "活动",
+      "summary": "7月19日，由劉海粟赴歐舉辦之中國畫展移往日内瓦市立歷史美術館開幕，羅曼·羅蘭參觀後，稱中國畫為“真的藝術”。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "唐天如",
+      "year": 1934,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.夏",
+          "location": "上海",
+          "action": "書信",
+          "summary": "夏，為唐天如書“周金文辭勒金石，曹倉書吏勤丹黄”七言聯。"
+        },
+        {
+          "date": "1934.夏",
+          "location": "上海",
+          "action": "活动",
+          "summary": "夏，為唐天如再作《聽帆樓圖卷》。"
+        }
+      ],
+      "date": "1934.夏",
+      "location": "上海",
+      "action": "活动",
+      "summary": "夏，為唐天如再作《聽帆樓圖卷》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1934,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.06.18",
+          "location": "上海",
+          "action": "位移",
+          "summary": "6月18日，陳柱尊召飲，復邀陳柱尊與何伯丞、黄公渚、龍榆生、盧季野21日至舍小叙。"
+        },
+        {
+          "date": "1934.11.28",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "11月28日，邀約陳柱、馮振心、李棲雲、程演生來舍小酌。"
+        }
+      ],
+      "date": "1934.11.28",
+      "location": "上海",
+      "action": "雅集",
+      "summary": "11月28日，邀約陳柱、馮振心、李棲雲、程演生來舍小酌。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "馬公愚",
+      "year": 1934,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.08.09",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "此際，兼任私立奇峰國畫函授學校教授。"
+        }
+      ],
+      "date": "1934.08.09",
+      "location": "上海",
+      "action": "聘任",
+      "summary": "此際，兼任私立奇峰國畫函授學校教授。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "林思進",
+      "year": 1934,
+      "frequency": 7,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.10.02",
+          "location": "上海",
+          "action": "書信",
+          "summary": "10月2日，李亞衡父子先至，林思進隨其子季豐暨長孫來訪，出書畫相與賞鑒，旋約往就近之法國公園遊，剛出雨忽至，乃別。"
+        },
+        {
+          "date": "1934.10.03",
+          "location": "上海",
+          "action": "活动",
+          "summary": "1934年10月3日，回拜林思進，未值。"
+        },
+        {
+          "date": "1934.10.04",
+          "location": "上海",
+          "action": "活动",
+          "summary": "10月4日，林思進來談。"
+        },
+        {
+          "date": "1934.10.07",
+          "location": "上海",
+          "action": "活动",
+          "summary": "10月7日，林思進偕李亞衡來訪於新居。"
+        },
+        {
+          "date": "1934.10.12",
+          "location": "上海",
+          "action": "活动",
+          "summary": "10月12日晨，林思進來，將挈眷赴蘇州，托售三彩小瓶以作旅費。"
+        },
+        {
+          "date": "1934.11.04",
+          "location": "上海",
+          "action": "活动",
+          "summary": "11月4日，林思進來訪。其自蘇州還蜀，經上海小作勾留。"
+        },
+        {
+          "date": "1934.11.12",
+          "location": "上海",
+          "action": "書信",
+          "summary": "11月12日。林思進來辭別，贈以錢大昕隸書小幅，以其尤愛錢大昕之作也。"
+        }
+      ],
+      "date": "1934.11.12",
+      "location": "上海",
+      "action": "書信",
+      "summary": "11月12日。林思進來辭別，贈以錢大昕隸書小幅，以其尤愛錢大昕之作也。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1934,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.10.09",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "10月9日，林思進將赴蘇州小住，與陸丹林在會賓樓餞行，同席有梁鴻志、高吹萬，及嶺南趙少昂、黄少彊（強）、陳荆鴻等。"
+        },
+        {
+          "date": "1934.10.11",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "10月11日下午六時，梁鴻志於寓所歡宴林思進，赴之。同席有湯定之、夏敬觀、龍榆生、黄公渚、陸丹林、李亞衡、盧冀野等。"
+        }
+      ],
+      "date": "1934.10.11",
+      "location": "上海",
+      "action": "雅集",
+      "summary": "10月11日下午六時，梁鴻志於寓所歡宴林思進，赴之。同席有湯定之、夏敬觀、龍榆生、黄公渚、陸丹林、李亞衡、盧冀野等。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1934,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.10.30",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "10月30日甲戌九月廿三日，與葉恭綽、宣古愚赴蘇州遊覽園林，於惠蔭山莊觀賞菤葹閣藏畫，並與何亞農、王薳、朱竹坪、彭恭甫、張丹斧、張善孖在柴簃舉行雅集，合作《九秋圖》。"
+        },
+        {
+          "date": "1934.11.14",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "11月14日，對林思進心儀已久之張善孖自蘇州來滬，堅約翌日宴請，約作陪。"
+        },
+        {
+          "date": "1934.11.15",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "11月15日午，赴陶樂春，就張善孖之公宴林思進，同座有楊滄白、梁鴻志、湯定之、夏敬觀、黄公渚、謝玉岑、陸丹林、張旭明等。"
+        },
+        {
+          "date": "1934.11.17",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "11月17日午，張善孖約衆畫家在陶樂春川菜館為林思進餞行，與會。"
+        }
+      ],
+      "date": "1934.11.17",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "11月17日午，張善孖約衆畫家在陶樂春川菜館為林思進餞行，與會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1934,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.10.30",
+          "location": "上海",
+          "action": "活动",
+          "summary": "此際，參加弟子顧飛婚禮。"
+        }
+      ],
+      "date": "1934.10.30",
+      "location": "上海",
+      "action": "活动",
+      "summary": "此際，參加弟子顧飛婚禮。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "經亨頤",
+      "year": 1934,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.11.02",
+          "location": "上海",
+          "action": "活动",
+          "summary": "11月2日，在南京華僑招待所召開高奇峰逝世周年紀念會，署名於紀念會通告。"
+        }
+      ],
+      "date": "1934.11.02",
+      "location": "上海",
+      "action": "活动",
+      "summary": "11月2日，在南京華僑招待所召開高奇峰逝世周年紀念會，署名於紀念會通告。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "謝玉岑",
+      "year": 1934,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1934.11.11",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "11月11日上午，偕宋若嬰往訪林思進暨夫人，約午飲，林氏以長孫病辭。晚謝玉岑、陸丹林於陶樂春川菜館宴請林思進，約以作陪。"
+        }
+      ],
+      "date": "1934.11.11",
+      "location": "上海",
+      "action": "雅集",
+      "summary": "11月11日上午，偕宋若嬰往訪林思進暨夫人，約午飲，林氏以長孫病辭。晚謝玉岑、陸丹林於陶樂春川菜館宴請林思進，約以作陪。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "吳一峰",
+      "year": 1934,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1934.12.15",
+          "location": "上海",
+          "action": "書信",
+          "summary": "此際，吳一峰自川來書屬題畫。"
+        }
+      ],
+      "date": "1934.12.15",
+      "location": "上海",
+      "action": "書信",
+      "summary": "此際，吳一峰自川來書屬題畫。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "黄節",
+      "year": 1935,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.01.09",
+          "location": "上海",
+          "action": "書信",
+          "summary": "1月9日，余紹宋來函，轉達黄節的思念之情，並索篆聯。"
+        },
+        {
+          "date": "1935.01.24",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "黄節1月24日病逝於北平寓次，享年六十二歲，2月25日假南京華僑招待所舉行追悼大會。"
+        }
+      ],
+      "date": "1935.01.24",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "黄節1月24日病逝於北平寓次，享年六十二歲，2月25日假南京華僑招待所舉行追悼大會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1935,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.01.10",
+          "location": "上海",
+          "action": "活动",
+          "summary": "1月10日，黄山建設委員會在南京珠寶廊振務委員會召開第一次委員大會，與張善孖、許承堯等被推為負責宣傳黄山名勝工作。"
+        },
+        {
+          "date": "1935.03",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "3月，張善孖將代表黄社赴南洋舉辦巡迴展覽，作《黄山全景圖卷》，與許承堯、吳湖帆、葉恭綽、謝公展等爲之題跋，以壯行色。"
+        },
+        {
+          "date": "1935.09.28",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "9月28日，往唐模，觀許承堯藏書畫。"
+        },
+        {
+          "date": "1935.春",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "春，與謝公展、王濟遠游會稽吼山，探禹穴，歸途過杭州樓外樓酒家，合寫《三友圖》贈其主人。與許承堯書，論書畫收藏。"
+        }
+      ],
+      "date": "1935.09.28",
+      "location": "廣州",
+      "action": "書信",
+      "summary": "9月28日，往唐模，觀許承堯藏書畫。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1935,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.01.11",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "1月11日，中國畫會舉行第三屆大會，連任第三屆監察委員。"
+        },
+        {
+          "date": "1935.04.03",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "4月3日，賀天健近作展覽會在寧波同鄉會揭幕，4日前往觀摩。"
+        },
+        {
+          "date": "1935.12.29",
+          "location": "蘇州",
+          "action": "聘任",
+          "summary": "此際，與褚德彝（禮堂）、于右任等具名“節盫印泥”廣告。"
+        }
+      ],
+      "date": "1935.12.29",
+      "location": "蘇州",
+      "action": "聘任",
+      "summary": "此際，與褚德彝（禮堂）、于右任等具名“節盫印泥”廣告。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "經亨頤",
+      "year": 1935,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.01.21",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "1月21日，嶺南書家温克剛偕畫家吳公虎來滬舉行書畫振災展覽會。稱温氏臨漢晉章草得其神似。"
+        },
+        {
+          "date": "1935.03.02",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "3 月1日中國畫會舉行執監聯席會議，因余紹宋約訪，請賀天健代表參加。會上議决創設美術講座。"
+        }
+      ],
+      "date": "1935.03.02",
+      "location": "杭州",
+      "action": "紀游",
+      "summary": "3 月1日中國畫會舉行執監聯席會議，因余紹宋約訪，請賀天健代表參加。會上議决創設美術講座。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1935,
+      "frequency": 6,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.01.21",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "上海美術專科學校籌建新校舍委員會主辦菲律賓中國現代名家書畫展覽會，代理校長王濟遠携展品赴菲，1月21日在味雅酒樓為其餞行。"
+        },
+        {
+          "date": "1935.01.30",
+          "location": "上海",
+          "action": "活动",
+          "summary": "1月30日，遠在英國舉辦中國現代畫展之劉海粟來信，詳述在歐工作。"
+        },
+        {
+          "date": "1935.04.08",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "出品柏林中國現代畫展兩幅作品，為柏林美術院中國現代名畫廳收藏並長期陳列。"
+        },
+        {
+          "date": "1935.07.15",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "7月15日上海美專舉辦暑期藝術師範講習會開講，任國畫講師。"
+        },
+        {
+          "date": "1935.07.21",
+          "location": "杭州",
+          "action": "雅集",
+          "summary": "7月21日，與柏林中國美展籌委會在華安大厦八樓歡宴赴歐辦展近二年載譽歸來之劉海粟。"
+        },
+        {
+          "date": "1935.09.11",
+          "location": "廣州",
+          "action": "活动",
+          "summary": "9月11日，與夏敬觀、謝公展、諸樂三等聚於劉海粟“海廬”寓所，扺掌論畫，並合作《松鷹圖》。"
+        }
+      ],
+      "date": "1935.09.11",
+      "location": "廣州",
+      "action": "活动",
+      "summary": "9月11日，與夏敬觀、謝公展、諸樂三等聚於劉海粟“海廬”寓所，扺掌論畫，並合作《松鷹圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1935,
+      "frequency": 9,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.01.04",
+          "location": "南京",
+          "action": "紀游",
+          "summary": "歸滬時，道經無錫，時老友唐蔚芝之門弟子爲壽師七十華誕，集資築茹經堂，應邀前往演講並游寶界山，為繪中堂一幀。"
+        },
+        {
+          "date": "1935.06",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "6月，為陳柱作《桂林八景圖》。"
+        },
+        {
+          "date": "1935.06.21",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "6月21日晚，約陳柱、何柏丞、黄公渚、龍榆生、盧季野來寓小叙。"
+        },
+        {
+          "date": "1935.07.24",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "7月24日，匆匆結束美專暑期藝術講習會教課，與陳柱尊、馮振心等乘輪南下，經香港至梧州，陳柱尊得其母親在故里逝世消息而去奔喪，乃與其他學者至南寧。"
+        },
+        {
+          "date": "1935.12.09",
+          "location": "蘇州",
+          "action": "位移",
+          "summary": "12月9日，在蘇州國學專科學校演講，講題為“中國畫之認識”，有云“中畫與西畫，若造其極詣，其理相同”。此為中西繪畫學理異途同歸思想的最早表述。"
+        },
+        {
+          "date": "1935.夏",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "青浦游歸，繪贈《蜀中山水》與《西湖勝景》兩長卷予陳柱。"
+        },
+        {
+          "date": "1935.春",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "春，陳柱主編之《學術世界》雜志將創刊，作唐人詩意圖贈諸同人。"
+        },
+        {
+          "date": "1935.春",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "春夏間，陳柱尊、鄭師許發起編輯《學術世界》月刊，邀為撰述人。"
+        },
+        {
+          "date": "1935.秋",
+          "location": "廣州",
+          "action": "書信",
+          "summary": "為陳柱書“詞客人間作游戲，酒星天上有光華”篆聯。"
+        }
+      ],
+      "date": "1935.12.09",
+      "location": "蘇州",
+      "action": "位移",
+      "summary": "12月9日，在蘇州國學專科學校演講，講題為“中國畫之認識”，有云“中畫與西畫，若造其極詣，其理相同”。此為中西繪畫學理異途同歸思想的最早表述。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "鄭午昌",
+      "year": 1935,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.03.04",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "3月4日出席中國畫會總幹事李綺石召集之美術講座講師會議，定本月15日與賀天健、俞劍華擔任第一講主講。"
+        },
+        {
+          "date": "1935.03.15",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "3月15日晚，中國畫會在八仙橋青年會舉辦第一次美術講座，與賀天健、俞劍華任主講。"
+        }
+      ],
+      "date": "1935.03.15",
+      "location": "杭州",
+      "action": "聘任",
+      "summary": "3月15日晚，中國畫會在八仙橋青年會舉辦第一次美術講座，與賀天健、俞劍華任主講。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "王濟遠",
+      "year": 1935,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.03.13",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "王濟遠代表美專赴菲律賓舉行中國現代書畫展覽會歸國，16日在梅園宴請書畫界同人，與同人作圖壽同席柳亞子。"
+        },
+        {
+          "date": "1935.06.07",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "6月7日至11日王濟遠在靜安寺路華安大樓八樓舉行第八次個展，前往參觀。"
+        },
+        {
+          "date": "1935.12.29",
+          "location": "蘇州",
+          "action": "紀游",
+          "summary": "12月29日，參加南社紀念會在南京路口的晉隆西菜社舉行之聚餐會。"
+        }
+      ],
+      "date": "1935.12.29",
+      "location": "蘇州",
+      "action": "紀游",
+      "summary": "12月29日，參加南社紀念會在南京路口的晉隆西菜社舉行之聚餐會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1935,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.03.15",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "同日，張善孖代表黄社携黄山攝影及書畫作品赴南洋巡迴展覽。"
+        },
+        {
+          "date": "1935.秋",
+          "location": "廣州",
+          "action": "鑒賞",
+          "summary": "秋，爲張善孖跋其所作《四時花卉圖》卷。"
+        }
+      ],
+      "date": "1935.秋",
+      "location": "廣州",
+      "action": "鑒賞",
+      "summary": "秋，爲張善孖跋其所作《四時花卉圖》卷。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "錢瘦鐵",
+      "year": 1935,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.03.22",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "3月22日晚，中國畫會第二次美術講座在八仙橋青年會舉行，任陪講。"
+        }
+      ],
+      "date": "1935.03.22",
+      "location": "杭州",
+      "action": "聘任",
+      "summary": "3月22日晚，中國畫會第二次美術講座在八仙橋青年會舉行，任陪講。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "馬公愚",
+      "year": 1935,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.03.29",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "3月29日晚，中國畫會第三次美術講座在八仙橋青年會舉行。"
+        }
+      ],
+      "date": "1935.03.29",
+      "location": "杭州",
+      "action": "紀游",
+      "summary": "3月29日晚，中國畫會第三次美術講座在八仙橋青年會舉行。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1935,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.09.19",
+          "location": "廣州",
+          "action": "紀游",
+          "summary": "9月19日，偕夫人宋若嬰、門生黄冰清起程作黄山之游。"
+        },
+        {
+          "date": "1935.夏",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "盛夏，與吳開先伉儷、黄冰清等十餘人游青浦，於圓津禪院觀畫。"
+        }
+      ],
+      "date": "1935.09.19",
+      "location": "廣州",
+      "action": "紀游",
+      "summary": "9月19日，偕夫人宋若嬰、門生黄冰清起程作黄山之游。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "唐天如",
+      "year": 1935,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1935.08.11",
+          "location": "杭州",
+          "action": "位移",
+          "summary": "歸棹道經香港，下榻於黄居素之雙樹翠屏館，登太平山頂寫生。"
+        },
+        {
+          "date": "1935.秋",
+          "location": "廣州",
+          "action": "活动",
+          "summary": "為唐天如用焦墨法寫《九龍山水圖卷》。"
+        }
+      ],
+      "date": "1935.秋",
+      "location": "廣州",
+      "action": "活动",
+      "summary": "為唐天如用焦墨法寫《九龍山水圖卷》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1936,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1936.02.18",
+          "location": "蘇州",
+          "action": "聘任",
+          "summary": "2月18日，晤瑞典圖書館主任喜龍仁，其人謂“新安派為世界第一等高品”。鑒定中對故宫收藏院體繪畫之夥頗爲失望。"
+        },
+        {
+          "date": "1936.12.30",
+          "location": "蘇州",
+          "action": "書信",
+          "summary": "自舊年12月30日開始入庫鑒定故宫書畫，得寓目無數宋元明清書畫，極爲愜心。"
+        },
+        {
+          "date": "1936.春",
+          "location": "上海",
+          "action": "雅集",
+          "summary": "春，《歙縣志》脫稿，許承堯來滬小住，秋後返里。新安中學堂畢業生胡復華等在上海大新酒樓宴請，與許承堯、嚴工上赴會，並攝影留念。"
+        }
+      ],
+      "date": "1936.春",
+      "location": "上海",
+      "action": "雅集",
+      "summary": "春，《歙縣志》脫稿，許承堯來滬小住，秋後返里。新安中學堂畢業生胡復華等在上海大新酒樓宴請，與許承堯、嚴工上赴會，並攝影留念。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1936,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1936.01",
+          "location": "蘇州",
+          "action": "聘任",
+          "summary": "1月，上海美專繪畫研究所聘為導師。"
+        },
+        {
+          "date": "1936.09.08",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "9月8日，被推為中華美術協會主辦第一届美術展覽會之籌備委員。"
+        },
+        {
+          "date": "1936.09.14",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "被中華美術協會第一屆美術展覽會審查委員會推為國畫審查委員。"
+        },
+        {
+          "date": "1936.09.24",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "9月24日中華美術協會第一屆美術展覽會開幕。"
+        }
+      ],
+      "date": "1936.09.24",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "9月24日中華美術協會第一屆美術展覽會開幕。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "狄平子",
+      "year": 1936,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1936.02.10",
+          "location": "蘇州",
+          "action": "雅集",
+          "summary": "2月10日晚，為博物館徵求陳列物品，上海市市長吳鐵城在私邸設宴招待名收藏家與學術耆宿。與葉恭綽、宣古愚等應邀參加。"
+        },
+        {
+          "date": "1936.02.27",
+          "location": "蘇州",
+          "action": "書信",
+          "summary": "此際，將所藏古瓷、唐人寫經及明清書畫數十件送存上海市博物館。"
+        }
+      ],
+      "date": "1936.02.27",
+      "location": "蘇州",
+      "action": "書信",
+      "summary": "此際，將所藏古瓷、唐人寫經及明清書畫數十件送存上海市博物館。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "葉恭綽",
+      "year": 1936,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1936.春",
+          "location": "上海",
+          "action": "活动",
+          "summary": "為王季原作《海山攬勝圖》，葉恭綽譽爲開繪香港山水之“先路”。"
+        }
+      ],
+      "date": "1936.春",
+      "location": "上海",
+      "action": "活动",
+      "summary": "為王季原作《海山攬勝圖》，葉恭綽譽爲開繪香港山水之“先路”。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1936,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1936.05.16",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "中國畫會改選第四屆執、監委員，連任監察委員，5月16日晚，中國畫會在福州路會賓樓舉行全體會員聚餐會。"
+        },
+        {
+          "date": "1936.06.12",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "6月12日至14日，上海飛聲國畫函授學校在上海寧波同鄉會舉行現代名人展覽會，有作品參與陳列。"
+        },
+        {
+          "date": "1936.10.10",
+          "location": "上海",
+          "action": "活动",
+          "summary": "10月10日，由過旭初北平圍棋研究所操辦之個人畫展在中山公園四宜軒揭幕。"
+        }
+      ],
+      "date": "1936.10.10",
+      "location": "上海",
+      "action": "活动",
+      "summary": "10月10日，由過旭初北平圍棋研究所操辦之個人畫展在中山公園四宜軒揭幕。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1936,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1936.05.18",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "在北平期間，游覽近郊諸山，賓朋之樂，宴無虛日，留連廠肆，賞心悅目。"
+        },
+        {
+          "date": "1936.08.22",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "8月22日返滬，瀕行晤張孟劬。"
+        },
+        {
+          "date": "1936.09.25",
+          "location": "上海",
+          "action": "書信",
+          "summary": "9月25日，參加《學術世界》編譯社創辦週年紀念而在上海致美樓舉辦的招待宴會，蒞會者有陳柱、鄭師許、陳一百、陳千鈞以及文藝界、新聞界數十人。"
+        }
+      ],
+      "date": "1936.09.25",
+      "location": "上海",
+      "action": "書信",
+      "summary": "9月25日，參加《學術世界》編譯社創辦週年紀念而在上海致美樓舉辦的招待宴會，蒞會者有陳柱、鄭師許、陳一百、陳千鈞以及文藝界、新聞界數十人。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1936,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1936.08.08",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "8月8日，力社書畫展覽會在大新公司四樓揭幕，出品參展。"
+        }
+      ],
+      "date": "1936.08.08",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "8月8日，力社書畫展覽會在大新公司四樓揭幕，出品參展。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1936,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1936.10.31",
+          "location": "上海",
+          "action": "書信",
+          "summary": "洪夫人在潭渡村病逝，享年六十九歲。10月31日噩耗傳來，當即準備返里，旋因積憂致病，遣宋若嬰率諸兒女返里料理後事，半月後又投入鑒定工作。"
+        }
+      ],
+      "date": "1936.10.31",
+      "location": "上海",
+      "action": "書信",
+      "summary": "洪夫人在潭渡村病逝，享年六十九歲。10月31日噩耗傳來，當即準備返里，旋因積憂致病，遣宋若嬰率諸兒女返里料理後事，半月後又投入鑒定工作。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1937,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1937.01.02",
+          "location": "上海",
+          "action": "書信",
+          "summary": "1月2日，作品參展新華藝專主辦之現代名家書畫展。"
+        }
+      ],
+      "date": "1937.01.02",
+      "location": "上海",
+      "action": "書信",
+      "summary": "1月2日，作品參展新華藝專主辦之現代名家書畫展。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1937,
+      "frequency": 7,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1937.02.21",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "2月21日，赴蘇州觀摩吳中文獻展覽會。"
+        },
+        {
+          "date": "1937.05.05",
+          "location": "北平",
+          "action": "活动",
+          "summary": "5月5日，上午購得宋坑黄皮靈璧石，甚自珍。"
+        },
+        {
+          "date": "1937.05.18",
+          "location": "北平",
+          "action": "位移",
+          "summary": "5月18日，至中山公園訪周肇祥。得許承堯信。"
+        },
+        {
+          "date": "1937.07.18",
+          "location": "北平",
+          "action": "書信",
+          "summary": "7月18日，寄許承堯書，論鄉邦文獻之搜集。"
+        },
+        {
+          "date": "1937.春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "春，為王叔平作《城南草堂勘書圖》。"
+        },
+        {
+          "date": "1937.秋",
+          "location": "北平",
+          "action": "活动",
+          "summary": "秋，開始搜輯漸江軼事。"
+        },
+        {
+          "date": "1937.秋",
+          "location": "北平",
+          "action": "活动",
+          "summary": "為許承堯繪《柏園圖》。"
+        }
+      ],
+      "date": "1937.秋",
+      "location": "北平",
+      "action": "活动",
+      "summary": "為許承堯繪《柏園圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1937,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1937.03.06",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "3月6日，中國文藝社主辦援綏藝術展覽會揭幕，出品參展。"
+        },
+        {
+          "date": "1937.06.08",
+          "location": "北平",
+          "action": "聘任",
+          "summary": "6月8日，報載中國畫會改選執、監委員，連任監察委員。"
+        },
+        {
+          "date": "1937.08.06",
+          "location": "北平",
+          "action": "聘任",
+          "summary": "與于非闇、張大千等執教於古物陳列所國畫研究室，每週二講學一次，風雨不輟，由筆法、墨法、章法而畫理、畫史。講課深受學員重視，聽講時認真作筆錄，課後各自將筆記整理為講義，北方畫風為之有所移易。"
+        }
+      ],
+      "date": "1937.08.06",
+      "location": "北平",
+      "action": "聘任",
+      "summary": "與于非闇、張大千等執教於古物陳列所國畫研究室，每週二講學一次，風雨不輟，由筆法、墨法、章法而畫理、畫史。講課深受學員重視，聽講時認真作筆錄，課後各自將筆記整理為講義，北方畫風為之有所移易。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1937,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1937.04.19",
+          "location": "上海",
+          "action": "活动",
+          "summary": "林風眠、滕固、周肇祥、劉海粟、趙太侔、顧樹森、褚民誼、張道藩等發起中華全國美術研究會，4月19日開成立大會，被選為臨時理事。"
+        }
+      ],
+      "date": "1937.04.19",
+      "location": "上海",
+      "action": "活动",
+      "summary": "林風眠、滕固、周肇祥、劉海粟、趙太侔、顧樹森、褚民誼、張道藩等發起中華全國美術研究會，4月19日開成立大會，被選為臨時理事。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1937,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1937.05.16",
+          "location": "北平",
+          "action": "活动",
+          "summary": "5月16日，為陳一百作山水五尺中堂以賀百年和合之禧。"
+        },
+        {
+          "date": "1937.12",
+          "location": "北平",
+          "action": "聘任",
+          "summary": "任教北平美術專科學校、古物陳列所國畫研究室，暇餘兼研易經為畫理探討之助。"
+        },
+        {
+          "date": "1937.12",
+          "location": "北平",
+          "action": "活动",
+          "summary": "撰《說蝶》，以蟲化蝶的三眠三起喻學畫三個時期。"
+        },
+        {
+          "date": "1937.12.08",
+          "location": "北平",
+          "action": "書信",
+          "summary": "12月8日，致書陳柱，以“僧漸江、程穆倩、鄭遺甦皆處時艱，抱其亮節清風，不為污俗所染”自勉。"
+        }
+      ],
+      "date": "1937.12",
+      "location": "北平",
+      "action": "活动",
+      "summary": "撰《說蝶》，以蟲化蝶的三眠三起喻學畫三個時期。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1937,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1937.06.05",
+          "location": "北平",
+          "action": "活动",
+          "summary": "6月5日，宋若嬰返滬。"
+        }
+      ],
+      "date": "1937.06.05",
+      "location": "北平",
+      "action": "活动",
+      "summary": "6月5日，宋若嬰返滬。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1937,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1937.11.08",
+          "location": "北平",
+          "action": "活动",
+          "summary": "11月8日，與顧飛論“静”字訣與“和”字訣。"
+        }
+      ],
+      "date": "1937.11.08",
+      "location": "北平",
+      "action": "活动",
+      "summary": "11月8日，與顧飛論“静”字訣與“和”字訣。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1938,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1938.11",
+          "location": "北平",
+          "action": "紀游",
+          "summary": "去年11月上海淪陷，本年2月陸丹林轉赴香港，得悉此消息，為作《淞南醉别圖》贈行，有“不堪風雨東南急，白浪掀天送客舟”之語。"
+        },
+        {
+          "date": "1938.夏",
+          "location": "金華",
+          "action": "活动",
+          "summary": "夏，張祥凝刻“賓公”朱文印，並託陸丹林作介乞畫，為作《金華洞風景》。"
+        }
+      ],
+      "date": "1938.夏",
+      "location": "金華",
+      "action": "活动",
+      "summary": "夏，張祥凝刻“賓公”朱文印，並託陸丹林作介乞畫，為作《金華洞風景》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1938,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1938.04",
+          "location": "北平",
+          "action": "鑒賞",
+          "summary": "4月，與江朝宗、徐世昌、錢桐、周養庵、福開森、張大千、于非厂賞花，並各執一枝海棠攝影留念。"
+        },
+        {
+          "date": "1938.春",
+          "location": "北平",
+          "action": "書信",
+          "summary": "春，作《春明館看花圖》卷寄贈許承堯。"
+        }
+      ],
+      "date": "1938.春",
+      "location": "北平",
+      "action": "書信",
+      "summary": "春，作《春明館看花圖》卷寄贈許承堯。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1938,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1938.05.01",
+          "location": "北平",
+          "action": "活动",
+          "summary": "法國杜博思在北平搜羅明季畫品，時相過從。"
+        }
+      ],
+      "date": "1938.05.01",
+      "location": "北平",
+      "action": "活动",
+      "summary": "法國杜博思在北平搜羅明季畫品，時相過從。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1938,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1938.冬",
+          "location": "北平",
+          "action": "紀游",
+          "summary": "冬，為陳柱作《宋故行宫圖》。"
+        },
+        {
+          "date": "1938.夏",
+          "location": "北平",
+          "action": "聘任",
+          "summary": "為“蹤跡之者”强入金華城，不得已歸北平，仍任國畫研究室與北平美專教職。"
+        }
+      ],
+      "date": "1938.冬",
+      "location": "北平",
+      "action": "紀游",
+      "summary": "冬，為陳柱作《宋故行宫圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1939,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1939.春",
+          "location": "北平",
+          "action": "活动",
+          "summary": "春夏之際，為陳柱尊作《仿倪雲林圖册》。"
+        }
+      ],
+      "date": "1939.春",
+      "location": "北平",
+      "action": "活动",
+      "summary": "春夏之際，為陳柱尊作《仿倪雲林圖册》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "唐天如",
+      "year": 1940,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1940.春",
+          "location": "南京",
+          "action": "活动",
+          "summary": "春，為唐天如作山水長卷。"
+        }
+      ],
+      "date": "1940.春",
+      "location": "南京",
+      "action": "活动",
+      "summary": "春，為唐天如作山水長卷。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陳柱",
+      "year": 1940,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1940.05.01",
+          "location": "南京",
+          "action": "活动",
+          "summary": "5月1日，《漸江大師事蹟佚聞》由門生吳詠香謄清在《中和》月刊發表。"
+        }
+      ],
+      "date": "1940.05.01",
+      "location": "南京",
+      "action": "活动",
+      "summary": "5月1日，《漸江大師事蹟佚聞》由門生吳詠香謄清在《中和》月刊發表。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1940,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1940.10.20",
+          "location": "南京",
+          "action": "活动",
+          "summary": "10月20日張善孖逝世。"
+        }
+      ],
+      "date": "1940.10.20",
+      "location": "南京",
+      "action": "活动",
+      "summary": "10月20日張善孖逝世。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1941,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1941.04",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "門生戴雲起來書稱欲組“黄（賓虹）張（大千）同門會”，覆信期以“勿蹈標榜之習，須從學問上用功”。"
+        }
+      ],
+      "date": "1941.04",
+      "location": "重慶",
+      "action": "書信",
+      "summary": "門生戴雲起來書稱欲組“黄（賓虹）張（大千）同門會”，覆信期以“勿蹈標榜之習，須從學問上用功”。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1941,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1941.06.22",
+          "location": "重慶",
+          "action": "紀游",
+          "summary": "6月22日，中國畫學研究會在中山公園董事會舉行第十八屆成績展，出品參展。"
+        }
+      ],
+      "date": "1941.06.22",
+      "location": "重慶",
+      "action": "紀游",
+      "summary": "6月22日，中國畫學研究會在中山公園董事會舉行第十八屆成績展，出品參展。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1942,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1942.03.01",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "3月1日，古物陳列所國畫研究室（院）研究員陸元同經指導輯成《釋石溪事蹟彙編》發表於《中和》月刊，並為撰序言。"
+        }
+      ],
+      "date": "1942.03.01",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "3月1日，古物陳列所國畫研究室（院）研究員陸元同經指導輯成《釋石溪事蹟彙編》發表於《中和》月刊，並為撰序言。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1942,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1942.12.30",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "本年，偶得趙松雪《苕溪漁隱自寫照》與中峰禪師手書梅花詩百首。"
+        }
+      ],
+      "date": "1942.12.30",
+      "location": "重慶",
+      "action": "書信",
+      "summary": "本年，偶得趙松雪《苕溪漁隱自寫照》與中峰禪師手書梅花詩百首。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "顧飛",
+      "year": 1943,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1943.01.24",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "年初以筆法圖寄顧飛，自謂山水與古人無一相似，然處處從古人法中來。"
+        },
+        {
+          "date": "1943.07.07",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "六七月間，陳隽甫赴港與吳詠香結婚，擬取道上海，馳書顧飛伉儷予以照應，並論畫云“自然之中合乎準則，其美在内不在外”。"
+        },
+        {
+          "date": "1943.09",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "門生顧飛輯畫論為《論畫鱗爪》，刊於《畫展特刊》。"
+        },
+        {
+          "date": "1943.11.19",
+          "location": "重慶",
+          "action": "展覽",
+          "summary": "11月19日至23日，由傅雷、裘柱常、顧飛等籌劃，在寧波同鄉會四樓舉辦個展，馬公愚書“黄賓虹書畫展”，傅雷主持操辦一切展覽事務，刊印《黄賓虹先生山水畫册》、《黄賓虹書畫展特刊》，觀者踴躍。"
+        },
+        {
+          "date": "1943.秋",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "年初，與顧飛書云近作畫思參唐法而以元人爲歸。"
+        }
+      ],
+      "date": "1943.秋",
+      "location": "重慶",
+      "action": "書信",
+      "summary": "年初，與顧飛書云近作畫思參唐法而以元人爲歸。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1943,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1943.07.07",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "7月7日，作《青城山》圖册十二葉贈傅雷。"
+        },
+        {
+          "date": "1943.09",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "9月，傅雷撰《觀畫答客問》，以爲畫展特刊闡述畫理之本，讀後引為知言，删去套語，印作藝專講義。"
+        },
+        {
+          "date": "1943.11.29",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "11月29日，夏丏尊託傅雷代請為紀念已故弘一法師重作《晚晴山房圖》。"
+        }
+      ],
+      "date": "1943.11.29",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "11月29日，夏丏尊託傅雷代請為紀念已故弘一法師重作《晚晴山房圖》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "馬公愚",
+      "year": 1943,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1943.12.05",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "12月5日，在秦更年家，設素席招待答謝諸友。"
+        }
+      ],
+      "date": "1943.12.05",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "12月5日，在秦更年家，設素席招待答謝諸友。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1943,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1943.秋",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "此際，作《黄山松圖》祝許承堯七十壽。"
+        }
+      ],
+      "date": "1943.秋",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "此際，作《黄山松圖》祝許承堯七十壽。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1944,
+      "frequency": 3,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1944.01.21",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "1月21日癸未十二月廿六日，陳叔通見傅雷得譜主之《陽朔山水册》十二開，致書求索蜀中或陽朔山水小册。"
+        },
+        {
+          "date": "1944.03.16",
+          "location": "重慶",
+          "action": "位移",
+          "summary": "3月16日，王秋湄（薳）病歿，得訊至為悲悼。"
+        },
+        {
+          "date": "1944.07.24",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "7月24日傅雷致書云“甚欲以溝通中西畫論為己責”，覆書暢論中西畫理之同異，並對油畫家取中國畫材料求變通之道的現象，預言必當影響畫理。"
+        }
+      ],
+      "date": "1944.07.24",
+      "location": "重慶",
+      "action": "書信",
+      "summary": "7月24日傅雷致書云“甚欲以溝通中西畫論為己責”，覆書暢論中西畫理之同異，並對油畫家取中國畫材料求變通之道的現象，預言必當影響畫理。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1944,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1944.02.13",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "此際，遠在重慶的陸丹林得到譜主去世的訛傳，感喟不止，深情地撰寫了《感悼黄賓虹畫人》刊於2月13日《掃蕩報》。"
+        }
+      ],
+      "date": "1944.02.13",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "此際，遠在重慶的陸丹林得到譜主去世的訛傳，感喟不止，深情地撰寫了《感悼黄賓虹畫人》刊於2月13日《掃蕩報》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "葉恭綽",
+      "year": 1944,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1944.07.11",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "7月11日，門生陳隽甫、吳詠香伉儷在天津舉辦夫婦合展。"
+        }
+      ],
+      "date": "1944.07.11",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "7月11日，門生陳隽甫、吳詠香伉儷在天津舉辦夫婦合展。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1944,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1944.12.27",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "本年，老友許承堯惦念情殷，撰《憶賓虹》。"
+        }
+      ],
+      "date": "1944.12.27",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "本年，老友許承堯惦念情殷，撰《憶賓虹》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1945,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1945.01",
+          "location": "重慶",
+          "action": "書信",
+          "summary": "1月，應許承堯爲其子女家楫、家華寄舊日畫稿作臨習範本之請，選十二幀臨古畫稿贈之。"
+        }
+      ],
+      "date": "1945.01",
+      "location": "重慶",
+      "action": "書信",
+      "summary": "1月，應許承堯爲其子女家楫、家華寄舊日畫稿作臨習範本之請，選十二幀臨古畫稿贈之。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1945,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1945.06.19",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "6月19日，傅雷接獲為其友所作畫，回信感謝，並加評論，轉達陳陶遺的問候。"
+        }
+      ],
+      "date": "1945.06.19",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "6月19日，傅雷接獲為其友所作畫，回信感謝，並加評論，轉達陳陶遺的問候。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "許承堯",
+      "year": 1946,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1946.07.06",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "7月6日許承堯在歙縣唐模村病逝，享年七十三歲，揮淚撰《誄辭》。"
+        },
+        {
+          "date": "1946.春",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "新春，為老友許承堯作水墨山水圖。"
+        }
+      ],
+      "date": "1946.07.06",
+      "location": "重慶",
+      "action": "活动",
+      "summary": "7月6日許承堯在歙縣唐模村病逝，享年七十三歲，揮淚撰《誄辭》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1946,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1946.04",
+          "location": "重慶",
+          "action": "活动",
+          "summary": "百貨飛漲，時局日惡，心緒不寧，胸臆鬱塞，作畫愈加愈黑。"
+        },
+        {
+          "date": "1946.1",
+          "location": "上海",
+          "action": "位移",
+          "summary": "10月中旬，故都文物研究會約齊白石、溥心畬至上海、南京舉辦齊溥畫展，附以作品參展。"
+        }
+      ],
+      "date": "1946.1",
+      "location": "上海",
+      "action": "位移",
+      "summary": "10月中旬，故都文物研究會約齊白石、溥心畬至上海、南京舉辦齊溥畫展，附以作品參展。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1946,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1946.1",
+          "location": "上海",
+          "action": "活动",
+          "summary": "此際，百貨物價飛漲，作畫仍擇人而與，不與人争名奪利。"
+        }
+      ],
+      "date": "1946.1",
+      "location": "上海",
+      "action": "活动",
+      "summary": "此際，百貨物價飛漲，作畫仍擇人而與，不與人争名奪利。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張大千",
+      "year": 1947,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1947.01.13",
+          "location": "上海",
+          "action": "活动",
+          "summary": "年初，張大千來平、津，擬携門人章巢甫等人重返敦煌，以病肺未果。在平與之相晤。"
+        },
+        {
+          "date": "1947.04.13",
+          "location": "上海",
+          "action": "書信",
+          "summary": "4月13日，答澳門張虹來書，有云“將來畫可無中西之别，漸歸於大同”。"
+        },
+        {
+          "date": "1947.05",
+          "location": "上海",
+          "action": "書信",
+          "summary": "5月，張大千弟子李信伯游平，俞劍華作書介紹來訪。"
+        },
+        {
+          "date": "1947.10.26",
+          "location": "上海",
+          "action": "展覽",
+          "summary": "10月26日，參加在中山公園董事會舉辦的中國畫學研究會第二十五屆展覽會。"
+        }
+      ],
+      "date": "1947.10.26",
+      "location": "上海",
+      "action": "展覽",
+      "summary": "10月26日，參加在中山公園董事會舉辦的中國畫學研究會第二十五屆展覽會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1947,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1947.04",
+          "location": "上海",
+          "action": "書信",
+          "summary": "4月，英國蘇里文爲撰中國近現代繪畫史，托龐薰琹代爲徵集各家資料，由傅雷馳書徵求意見。"
+        }
+      ],
+      "date": "1947.04",
+      "location": "上海",
+      "action": "書信",
+      "summary": "4月，英國蘇里文爲撰中國近現代繪畫史，托龐薰琹代爲徵集各家資料，由傅雷馳書徵求意見。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "鄭午昌",
+      "year": 1947,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1947.07.03",
+          "location": "上海",
+          "action": "書信",
+          "summary": "7月3日林散之得復書與贈畫，來書乞題其所作畫。"
+        }
+      ],
+      "date": "1947.07.03",
+      "location": "上海",
+      "action": "書信",
+      "summary": "7月3日林散之得復書與贈畫，來書乞題其所作畫。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1948,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1948.01.16",
+          "location": "上海",
+          "action": "活动",
+          "summary": "1月16日，關春草病逝上海。"
+        },
+        {
+          "date": "1948.05.18",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "5月18日，傅雷伉儷來平，數日觀畫談藝，並遣女兒、女婿等陪同遊覽故都。"
+        },
+        {
+          "date": "1948.初春",
+          "location": "上海",
+          "action": "書信",
+          "summary": "初春，張虹代友來北平捜購宋元名蹟，經介購得李木齋舊藏敦煌諸品與劉邦基山水等，滿載而歸。道經上海，函介訪傅雷、鄭振鐸。"
+        },
+        {
+          "date": "1948.初春",
+          "location": "上海",
+          "action": "聘任",
+          "summary": "初春，决意南下杭州任教，作《黄山追憶圖》。"
+        },
+        {
+          "date": "1948.秋",
+          "location": "杭州",
+          "action": "聘任",
+          "summary": "元旦，浙江省假湖濱省立民衆教育館舉辦第一次全省美術展覽會揭幕，出品並往觀。長天文藝社印畫展紀念特刊，刊有參展作品與傅雷《觀畫答客問》。"
+        }
+      ],
+      "date": "1948.秋",
+      "location": "杭州",
+      "action": "聘任",
+      "summary": "元旦，浙江省假湖濱省立民衆教育館舉辦第一次全省美術展覽會揭幕，出品並往觀。長天文藝社印畫展紀念特刊，刊有參展作品與傅雷《觀畫答客問》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1948,
+      "frequency": 5,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1948.01.25",
+          "location": "上海",
+          "action": "書信",
+          "summary": "1月25日，陸丹林來書為其公子新婚索畫，覆書提出中西繪畫精神“無一不合”。"
+        },
+        {
+          "date": "1948.08.16",
+          "location": "上海",
+          "action": "活动",
+          "summary": "8月16日，陸丹林、陳子和、鄭逸梅來訪。"
+        },
+        {
+          "date": "1948.08.19",
+          "location": "上海",
+          "action": "活动",
+          "summary": "在滬期間，与滬上友好陳叔通、秦更年、吳仲坰、陶冷月、陸丹林、俞劍華、汪聰、姚雛以及諸弟子等重聚，忙碌異常，幾無暇晷。"
+        },
+        {
+          "date": "1948.夏",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "初夏，爲粤友陳子和作《桂林紀游册》。"
+        },
+        {
+          "date": "1948.夏",
+          "location": "北京",
+          "action": "書信",
+          "summary": "仲夏，陸丹林來書乞畫秋景山水册葉。"
+        }
+      ],
+      "date": "1948.08.19",
+      "location": "上海",
+      "action": "活动",
+      "summary": "在滬期間，与滬上友好陳叔通、秦更年、吳仲坰、陶冷月、陸丹林、俞劍華、汪聰、姚雛以及諸弟子等重聚，忙碌異常，幾無暇晷。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "鄭午昌",
+      "year": 1948,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1948.02.24",
+          "location": "上海",
+          "action": "書信",
+          "summary": "2月24日，鄭午昌來書問候，並索篆聯。"
+        },
+        {
+          "date": "1948.08.01",
+          "location": "上海",
+          "action": "紀游",
+          "summary": "蒞滬之初，中國畫會等發起上海文藝界同人在南京路大觀社舉行歡迎大會，席間即興演講，演講記錄稿題爲《養生之道》刊於杭州《民報》。"
+        }
+      ],
+      "date": "1948.08.01",
+      "location": "上海",
+      "action": "紀游",
+      "summary": "蒞滬之初，中國畫會等發起上海文藝界同人在南京路大觀社舉行歡迎大會，席間即興演講，演講記錄稿題爲《養生之道》刊於杭州《民報》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "張善孖",
+      "year": 1948,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1948.03.31",
+          "location": "上海",
+          "action": "活动",
+          "summary": "3月31日，俞劍華撰《懷黄賓虹先生》刊於《申報》。"
+        }
+      ],
+      "date": "1948.03.31",
+      "location": "上海",
+      "action": "活动",
+      "summary": "3月31日，俞劍華撰《懷黄賓虹先生》刊於《申報》。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1949,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1949.04.15",
+          "location": "杭州",
+          "action": "展覽",
+          "summary": "4月15日，參加上海市美術館籌備處第一屆春季美術展覽會。"
+        },
+        {
+          "date": "1949.08.19",
+          "location": "杭州",
+          "action": "鑒賞",
+          "summary": "為舒國華輯《金華北山古詩選》作跋。"
+        }
+      ],
+      "date": "1949.04.15",
+      "location": "杭州",
+      "action": "展覽",
+      "summary": "4月15日，參加上海市美術館籌備處第一屆春季美術展覽會。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1951,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1951.09.14",
+          "location": "歙縣",
+          "action": "書信",
+          "summary": "9月14日，鄧實（秋枚）病逝，年七十四歲。國光印書局電囑傅雷轉告。"
+        }
+      ],
+      "date": "1951.09.14",
+      "location": "歙縣",
+      "action": "書信",
+      "summary": "9月14日，鄧實（秋枚）病逝，年七十四歲。國光印書局電囑傅雷轉告。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "何香凝",
+      "year": 1951,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1951.10.23",
+          "location": "北京",
+          "action": "活动",
+          "summary": "在北京為時一月，與陳銘樞同居一室，得與在北京老友李濟深、陳叔通、何香凝，以及卞孝萱等相見，廠肆舊友亦奔走相告。道經上海時，訪傅雷。"
+        }
+      ],
+      "date": "1951.10.23",
+      "location": "北京",
+      "action": "活动",
+      "summary": "在北京為時一月，與陳銘樞同居一室，得與在北京老友李濟深、陳叔通、何香凝，以及卞孝萱等相見，廠肆舊友亦奔走相告。道經上海時，訪傅雷。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1952,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1952.02",
+          "location": "北京",
+          "action": "活动",
+          "summary": "2月，陳叔通偕邵力子來訪。"
+        }
+      ],
+      "date": "1952.02",
+      "location": "北京",
+      "action": "活动",
+      "summary": "2月，陳叔通偕邵力子來訪。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1952,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1952.冬",
+          "location": "北京",
+          "action": "書信",
+          "summary": "冬，陸丹林來書問候，並告諸友近况。"
+        }
+      ],
+      "date": "1952.冬",
+      "location": "北京",
+      "action": "書信",
+      "summary": "冬，陸丹林來書問候，並告諸友近况。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "何香凝",
+      "year": 1953,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1953.09.23",
+          "location": "北京",
+          "action": "紀游",
+          "summary": "9月23日至10月6日，中國文學藝術工作者第二次代表大會在北京舉行，被選為中國文學藝術界聯合會第二屆全國委員。"
+        }
+      ],
+      "date": "1953.09.23",
+      "location": "北京",
+      "action": "紀游",
+      "summary": "9月23日至10月6日，中國文學藝術工作者第二次代表大會在北京舉行，被選為中國文學藝術界聯合會第二屆全國委員。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1953,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1953.秋",
+          "location": "北京",
+          "action": "紀游",
+          "summary": "秋，陸丹林將1933年畫贈給自己的《蜀游圖册》移贈其友勉功，勉功持畫來訪索題。"
+        }
+      ],
+      "date": "1953.秋",
+      "location": "北京",
+      "action": "紀游",
+      "summary": "秋，陸丹林將1933年畫贈給自己的《蜀游圖册》移贈其友勉功，勉功持畫來訪索題。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "陸丹林",
+      "year": 1954,
+      "frequency": 2,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1954.10.02",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "10月2日陸丹林來書，云港友頗爲牽念。"
+        },
+        {
+          "date": "1954.春",
+          "location": "北京",
+          "action": "書信",
+          "summary": "春，陸丹林以視力日差，來書詢問治療情况 。"
+        }
+      ],
+      "date": "1954.10.02",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "10月2日陸丹林來書，云港友頗爲牽念。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1954,
+      "frequency": 4,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1954.04.28",
+          "location": "北京",
+          "action": "書信",
+          "summary": "4月28日、29日，傅雷疊書評近作畫。"
+        },
+        {
+          "date": "1954.11.09",
+          "location": "杭州",
+          "action": "紀游",
+          "summary": "11月9日，傅雷伉儷游杭州，訪於湖畔，盤桓兩日，觀覽藏畫，暢談畫理。"
+        },
+        {
+          "date": "1954.12.20",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "12月20日，致書傅雷論畫。"
+        },
+        {
+          "date": "1954.12.21",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "12月21日，寄陳叔通、傅雷書。"
+        }
+      ],
+      "date": "1954.12.21",
+      "location": "杭州",
+      "action": "書信",
+      "summary": "12月21日，寄陳叔通、傅雷書。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "宋若嬰",
+      "year": 1954,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1954.09",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "9月，偕宋若嬰赴上海參加“黄賓虹先生作品觀摩會”，下榻錦江飯店。此際恰逢憲法頒佈，繪《蒼松圖》以賀。"
+        }
+      ],
+      "date": "1954.09",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "9月，偕宋若嬰赴上海參加“黄賓虹先生作品觀摩會”，下榻錦江飯店。此際恰逢憲法頒佈，繪《蒼松圖》以賀。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "劉海粟",
+      "year": 1954,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1954.09.20",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "9月20日下午舉辦座談，傅雷作學術發言，謂“西畫與中畫，近代已發展到同一條路上”。"
+        }
+      ],
+      "date": "1954.09.20",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "9月20日下午舉辦座談，傅雷作學術發言，謂“西畫與中畫，近代已發展到同一條路上”。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "錢瘦鐵",
+      "year": 1954,
+      "frequency": 1,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1954.12.10",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "12月10日，吳青霞與錢瘦鐵、唐雲來訪。"
+        }
+      ],
+      "date": "1954.12.10",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "12月10日，吳青霞與錢瘦鐵、唐雲來訪。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "馬公愚",
+      "year": 1955,
+      "frequency": 1,
+      "has_face_to_face": false,
+      "events": [
+        {
+          "date": "1955.02.22",
+          "location": "北京",
+          "action": "書信",
+          "summary": "2月22日，馬公愚來書，以王鯤徙（式園）生前藏書畫古玩清單寄呈。"
+        }
+      ],
+      "date": "1955.02.22",
+      "location": "北京",
+      "action": "書信",
+      "summary": "2月22日，馬公愚來書，以王鯤徙（式園）生前藏書畫古玩清單寄呈。"
+    },
+    {
+      "source": "黄賓虹",
+      "target": "傅雷",
+      "year": 1955,
+      "frequency": 2,
+      "has_face_to_face": true,
+      "events": [
+        {
+          "date": "1955.03.25",
+          "location": "杭州",
+          "action": "活动",
+          "summary": "3月25日，凌晨三時三十分，醫藥罔效，長辭人間，享年九十二歲。在病中仍惦念傅雷，稱他是一生“最大的知己”。26日，由沈雁冰等組成治喪委員會，發出“訃告”。"
+        },
+        {
+          "date": "1955.冬",
+          "location": "杭州",
+          "action": "書信",
+          "summary": "是日，傅雷聞悉病情加劇，因去冬傷腿，不能前来，焦慮萬分，馳書宋夫人詢近况。"
+        }
+      ],
+      "date": "1955.03.25",
+      "location": "杭州",
+      "action": "活动",
+      "summary": "3月25日，凌晨三時三十分，醫藥罔效，長辭人間，享年九十二歲。在病中仍惦念傅雷，稱他是一生“最大的知己”。26日，由沈雁冰等組成治喪委員會，發出“訃告”。"
+    }
+  ]
+}
