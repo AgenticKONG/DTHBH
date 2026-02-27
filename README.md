@@ -27,8 +27,8 @@
     - 攻克「扉頁式」豎排敘事卡片排版。
     - 建立物理級「邊界鎖」與「內存回收」機制。
 
-**[2] AgenticKONG (OpenCode CLI + MiniMax2.5)**
-- **職責**：協作開發與架構支持。
+**[2] AgenticKONG (OpenCode Zen CLI + MiniMax2.5)**
+- **職責**：協作開發與架構支持、主理「3D」。
 
 ---
 
