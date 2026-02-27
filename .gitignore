@@ -1,0 +1,17 @@
+# Node
+node_modules/
+dist/
+.DS_Store
+
+# Python & Data (Only frontend processed data allowed)
+__pycache__/
+*.py
+data/*.csv
+!frontend/public/data/social_network_data.json
+!frontend/public/data/chronology_full.csv
+
+# Temporary files
+.cursor/
+.iflow/
+.claude/
+.gemini/
