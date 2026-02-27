@@ -10,6 +10,10 @@ data/*.csv
 !frontend/public/data/social_network_data.json
 !frontend/public/data/chronology_full.csv
 
+# Agents 
+Agents.md
+Gemini.md
+
 # Temporary files
 .cursor/
 .iflow/
