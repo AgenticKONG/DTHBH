@@ -95,7 +95,13 @@ import { SceneManager } from '../three/utils/SceneManager.js';
 import { MaterialManager } from '../three/materials/MaterialManager.js';
 import { LightManager } from '../three/lights/LightManager.js';
 import { InteractionManager } from '../three/utils/InteractionManager.js';
+import { NavigationManager } from '../three/utils/NavigationManager.js';
 import { HallScene } from '../three/scenes/HallScene.js';
+import { IntroHall } from '../three/scenes/IntroHall.js';
+import { EarlyHall } from '../three/scenes/EarlyHall.js';
+import { MiddleHall } from '../three/scenes/MiddleHall.js';
+import { LateHall } from '../three/scenes/LateHall.js';
+import { EndHall } from '../three/scenes/EndHall.js';
 
 export default {
   name: 'ThreeDExhibition',
@@ -109,6 +115,15 @@ export default {
       currentHallId: 'intro',
       activeArtwork: null,
       showPerformance: process.env.NODE_ENV === 'development',
+
+      // 展厅类映射
+      hallClasses: {
+        intro: IntroHall,
+        early: EarlyHall,
+        middle: MiddleHall,
+        late: LateHall,
+        end: EndHall
+      },
 
       // 展厅数据
       halls: [
@@ -149,6 +164,7 @@ export default {
       materialManager: null,
       lightManager: null,
       interactionManager: null,
+      navigationManager: null,
 
       // 性能监控
       performance: {
@@ -199,6 +215,7 @@ export default {
 
       // 创建灯光管理器
       this.lightManager = new LightManager(this.sceneManager.scene);
+      this.sceneManager.setLightManager(this.lightManager);
 
       // 创建交互管理器
       this.interactionManager = new InteractionManager(
@@ -207,6 +224,17 @@ export default {
         this.$refs.container
       );
       this.interactionManager.initialize();
+
+      // 创建导航管理器（处理WASD移动）
+      this.navigationManager = new NavigationManager(
+        this.sceneManager.camera,
+        this.sceneManager.scene,
+        this.$refs.container
+      );
+      this.navigationManager.initialize();
+
+      // 设置导航管理器到场景管理器
+      this.sceneManager.setNavigationManager(this.navigationManager);
 
       // 设置交互回调
       this.setupInteractionCallbacks();
@@ -224,7 +252,9 @@ export default {
        * 开始体验
        */
     startExperience() {
+      console.log('Starting experience, isStarted:', this.isStarted);
       this.isStarted = true;
+      console.log('After setting, isStarted:', this.isStarted);
 
       // 启动渲染循环
       this.sceneManager.startRenderLoop();
@@ -246,9 +276,10 @@ export default {
       this.loading = true;
 
       try {
-        // 这里应该根据hallId加载对应的展厅场景类
-        // 暂时使用基类作为示例
-        await this.sceneManager.switchScene(HallScene, {
+        // 根据 hallId 加载对应的展厅场景类
+        const HallClass = this.hallClasses[hallId] || HallScene;
+        
+        await this.sceneManager.switchScene(HallClass, {
           name: hallId,
           displayName: this.getHallName(hallId),
           description: this.getHallDescription(hallId)
@@ -548,15 +579,17 @@ export default {
 
   /* 展厅导航 */
   .hall-navigation {
-    position: absolute;
+    position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    background: rgba(42, 31, 26, 0.95);
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px 20px;
     backdrop-filter: blur(10px);
+    border: 2px solid #ffd700;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
 
   .hall-tabs {
@@ -565,26 +598,30 @@ export default {
   }
 
   .hall-tab {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: #f5f0e6;
-    background: transparent;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #e8e0d0;
+    background: rgba(61, 47, 37, 0.8);
+    border: 2px solid #8b7355;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-weight: 500;
   }
 
   .hall-tab:hover {
-    background: rgba(255, 215, 0, 0.2);
-    border-color: rgba(255, 215, 0, 0.5);
-  }
-
-  .hall-tab.active {
     background: rgba(255, 215, 0, 0.3);
     border-color: #ffd700;
     color: #ffd700;
+    transform: translateY(-2px);
+  }
+
+  .hall-tab.active {
+    background: linear-gradient(135deg, #ffd700, #c9a000);
+    border-color: #ffd700;
+    color: #2a1f1a;
     font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
   }
 
   /* 展厅信息 */

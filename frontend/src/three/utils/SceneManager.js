@@ -45,7 +45,7 @@ export class SceneManager {
     this.config = {
       backgroundColor: 0x2a1f1a,
       cameraFOV: 75,
-      cameraNear: 0.1,
+      cameraNear: 1, // 增大近裁剪面
       cameraFar: 1000,
       antialias: true,
       pixelRatio: Math.min(window.devicePixelRatio, 2),
@@ -158,7 +158,12 @@ export class SceneManager {
 
     // 性能优化设置
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.outputEncoding = THREE.sRGBEncoding;
+    
+    // 确保正确清除渲染
+    renderer.autoClear = true;
+    renderer.autoClearColor = true;
+    renderer.autoClearStencil = true;
+    renderer.autoClearDepth = true;
 
     return markRaw(renderer);
   }
@@ -399,14 +404,15 @@ export class SceneManager {
 
       // 如果性能良好，每帧渲染
       if (this.performance.fps >= optimization.minFPS || !optimization.adaptiveQuality) {
-        // 在自主漫游模式下，只使用NavigationManager，不使用OrbitControls
-        if (this.controls && !this.navigationManager) {
-          this.controls.update();
-        }
-
-        // 更新导航管理器
+        // 在自主漫游模式下，只使用NavigationManager，禁用OrbitControls
         if (this.navigationManager) {
+          if (this.controls) {
+            this.controls.enabled = false;
+          }
           this.navigationManager.update(deltaTime / 1000);
+        } else if (this.controls) {
+          this.controls.enabled = true;
+          this.controls.update();
         }
 
         // 更新当前场景
@@ -416,6 +422,7 @@ export class SceneManager {
 
         // 渲染
         this.renderer.render(this.scene, this.camera);
+        this.renderer.info.reset(); // 重置渲染信息
 
         // 更新性能监控
         this.updatePerformance();
@@ -424,14 +431,15 @@ export class SceneManager {
         if (frameTimeAccumulator >= targetFrameTime * 2) {
           frameTimeAccumulator = 0;
 
-          // 在自主漫游模式下，只使用NavigationManager，不使用OrbitControls
-          if (this.controls && !this.navigationManager) {
-            this.controls.update();
-          }
-
-          // 更新导航管理器
+          // 在自主漫游模式下，只使用NavigationManager，禁用OrbitControls
           if (this.navigationManager) {
+            if (this.controls) {
+              this.controls.enabled = false;
+            }
             this.navigationManager.update(deltaTime / 1000);
+          } else if (this.controls) {
+            this.controls.enabled = true;
+            this.controls.update();
           }
 
           // 更新当前场景
@@ -489,6 +497,17 @@ export class SceneManager {
     // 设置NavigationManager的sceneManager引用
     if (navigationManager && !navigationManager.sceneManager) {
       navigationManager.sceneManager = this;
+    }
+  }
+
+  /**
+   * 设置灯光管理器
+   */
+  setLightManager(lightManager) {
+    this.lightManager = lightManager;
+    // 设置LightManager的sceneManager引用
+    if (lightManager && !lightManager.sceneManager) {
+      lightManager.sceneManager = this;
     }
   }
 

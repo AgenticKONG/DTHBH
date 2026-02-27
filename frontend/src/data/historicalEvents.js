@@ -1,0 +1,27 @@
+export const historicalEvents = [
+  { historical_event_id: 1, year: 1871, event_title: '洋务运动', description: "1870年代起，清廷推行'自强''求富'改革。" },
+  { historical_event_id: 2, year: 1894, event_title: '甲午战争', description: '1894-1895年：中日甲午战争，中国战败。' },
+  { historical_event_id: 3, year: 1898, event_title: '戊戌变法', description: '光绪帝推行戊戌变法，试图进行政治改革。' },
+  { historical_event_id: 4, year: 1900, event_title: '八国联军侵华', description: "义和团运动与八国联军侵华，签订《辛丑条约》。" },
+  { historical_event_id: 5, year: 1905, event_title: '废除科举制度', description: '清政府宣布废除延续1300多年的科举制度。' },
+  { historical_event_id: 6, year: 1910, event_title: '白话文运动', description: '1910年代起，胡适、鲁迅等推动白话文取代文言文。' },
+  { historical_event_id: 7, year: 1911, event_title: '辛亥革命', description: '武昌起义爆发，标志着辛亥革命的开始。' },
+  { historical_event_id: 8, year: 1912, event_title: '中华民国成立', description: '孙中山在南京就任临时大总统。' },
+  { historical_event_id: 9, year: 1915, event_title: '新文化运动', description: "倡导'民主'与'科学'，反对旧文化。" },
+  { historical_event_id: 10, year: 1919, event_title: '五四运动', description: '因巴黎和会外交失败爆发的爱国运动。' },
+  { historical_event_id: 11, year: 1921, event_title: '中国共产党成立', description: '在上海召开第一次全国代表大会。' },
+  { historical_event_id: 12, year: 1926, event_title: '北伐战争', description: '1926-1928年：国民革命军开始北伐。' },
+  { historical_event_id: 13, year: 1931, event_title: '九一八事变', description: '日本关东军发动九一八事变，开始侵占东北。' },
+  { historical_event_id: 14, year: 1932, event_title: '一二八事变', description: '日本海军陆战队进攻上海闸北。' },
+  { historical_event_id: 15, year: 1934, event_title: '红军长征', description: '中国工农红军开始长征，进行战略转移。' },
+  { historical_event_id: 16, year: 1937, event_title: '七七事变', description: '卢沟桥事变爆发，日本全面侵华开始。' },
+  { historical_event_id: 17, year: 1945, event_title: '抗日战争胜利', description: '日本宣布无条件投降，抗战取得完全胜利。' },
+  { historical_event_id: 18, year: 1949, event_title: '新中国成立', description: '毛泽东宣布中华人民共和国中央人民政府成立。' },
+  { historical_event_id: 19, year: 1950, event_title: '土地改革与抗美援朝', description: '废除封建土地所有制。志愿军赴朝鲜作战。' },
+  { historical_event_id: 20, year: 1953, event_title: '社会主义改造', description: '开始对农业、手工业和资本主义工商业进行改造。' },
+  { historical_event_id: 22, year: 1914, event_title: '第一次世界大战', description: '1914-1918年：第一次世界大战爆发。' },
+  { historical_event_id: 23, year: 1917, event_title: '俄国十月革命', description: '俄国爆发十月革命。' },
+  { historical_event_id: 24, year: 1939, event_title: '第二次世界大战', description: '1939-1945年：第二次世界大战全面爆发。' },
+  { historical_event_id: 25, year: 1947, event_title: '冷战格局形成', description: '美苏对立加剧，两极格局形成。' }
+];
+

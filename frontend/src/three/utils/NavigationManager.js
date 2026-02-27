@@ -161,23 +161,24 @@ export class NavigationManager {
   }
 
   /**
-   * 鼠标移动事件
+   * 鼠标移动事件 - 处理视角旋转
    */
   onMouseMove(event) {
-    if (this.currentMode === this.modes.FREE_ROAM && this.freeRoam.isRotating) {
-      // 计算鼠标移动距离
+    // 只有在按住鼠标左键时才旋转视角
+    if (this.freeRoam.isRotating) {
       const deltaX = event.clientX - this.freeRoam.lastMouseX;
       const deltaY = event.clientY - this.freeRoam.lastMouseY;
 
-      // 更新相机旋转
+      // 使用欧拉角进行旋转
       this.freeRoam.euler.setFromQuaternion(this.camera.quaternion);
       this.freeRoam.euler.y -= deltaX * this.freeRoam.lookSpeed;
       this.freeRoam.euler.x -= deltaY * this.freeRoam.lookSpeed;
-      this.freeRoam.euler.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.freeRoam.euler.x));
-
+      
+      // 限制上下视角
+      this.freeRoam.euler.x = Math.max(-Math.PI / 2.5, Math.min(Math.PI / 2.5, this.freeRoam.euler.x));
+      
       this.camera.quaternion.setFromEuler(this.freeRoam.euler);
 
-      // 更新最后鼠标位置
       this.freeRoam.lastMouseX = event.clientX;
       this.freeRoam.lastMouseY = event.clientY;
     }

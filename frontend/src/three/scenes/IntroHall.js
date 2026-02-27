@@ -19,7 +19,7 @@ import { HallScene } from './HallScene.js';
 
 export class IntroHall extends HallScene {
   constructor(sceneManager, config = {}) {
-    // 序厅配置（S形布局，参考详细设计文档）
+    // 序厅配置 - 按照设计文档：24m × 20m
     const introConfig = {
       name: 'intro',
       displayName: '序厅',
@@ -28,28 +28,35 @@ export class IntroHall extends HallScene {
       length: 20,
       height: 10,
       backgroundColor: 0x2a1f1a,
-      wallColor: 0xf5f5f5, // 米白色
-      floorColor: 0x3d2817, // 深棕色
-      ceilingColor: 0xffffff, // 白色
+      wallColor: 0xf5f5f5,
+      floorColor: 0x3d2817,
+      ceilingColor: 0xffffff,
       enableIntroAnimation: true,
       introDuration: 2.0,
-      cameraPosition: { x: 0, y: 2, z: 10 }, // 左侧入口位置
-      cameraTarget: { x: 6.3, y: 1.5, z: 10 }, // 看向黄宾虹简介区域
+      cameraPosition: { x: -10, y: 2, z: 0 }, // 左侧入口进入
+      cameraTarget: { x: 0, y: 2, z: 0 }, // 看向展厅中央
       ...config
     };
 
     super(sceneManager, introConfig);
 
-    // 序厅特定配置（简化版本，只保留3个隔断墙）
+    // 序厅配置 - 4道隔断墙形成S形路线 + 装饰柱
     this.introConfig = {
-      // 隔断墙配置（3道，分散在不同位置）
       walls: [
-        // 隔断墙1：左侧（纵向）
-        { x: -7, z: 0, width: 0.3, height: 8, depth: 12 },
-        // 隔断墙2：中间偏后（横向）
-        { x: 0, z: -5, width: 12, height: 8, depth: 0.3 },
-        // 隔断墙3：右侧（纵向）
-        { x: 7, z: 0, width: 0.3, height: 8, depth: 12 }
+        // 第1道隔断墙 - 引导向上
+        { x: -2, z: -3, width: 14, height: 8, depth: 0.2 },
+        // 第2道隔断墙 - 引导向右
+        { x: -8, z: 3, width: 0.2, height: 8, depth: 14 },
+        // 第3道隔断墙 - 引导向上
+        { x: 2, z: 8, width: 14, height: 8, depth: 0.2 },
+        // 第4道隔断墙 - 引导向右（出口）
+        { x: 8, z: 3, width: 0.2, height: 8, depth: 14 }
+      ],
+      // 装饰柱位置（3根）
+      columns: [
+        { x: -6, z: -6, radius: 0.3, height: 7 },
+        { x: 0, z: -6, radius: 0.3, height: 7 },
+        { x: 6, z: -6, radius: 0.3, height: 7 }
       ]
     };
   }
@@ -93,7 +100,7 @@ export class IntroHall extends HallScene {
   async createHallStructure() {
     await super.createHallStructure();
 
-    // 创建序厅特定的建筑元素（只保留隔断墙）
+    // 创建隔断墙
     await this.createIntroWalls();
   }
 
@@ -104,27 +111,25 @@ export class IntroHall extends HallScene {
     const { sceneManager, introConfig } = this;
     const { scene } = sceneManager;
 
-    // 墙面材质（简化设置）
+    // 隔断墙材质 - 米白色
     const wallMaterial = new THREE.MeshStandardMaterial({
-      color: 0xf5f5f5, // 米白色
-      roughness: 0.9,
-      metalness: 0.1
+      color: 0xf5f5f5,
+      roughness: 0.8,
+      metalness: 0.1,
+      side: THREE.FrontSide,
+      depthWrite: true,
+      depthTest: true
     });
-    this.materials.introWall = wallMaterial;
 
     // 创建隔断墙
-    console.log('Creating intro walls, count:', introConfig.walls.length);
-    introConfig.walls.forEach((wallConfig, index) => {
-      console.log(`Creating wall ${index}:`, wallConfig);
+    introConfig.walls.forEach((wallConfig) => {
       const wallGeometry = new THREE.BoxGeometry(wallConfig.width, wallConfig.height, wallConfig.depth);
       const wall = new THREE.Mesh(wallGeometry, wallMaterial);
       wall.position.set(wallConfig.x, wallConfig.height / 2, wallConfig.z);
-
       wall.receiveShadow = true;
       wall.castShadow = true;
-
       scene.add(wall);
-      this.objects.push({ name: `introWall_${index}`, object: wall });
+      this.objects.push({ name: `introWall`, object: wall });
     });
   }
 
@@ -314,75 +319,110 @@ export class IntroHall extends HallScene {
   }
 
   /**
-   * 创建展品（序厅没有传统画作，只有介绍面板）
+   * 创建展品（信息面板）- 按照设计文档的S形路线
    */
   async createArtworks() {
-    // 序厅没有画作，只有介绍面板和导览信息
-    console.log('Intro hall has no traditional artworks, only panels');
+    // 区域1：黄宾虹简介 - 中央展示区
+    this.createInfoPanel(
+      new THREE.Vector3(0, 2.5, -3),
+      '黄宾虹（1865-1955）',
+      '中国近现代山水画大师\n与齐白石并称"北齐南黄"\n\n独创"五笔七墨"理论\n奠定中国画理论体系',
+      { width: 5, height: 3, color: 0xfaf0e6 }
+    );
+    
+    // 区域2：艺术成就 - 左侧
+    this.createInfoPanel(
+      new THREE.Vector3(-8, 2.5, 0),
+      '艺术成就',
+      '• 创作作品5000余幅\n• 书法理论著作《画学编》\n• 中国画理论体系奠基人\n• 获"人民艺术家"称号',
+      { width: 4.5, height: 3, rotation: { y: Math.PI / 2 }, color: 0xfaf0e6 }
+    );
+    
+    // 区域3：展览导览 - 右侧（互动屏）
+    this.createInfoPanel(
+      new THREE.Vector3(8, 2.5, 0),
+      '展览导览',
+      '• 早期：疏淡清逸（1865-1930）\n• 盛期：浑厚华滋（1930-1948）\n• 晚期：黑密厚重（1948-1955）\n• 尾厅：艺术成就',
+      { width: 4.5, height: 3, rotation: { y: -Math.PI / 2 }, color: 0xfaf0e6 }
+    );
+    
+    // 区域4：参观提示 - 后方
+    this.createInfoPanel(
+      new THREE.Vector3(2, 2.5, 8),
+      '参观须知',
+      '• 请保持安静\n• 禁止使用闪光灯\n• 请勿触摸展品\n• 建议游览时间：60分钟',
+      { width: 3.5, height: 2.5, rotation: { y: Math.PI }, color: 0xfaf0e6 }
+    );
+    
+    // 区域5：早期展厅入口 - 右侧出口处
+    this.createEntranceMarker('early', '早期展厅', '疏淡清逸 - 白宾虹时期');
+    
+    // 创建装饰柱
+    this.createColumns();
   }
 
   /**
    * 创建序厅介绍面板
    */
   async createInfoPanels() {
-    const { sceneManager } = this;
-    const { scene } = sceneManager;
-
-    // 黄宾虹简介面板（区域1 - 中央展示区，SVG中心：80,130）
-    const introPanel = this.createInfoPanel(
-      new THREE.Vector3(4.42, 1.5, 8.57),
-      '黄宾虹',
-      '（1865-1955）\n中国近现代山水画大师\n\n"黑宾虹"开创\n五笔七墨理论\n\n山水画一代宗师',
+    // 隔断墙位置：z=-5（横向）, x=-10, x=10（纵向）
+    // 主墙体位置：x=±12, z=±10
+    
+    // 黃宾虹简介面板 - 在隔断墙2上（z=-5，正对入口）
+    this.createInfoPanel(
+      new THREE.Vector3(0, 2.5, -4.8),
+      '黃宾虹',
+      '（1865-1955）中国近现代山水画大师',
       {
-        width: 4,
-        height: 2.5,
+        width: 6,
+        height: 3,
         rotation: { x: 0, y: 0, z: 0 },
         color: 0xfaf0e6
       }
     );
 
-    // 艺术成就面板（区域2 - 隔断墙1后左侧，SVG中心：150,70）
-    const achievementsPanel = this.createInfoPanel(
-      new THREE.Vector3(8.84, 1.5, 4.29),
+    // 艺术成就面板 - 在隔断墙1上（x=-10，左侧纵向）
+    this.createInfoPanel(
+      new THREE.Vector3(-9.8, 2.5, 0),
       '艺术成就',
-      '创作作品5000余幅\n\n书法理论著作\n《画学编》\n\n中国画理论体系\n奠基者',
+      '创作作品5000余幅\n书法理论著作《画学编》\n中国画理论体系奠基者',
       {
-        width: 3,
-        height: 2,
-        rotation: { x: 0, y: 0.5, z: 0 },
+        width: 4,
+        height: 2.5,
+        rotation: { x: 0, y: Math.PI / 2, z: 0 },
         color: 0xfaf0e6
       }
     );
 
-    // 展览导览面板（区域3 - 隔断墙2后右侧，SVG中心：215,220）
-    const guidePanel = this.createInfoPanel(
-      new THREE.Vector3(12.84, 1.5, 15),
+    // 展览导览面板 - 在隔断墙3上（x=10，右侧纵向）
+    this.createInfoPanel(
+      new THREE.Vector3(9.8, 2.5, 0),
       '展览导览',
-      '序厅：展览入口\n\n早期展厅：疏淡清逸\n\n盛期展厅：浑厚华滋\n\n晚期展厅：黑密厚重\n\n尾厅：艺术成就',
+      '早期：疏淡清逸\n盛期：浑厚华滋\n晚期：黑密厚重\n尾厅：艺术成就',
       {
-        width: 3,
-        height: 2,
-        rotation: { x: 0, y: -0.5, z: 0 },
+        width: 4,
+        height: 2.5,
+        rotation: { x: 0, y: -Math.PI / 2, z: 0 },
         color: 0xfaf0e6
       }
     );
 
-    // 参观提示面板（区域4 - 隔断墙3后左侧，SVG中心：280,130）
-    const tipsPanel = this.createInfoPanel(
-      new THREE.Vector3(17.05, 1.5, 8.57),
+    // 参观提示面板 - 主前墙上（z=9.8）
+    this.createInfoPanel(
+      new THREE.Vector3(5, 2.5, 9.8),
       '参观提示',
-      '请保持安静\n\n禁止使用闪光灯\n\n请勿触摸展品\n\n建议游览时间：60分钟',
+      '请保持安静\n禁止使用闪光灯\n请勿触摸展品',
       {
         width: 3,
         height: 2,
-        rotation: { x: 0, y: 0.5, z: 0 },
+        rotation: { x: 0, y: Math.PI, z: 0 },
         color: 0xfaf0e6
       }
     );
   }
 
   /**
-   * 创建序厅灯光
+   * 创建序厅灯光 - 按照设计文档的5个区域照明
    */
   async createLights() {
     const { sceneManager } = this;
@@ -393,45 +433,74 @@ export class IntroHall extends HallScene {
       return;
     }
 
-    // 环境光
+    // 环境光 - 整体照明
     lightManager.createLight('ambient', {
       preset: 'ambient',
-      color: 0xffffff,
-      intensity: 0.5
+      color: 0xfff8e7,
+      intensity: 0.6
     });
 
-    // 主光源（顶部）
+    // 主光源（顶部）- 均匀覆盖整个序厅
     lightManager.createLight('mainLight', {
       preset: 'mainLight',
       position: { x: 0, y: 9, z: 0 },
+      intensity: 0.8,
       castShadow: true
     });
 
-    // 补光（左侧）
-    lightManager.createLight('fillLightLeft', {
-      type: 'directional',
-      color: 0xffd700,
-      intensity: 0.3,
-      position: { x: -8, y: 6, z: 0 }
+    // 聚光灯1：照亮黃宾虹简介区（中央）
+    lightManager.createLight('spotIntro', {
+      type: 'spot',
+      color: 0xffffff,
+      intensity: 1.2,
+      position: { x: 0, y: 8, z: -3 },
+      target: { x: 0, y: 2, z: -3 },
+      angle: Math.PI / 4,
+      penumbra: 0.3
     });
 
-    // 补光（右侧）
-    lightManager.createLight('fillLightRight', {
-      type: 'directional',
-      color: 0xffd700,
-      intensity: 0.3,
-      position: { x: 8, y: 6, z: 0 }
+    // 聚光灯2：照亮艺术成就区（左侧）
+    lightManager.createLight('spotAchievement', {
+      type: 'spot',
+      color: 0xffffff,
+      intensity: 1.0,
+      position: { x: -8, y: 8, z: 0 },
+      target: { x: -8, y: 2, z: 0 },
+      angle: Math.PI / 4,
+      penumbra: 0.3
     });
 
-    // 聚光灯照亮入口
-    lightManager.createLight('entranceSpotlight', {
+    // 聚光灯3：照亮展览导览区（右侧）
+    lightManager.createLight('spotGuide', {
+      type: 'spot',
+      color: 0xffffff,
+      intensity: 1.0,
+      position: { x: 8, y: 8, z: 0 },
+      target: { x: 8, y: 2, z: 0 },
+      angle: Math.PI / 4,
+      penumbra: 0.3
+    });
+
+    // 聚光灯4：照亮参观提示区（后方）
+    lightManager.createLight('spotTips', {
+      type: 'spot',
+      color: 0xffffff,
+      intensity: 0.8,
+      position: { x: 2, y: 8, z: 8 },
+      target: { x: 2, y: 2, z: 8 },
+      angle: Math.PI / 4,
+      penumbra: 0.3
+    });
+
+    // 聚光灯5：照亮早期展厅入口（出口）
+    lightManager.createLight('spotExit', {
       type: 'spot',
       color: 0xffd700,
-      intensity: 1.5,
-      position: { x: 0, y: 8, z: 6 },
-      target: { x: 0, y: 0, z: 6 },
+      intensity: 1.0,
+      position: { x: 10, y: 8, z: 8 },
+      target: { x: 10, y: 2, z: 8 },
       angle: Math.PI / 4,
-      penumbra: 0.5
+      penumbra: 0.3
     });
   }
 

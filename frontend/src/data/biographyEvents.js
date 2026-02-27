@@ -1,0 +1,25 @@
+export const biographyEvents = [
+  { timeline_id: 1, year: 1865, event_title: '出生', detail: '1月27日（农历元旦子时）生于浙江金华铁岭头。原名黄质，字朴存' },
+  { timeline_id: 2, year: 1871, event_title: '早期引导', detail: '族中翰林黄崇惺（次蓀）道经金华，为其订课程，成为早期最重要的引路人。' },
+  { timeline_id: 3, year: 1876, event_title: '返乡应试', detail: '随父返安徽歙县应童子试，名列前茅，开始接触乡邦文物与收藏' },
+  { timeline_id: 4, year: 1886, event_title: '补廪生成家', detail: '返歙补廪生。娶洪四果为妻。问学于经学大家汪仲伊。' },
+  { timeline_id: 5, year: 1888, event_title: '游学南京扬州', detail: '游学南京、扬州。拜谒杨仁山、杨长年、甘元焕。' },
+  { timeline_id: 6, year: 1890, event_title: '制墨研艺', detail: "1890-1900年代：协助父亲以'易水法'制墨，深研墨性。" },
+  { timeline_id: 7, year: 1907, event_title: '人生转折', detail: "被迫出走上海。加入'国学保存会'。" },
+  { timeline_id: 8, year: 1909, event_title: '定居上海', detail: '正式定居上海，开始其职业编辑与著述生涯。' },
+  { timeline_id: 9, year: 1911, event_title: '编辑出版', detail: '《美术丛书》开始出版，系统整理中国古典艺术文献。' },
+  { timeline_id: 10, year: 1912, event_title: '发起组织贞社', detail: "发起组织'贞社'，以研究金石书画为目的。" },
+  { timeline_id: 11, year: 1915, event_title: '国际艺术交流', detail: '为古玩商史德匿编撰《中华名画》图录。' },
+  { timeline_id: 12, year: 1919, event_title: '主编《美术周刊》', detail: '任《时报》副刊主编，发表《古学复兴》等重要文章。' },
+  { timeline_id: 13, year: 1920, event_title: '任教与著述', detail: '陆续在各大艺术院校任教。出版《古画微》、《画学通论》等。' },
+  { timeline_id: 14, year: 1928, event_title: '改组神州国光社', detail: "参与改组'神州国光社'，任美术部主任。" },
+  { timeline_id: 15, year: 1934, event_title: '道咸画学理论', detail: "发表《致治以文说》，标志其'道咸画学中兴'理论成熟。" },
+  { timeline_id: 16, year: 1937, event_title: '鉴定故宫藏画', detail: '应北平古物陈列所之邀，赴京鉴定故宫藏画。滞留北平十年。' },
+  { timeline_id: 17, year: 1938, event_title: '黑宾虹时期', detail: "画风大变，进入'黑宾虹'时期，笔墨层层积染，达于'浑厚华滋'之境。" },
+  { timeline_id: 18, year: 1943, event_title: '八十寿辰画展', detail: '在北平举办八十寿辰画展，傅雷在上海为其筹办展览。' },
+  { timeline_id: 19, year: 1948, event_title: '南下任教杭州', detail: '应杭州国立艺术专科学校之聘，南下任教，定居杭州栖霞岭。' },
+  { timeline_id: 20, year: 1953, event_title: '人民艺术家称号', detail: "被授予'人民艺术家'称号。同年，任民族美术研究所所长。" },
+  { timeline_id: 21, year: 1954, event_title: '华东美协副主席', detail: '赴上海出席华东美术家协会成立大会，当选副主席。' },
+  { timeline_id: 22, year: 1955, event_title: '逝世', detail: '3月25日，在杭州病逝。遗嘱将藏品与作品万余件捐献给国家。' }
+];
+

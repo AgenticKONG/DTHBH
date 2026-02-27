@@ -6,6 +6,7 @@ const { defineConfig } = require('@vue/cli-service')
 
 module.exports = defineConfig({
   transpileDependencies: true,
+  lintOnSave: false,
   devServer: {
     port: 3000, // 前端端口（默认8080，可改）
     proxy: {

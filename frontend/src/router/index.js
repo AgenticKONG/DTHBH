@@ -11,6 +11,7 @@ import ThreeDExhibitionNew from '../views/ThreeDExhibitionNew.vue';
 import FriendsNetwork from '../views/FriendsNetwork.vue';
 import WorkDetail from '../views/WorkDetail.vue';
 import MapPage from '../views/MapPage.vue';
+import LifeRiverView from '../views/LifeRiverView.vue';
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     path: '/art-footprints',
     name: 'TimelinePage',
     component: TimelinePage
+  },
+  {
+    path: '/life-river',
+    name: 'LifeRiver',
+    component: LifeRiverView
   },
   {
     path: '/map',

@@ -322,11 +322,14 @@ export class HallScene {
     // 墙面厚度
     const wallThickness = 0.2;
 
-    // 墙面材质
+    // 墙面材质 - 确保不透明
     const wallMaterial = new THREE.MeshStandardMaterial({
       color: config.wallColor,
       roughness: 0.9,
-      metalness: 0.0
+      metalness: 0.0,
+      side: THREE.DoubleSide,
+      transparent: false,
+      depthWrite: true
     });
     this.materials.wall = wallMaterial;
 
@@ -505,61 +508,19 @@ export class HallScene {
 
     // 确保有位置
     const pos = panelConfig.position || new THREE.Vector3(0, 0, 0);
+    const panelWidth = panelConfig.width || 3;
+    const panelHeight = panelConfig.height || 2;
 
-    // 创建Canvas用于绘制文本
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const canvasWidth = 512;
-    const canvasHeight = 384;
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    // 创建面板几何体
+    const panelGeometry = new THREE.PlaneGeometry(panelWidth, panelHeight);
 
-    // 绘制面板背景
-    ctx.fillStyle = this.rgbToHex(panelConfig.color || 0xf5f5dc);
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-
-    // 绘制边框
-    ctx.strokeStyle = '#8b7355';
-    ctx.lineWidth = 8;
-    ctx.strokeRect(4, 4, canvasWidth - 8, canvasHeight - 8);
-
-    // 绘制标题
-    ctx.fillStyle = '#2a1f1a';
-    ctx.font = 'bold 28px "Microsoft YaHei", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-
-    // 处理多行标题
-    const titleLines = this.wrapText(ctx, panelTitle, canvasWidth - 40);
-    const titleY = 40;
-    titleLines.forEach((line, index) => {
-      ctx.fillText(line, canvasWidth / 2, titleY + index * 36);
-    });
-
-    // 绘制描述
-    ctx.fillStyle = '#4a3728';
-    ctx.font = '20px "Microsoft YaHei", sans-serif';
-
-    // 处理多行描述
-    const descLines = this.wrapText(ctx, panelDesc, canvasWidth - 40);
-    const descY = 150;
-    descLines.forEach((line, index) => {
-      ctx.fillText(line, canvasWidth / 2, descY + index * 30);
-    });
-
-    // 创建纹理
-    const texture = new THREE.CanvasTexture(canvas);
-    texture.colorSpace = THREE.SRGBColorSpace;
-    texture.minFilter = THREE.LinearFilter;
-    texture.magFilter = THREE.LinearFilter;
-
-    // 创建面板材质
-    const panelGeometry = new THREE.PlaneGeometry(panelConfig.width || 3, panelConfig.height || 2);
+    // 使用简单材质（支持纹理），单面显示
     const panelMaterial = new THREE.MeshStandardMaterial({
-      map: texture,
-      transparent: false,
+      color: panelConfig.color || 0xfaf0e6,
       roughness: 0.8,
-      metalness: 0.1
+      metalness: 0.1,
+      side: THREE.FrontSide, // 只显示正面
+      map: null
     });
 
     const panelMesh = new THREE.Mesh(panelGeometry, panelMaterial);
@@ -572,6 +533,15 @@ export class HallScene {
     scene.add(panelMesh);
     this.objects.push({ name: `panel_${Date.now()}`, object: panelMesh });
 
+    // 添加边框
+    const borderGeometry = new THREE.EdgesGeometry(panelGeometry);
+    const borderMaterial = new THREE.LineBasicMaterial({ color: 0xffd700, linewidth: 2 });
+    const border = new THREE.LineSegments(borderGeometry, borderMaterial);
+    panelMesh.add(border);
+
+    // 直接在面板上绘制文字（使用Canvas纹理）
+    this.drawPanelText(panelMesh, panelTitle, panelDesc, panelWidth, panelHeight);
+
     // 设置交互数据
     panelMesh.userData = {
       type: 'info-panel',
@@ -581,6 +551,111 @@ export class HallScene {
     };
 
     return panelMesh;
+  }
+
+  /**
+   * 在面板上绘制文字
+   */
+  drawPanelText(panelMesh, title, description, width, height) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const canvasWidth = 512;
+    const canvasHeight = 384;
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    // 背景
+    ctx.fillStyle = '#faf0e6';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+    // 边框
+    ctx.strokeStyle = '#8b7355';
+    ctx.lineWidth = 10;
+    ctx.strokeRect(5, 5, canvasWidth - 10, canvasHeight - 10);
+
+    // 标题
+    ctx.fillStyle = '#2a1f1a';
+    ctx.font = 'bold 36px "Microsoft YaHei", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillText(title || '', canvasWidth / 2, 30);
+
+    // 分割线
+    ctx.strokeStyle = '#c9a000';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(40, 90);
+    ctx.lineTo(canvasWidth - 40, 90);
+    ctx.stroke();
+
+    // 描述（多行）
+    if (description) {
+      ctx.font = '24px "Microsoft YaHei", sans-serif';
+      ctx.fillStyle = '#4a3728';
+      const lines = description.split('\n');
+      lines.forEach((line, index) => {
+        ctx.fillText(line, canvasWidth / 2, 110 + index * 35);
+      });
+    }
+
+    // 创建纹理
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    
+    // 更新面板材质
+    panelMesh.material.map = texture;
+    panelMesh.material.needsUpdate = true;
+  }
+
+  /**
+   * 创建文字 Sprite
+   */
+  createTextSprite(text, position, scale = 1, rotation = null) {
+    if (!text) return null;
+    
+    // 处理多行文本
+    const lines = text.split('\n');
+    const fontSize = 32;
+    const lineHeight = 40;
+    const canvasWidth = 512;
+    const canvasHeight = lines.length * lineHeight + 20;
+    
+    const canvas = document.createElement('canvas');
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    
+    const ctx = canvas.getContext('2d');
+    ctx.font = `bold ${fontSize}px "Microsoft YaHei", sans-serif`;
+    ctx.fillStyle = '#2a1f1a';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    
+    // 绘制每行文字
+    lines.forEach((line, index) => {
+      ctx.fillText(line, canvasWidth / 2, 10 + index * lineHeight);
+    });
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.minFilter = THREE.LinearFilter;
+    
+    const spriteMaterial = new THREE.SpriteMaterial({ 
+      map: texture,
+      depthTest: true,
+      depthWrite: true
+    });
+    const sprite = new THREE.Sprite(spriteMaterial);
+    sprite.position.copy(position);
+    sprite.scale.set(scale * 2, scale, 1);
+    
+    if (rotation) {
+      sprite.rotation.y = rotation.y || 0;
+    }
+    
+    this.sceneManager.scene.add(sprite);
+    this.objects.push({ name: `text_${Date.now()}`, object: sprite });
+    
+    return sprite;
   }
 
   /**

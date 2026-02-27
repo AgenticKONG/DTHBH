@@ -188,9 +188,6 @@
 
 <script>
 import gsap from 'gsap';
-import { biographyEvents } from '@/data/biographyEvents';
-import { historicalEvents } from '@/data/historicalEvents';
-import { statsTotalData } from '@/data/statsTotalData';
 
 export default {
   name: "TimelinePage",
@@ -207,23 +204,91 @@ export default {
       tooltipPos: { x: 0, y: 0 },
 
       // 动画相关状态
-      shiftProgress: 0,
+      shiftProgress: 0, 
       lastActiveYear: null,
 
-      // 原始数据（从外部模块导入）
-      biographyEvents,
-      historicalEvents,
-      statsTotalData,
+      // 生平事件数据
+      biographyEvents: [
+        { timeline_id: 1, year: 1865, event_title: "出生", detail: "1月27日（农历元旦子时）生于浙江金华铁岭头。原名黄质，字朴存" },
+        { timeline_id: 2, year: 1871, event_title: "早期引导", detail: "族中翰林黄崇惺（次蓀）道经金华，为其订课程，成为早期最重要的引路人。" },
+        { timeline_id: 3, year: 1876, event_title: "返乡应试", detail: "随父返安徽歙县应童子试，名列前茅，开始接触乡邦文物与收藏" },
+        { timeline_id: 4, year: 1886, event_title: "补廪生成家", detail: "返歙补廪生。娶洪四果为妻。问学于经学大家汪仲伊。" },
+        { timeline_id: 5, year: 1888, event_title: "游学南京扬州", detail: "游学南京、扬州。拜谒杨仁山、杨长年、甘元焕。" },
+        { timeline_id: 6, year: 1890, event_title: "制墨研艺", detail: "1890-1900年代：协助父亲以'易水法'制墨，深研墨性。" },
+        { timeline_id: 7, year: 1907, event_title: "人生转折", detail: "被迫出走上海。加入'国学保存会'。" },
+        { timeline_id: 8, year: 1909, event_title: "定居上海", detail: "正式定居上海，开始其职业编辑与著述生涯。" },
+        { timeline_id: 9, year: 1911, event_title: "编辑出版", detail: "《美术丛书》开始出版，系统整理中国古典艺术文献。" },
+        { timeline_id: 10, year: 1912, event_title: "发起组织贞社", detail: "发起组织'贞社'，以研究金石书画为目的。" },
+        { timeline_id: 11, year: 1915, event_title: "国际艺术交流", detail: "为古玩商史德匿编撰《中华名画》图录。" },
+        { timeline_id: 12, year: 1919, event_title: "主编《美术周刊》", detail: "任《时报》副刊主编，发表《古学复兴》等重要文章。" },
+        { timeline_id: 13, year: 1920, event_title: "任教与著述", detail: "陆续在各大艺术院校任教。出版《古画微》、《画学通论》等。" },
+        { timeline_id: 14, year: 1928, event_title: "改组神州国光社", detail: "参与改组'神州国光社'，任美术部主任。" },
+        { timeline_id: 15, year: 1934, event_title: "道咸画学理论", detail: "发表《致治以文说》，标志其'道咸画学中兴'理论成熟。" },
+        { timeline_id: 16, year: 1937, event_title: "鉴定故宫藏画", detail: "应北平古物陈列所之邀，赴京鉴定故宫藏画。滞留北平十年。" },
+        { timeline_id: 17, year: 1938, event_title: "黑宾虹时期", detail: "画风大变，进入'黑宾虹'时期，笔墨层层积染，达于'浑厚华滋'之境。" },
+        { timeline_id: 18, year: 1943, event_title: "八十寿辰画展", detail: "在北平举办八十寿辰画展，傅雷在上海为其筹办展览。" },
+        { timeline_id: 19, year: 1948, event_title: "南下任教杭州", detail: "应杭州国立艺术专科学校之聘，南下任教，定居杭州栖霞岭。" },
+        { timeline_id: 20, year: 1953, event_title: "人民艺术家称号", detail: "被授予'人民艺术家'称号。同年，任民族美术研究所所长。" },
+        { timeline_id: 21, year: 1954, event_title: "华东美协副主席", detail: "赴上海出席华东美术家协会成立大会，当选副主席。" },
+        { timeline_id: 22, year: 1955, event_title: "逝世", detail: "3月25日，在杭州病逝。遗嘱将藏品与作品万余件捐献给国家。" }
+      ],
 
-      // 按年份索引后的映射，加速查询
-      bioByYear: {},
-      hisByYear: {},
-      statsByYear: {},
+      // 历史事件数据
+      historicalEvents: [
+        { historical_event_id: 1, year: 1871, event_title: "洋务运动", description: "1870年代起，清廷推行'自强''求富'改革。" },
+        { historical_event_id: 2, year: 1894, event_title: "甲午战争", description: "1894-1895年：中日甲午战争，中国战败。" },
+        { historical_event_id: 3, year: 1898, event_title: "戊戌变法", description: "光绪帝推行戊戌变法，试图进行政治改革。" },
+        { historical_event_id: 4, year: 1900, event_title: "八国联军侵华", description: "义和团运动与八国联军侵华，签订《辛丑条约》。" },
+        { historical_event_id: 5, year: 1905, event_title: "废除科举制度", description: "清政府宣布废除延续1300多年的科举制度。" },
+        { historical_event_id: 6, year: 1910, event_title: "白话文运动", description: "1910年代起，胡适、鲁迅等推动白话文取代文言文。" },
+        { historical_event_id: 7, year: 1911, event_title: "辛亥革命", description: "武昌起义爆发，标志着辛亥革命的开始。" },
+        { historical_event_id: 8, year: 1912, event_title: "中华民国成立", description: "孙中山在南京就任临时大总统。" },
+        { historical_event_id: 9, year: 1915, event_title: "新文化运动", description: "倡导'民主'与'科学'，反对旧文化。" },
+        { historical_event_id: 10, year: 1919, event_title: "五四运动", description: "因巴黎和会外交失败爆发的爱国运动。" },
+        { historical_event_id: 11, year: 1921, event_title: "中国共产党成立", description: "在上海召开第一次全国代表大会。" },
+        { historical_event_id: 12, year: 1926, event_title: "北伐战争", description: "1926-1928年：国民革命军开始北伐。" },
+        { historical_event_id: 13, year: 1931, event_title: "九一八事变", description: "日本关东军发动九一八事变，开始侵占东北。" },
+        { historical_event_id: 14, year: 1932, event_title: "一二八事变", description: "日本海军陆战队进攻上海闸北。" },
+        { historical_event_id: 15, year: 1934, event_title: "红军长征", description: "中国工农红军开始长征，进行战略转移。" },
+        { historical_event_id: 16, year: 1937, event_title: "七七事变", description: "卢沟桥事变爆发，日本全面侵华开始。" },
+        { historical_event_id: 17, year: 1945, event_title: "抗日战争胜利", description: "日本宣布无条件投降，抗战取得完全胜利。" },
+        { historical_event_id: 18, year: 1949, event_title: "新中国成立", description: "毛泽东宣布中华人民共和国中央人民政府成立。" },
+        { historical_event_id: 19, year: 1950, event_title: "土地改革与抗美援朝", description: "废除封建土地所有制。志愿军赴朝鲜作战。" },
+        { historical_event_id: 20, year: 1953, event_title: "社会主义改造", description: "开始对农业、手工业和资本主义工商业进行改造。" },
+        { historical_event_id: 22, year: 1914, event_title: "第一次世界大战", description: "1914-1918年：第一次世界大战爆发。" },
+        { historical_event_id: 23, year: 1917, event_title: "俄国十月革命", description: "俄国爆发十月革命。" },
+        { historical_event_id: 24, year: 1939, event_title: "第二次世界大战", description: "1939-1945年：第二次世界大战全面爆发。" },
+        { historical_event_id: 25, year: 1947, event_title: "冷战格局形成", description: "美苏对立加剧，两极格局形成。" }
+      ],
 
+      // 统计数据
+      statsTotalData: [
+        { year: 1865, calligraphy: 0, paintings: 0 },
+        { year: 1870, calligraphy: 0, paintings: 1 },
+        { year: 1875, calligraphy: 0, paintings: 2 },
+        { year: 1880, calligraphy: 0, paintings: 3 },
+        { year: 1885, calligraphy: 1, paintings: 4 },
+        { year: 1890, calligraphy: 1, paintings: 5 },
+        { year: 1895, calligraphy: 2, paintings: 7 },
+        { year: 1900, calligraphy: 3, paintings: 9 },
+        { year: 1905, calligraphy: 3, paintings: 10 },
+        { year: 1907, calligraphy: 3, paintings: 5 },
+        { year: 1910, calligraphy: 4, paintings: 12 },
+        { year: 1915, calligraphy: 4, paintings: 15 },
+        { year: 1920, calligraphy: 5, paintings: 18 },
+        { year: 1925, calligraphy: 6, paintings: 22 },
+        { year: 1930, calligraphy: 7, paintings: 25 },
+        { year: 1933, calligraphy: 5, paintings: 15 },
+        { year: 1935, calligraphy: 8, paintings: 28 },
+        { year: 1940, calligraphy: 9, paintings: 32 },
+        { year: 1945, calligraphy: 10, paintings: 20 },
+        { year: 1950, calligraphy: 12, paintings: 35 },
+        { year: 1955, calligraphy: 15, paintings: 40 }
+      ],
       yearSpacing: 76,
       chartHeight: 120,
       chartTop: 0,
-      shiftOffset: 360
+      shiftOffset: 360,
     };
   },
 
@@ -246,8 +311,10 @@ export default {
     },
     interpolatedPoints() {
       const points = [];
+      const yearToData = {};
+      this.statsTotalData.forEach(item => yearToData[item.year] = item);
       this.yearNodes.forEach((node) => {
-        const yearData = this.statsByYear[node.year] || { calligraphy: 0, paintings: 0 };
+        const yearData = yearToData[node.year] || { calligraphy: 0, paintings: 0 };
         const x = this.yearBasePositions[node.year] + this.getYearOffset(node.year);
         const calculateY = (val) => {
           if (val === 0) return this.chartTop + this.chartHeight - 10;
@@ -279,30 +346,8 @@ export default {
   },
 
   methods: {
-    buildIndexes() {
-      const bioMap = {};
-      this.biographyEvents.forEach((e) => {
-        if (!bioMap[e.year]) bioMap[e.year] = [];
-        bioMap[e.year].push(e);
-      });
-
-      const hisMap = {};
-      this.historicalEvents.forEach((e) => {
-        if (!hisMap[e.year]) hisMap[e.year] = [];
-        hisMap[e.year].push(e);
-      });
-
-      const statsMap = {};
-      this.statsTotalData.forEach((item) => {
-        statsMap[item.year] = item;
-      });
-
-      this.bioByYear = bioMap;
-      this.hisByYear = hisMap;
-      this.statsByYear = statsMap;
-    },
     getYearWorkCount(year) {
-      const data = this.statsByYear[year];
+      const data = this.statsTotalData.find(d => d.year === year);
       return data ? (data.paintings + data.calligraphy) : 0;
     },
     hasResonance(year) { return this.hasBiographyEvents(year) && this.hasHistoricalEvents(year); },
@@ -353,21 +398,14 @@ export default {
     },
     hideYearTooltip() { this.showYearTooltipFlag = false; this.activeTooltipYear = null; },
     hasContent(year) { return this.hasBiographyEvents(year) || this.hasHistoricalEvents(year); },
-    hasBiographyEvents(year) {
-      const list = this.bioByYear[year];
-      return !!(list && list.length);
-    },
-    hasHistoricalEvents(year) {
-      const list = this.hisByYear[year];
-      return !!(list && list.length);
-    },
-    getBiographyEventsByYear(year) { return this.bioByYear[year] || []; },
-    getHistoricalEventsByYear(year) { return this.hisByYear[year] || []; },
-    getCalligraphyTotal(year) { return this.statsByYear[year]?.calligraphy || 0; },
-    getPaintingsTotal(year) { return this.statsByYear[year]?.paintings || 0; },
+    hasBiographyEvents(year) { return this.biographyEvents.some(e => e.year === year); },
+    hasHistoricalEvents(year) { return this.historicalEvents.some(e => e.year === year); },
+    getBiographyEventsByYear(year) { return this.biographyEvents.filter(e => e.year === year); },
+    getHistoricalEventsByYear(year) { return this.historicalEvents.filter(e => e.year === year); },
+    getCalligraphyTotal(year) { return this.statsTotalData.find(i => i.year === year)?.calligraphy || 0; },
+    getPaintingsTotal(year) { return this.statsTotalData.find(i => i.year === year)?.paintings || 0; },
   },
   mounted() {
-    this.buildIndexes();
     const container = this.$refs.timelineContainer;
     if (container) {
       this._wheelHandler = (e) => {
