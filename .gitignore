@@ -5,14 +5,16 @@ dist/
 
 # Python & Data (Only frontend processed data allowed)
 __pycache__/
+
+# Temporary Data & Scripts
 *.py
 data/*.csv
 !frontend/public/data/social_network_data.json
 !frontend/public/data/chronology_full.csv
 
-# Agents 
-Agents.md
-Gemini.md
+# Agents mds 
+AGENTS.md
+GEMINI.md
 
 # Temporary files
 .cursor/
