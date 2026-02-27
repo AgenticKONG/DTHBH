@@ -56,5 +56,5 @@
 
 1. 在 PostgreSQL 中创建数据库（若尚未创建）：
    createdb -U postgres huangbinhong_visualization
-   # 或 psql -U postgres -c "CREATE DATABASE huangbinhong_visualization;"
+   #或 psql -U postgres -c "CREATE DATABASE huangbinhong_visualization;"
    
