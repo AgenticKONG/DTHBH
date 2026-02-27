@@ -24,8 +24,8 @@
     <!-- 2. 雅致标签页 -->
     <div class="nav-tabs-ya" style="position: relative; z-index: 1000;">
       <div class="nav-tab-ya" :class="{ active: activeView === 'ink-sea-view' }" @click="activeView = 'ink-sea-view'">墨海星圖</div>
+      <div class="nav-tab-ya" :class="{ active: activeView === 'timeline-view' }" @click="switchTab('timeline-view')">知音對話</div>
       <div class="nav-tab-ya" :class="{ active: activeView === 'sichuan-view' }" @click="switchTab('sichuan-view')">蜀游長卷</div>
-      <div class="nav-tab-ya" :class="{ active: activeView === 'timeline-view' }" @click="switchTab('timeline-view')">好友時軸</div>
     </div>
 
     <div class="main-viewport">
@@ -118,6 +118,11 @@
         </div>
       </div>
 
+      <!-- 3. 好友時軸 (知音長線) -->
+      <div v-if="activeView === 'timeline-view'" class="view active">
+        <SoulmateRibbon />
+      </div>
+
       <div id="overview-view" class="view" :class="{ active: activeView === 'overview-view' }"></div>
     </div>
   </div>
@@ -126,10 +131,11 @@
 <script>
 import * as d3 from 'd3';
 import InkSeaMap from '../components/InkSeaMap.vue';
+import SoulmateRibbon from '../components/SoulmateRibbon.vue';
 
 export default {
   name: 'JiaoyouIndex',
-  components: { InkSeaMap },
+  components: { InkSeaMap, SoulmateRibbon },
   data() {
     return {
       activeView: 'ink-sea-view',
