@@ -33,8 +33,35 @@
       </div>
     </div>
 
-    <!-- 展厅导航 -->
-    <nav class="hall-navigation" v-if="isStarted" role="navigation" aria-label="展厅导航">
+    <!-- 导航工具条 -->
+    <nav class="navigation-toolbar" v-if="isStarted" role="navigation" aria-label="导航模式">
+      <div class="nav-mode-buttons">
+        <button
+          :class="['nav-mode-btn', { active: navigationMode === 'roam' }]"
+          @click="setNavigationMode('roam')"
+          :aria-pressed="navigationMode === 'roam'"
+        >
+          自主漫游
+        </button>
+        <button
+          :class="['nav-mode-btn', { active: navigationMode === 'composition' }]"
+          @click="setNavigationMode('composition')"
+          :aria-pressed="navigationMode === 'composition'"
+        >
+          展览构成
+        </button>
+        <button
+          :class="['nav-mode-btn', { active: navigationMode === 'scene' }]"
+          @click="setNavigationMode('scene')"
+          :aria-pressed="navigationMode === 'scene'"
+        >
+          三维场景
+        </button>
+      </div>
+    </nav>
+
+    <!-- 展厅导航（仅在自主漫游模式显示） -->
+    <nav class="hall-navigation" v-if="isStarted && navigationMode === 'roam'" role="navigation" aria-label="展厅导航">
       <div class="hall-tabs">
         <button
           v-for="hall in halls"
@@ -54,8 +81,8 @@
       <p class="hall-desc">{{ currentHall.description }}</p>
     </div>
 
-    <!-- 操作提示 -->
-    <div class="move-hint" v-if="isStarted" role="status" aria-live="polite">
+    <!-- 操作提示（仅自主漫游模式显示） -->
+    <div class="move-hint" v-if="isStarted && navigationMode === 'roam'" role="status" aria-live="polite">
       <span>WASD移动</span>
       <span>|</span>
       <span>鼠标拖动旋转</span>
@@ -73,6 +100,74 @@
         <p class="popup-year">{{ activeArtwork.year }}</p>
         <p class="popup-period">{{ activeArtwork.period }}</p>
         <p class="popup-description">{{ activeArtwork.description }}</p>
+      </div>
+    </div>
+
+    <!-- 展览构成模式（三栏布局） -->
+    <div class="exhibition-composition" v-if="isStarted && navigationMode === 'composition'">
+      <!-- 左侧栏：厅-区域-作品列表 -->
+      <div class="composition-left">
+        <div class="panel-header">作品列表</div>
+        <div class="hall-list">
+          <div
+            v-for="hall in halls"
+            :key="hall.id"
+            :class="['hall-item', { active: currentHallId === hall.id, hovered: hoveredItem?.type === 'hall' && hoveredItem?.id === hall.id }]"
+            @click="selectHall(hall.id)"
+            @mouseenter="hoverItem('hall', hall.id)"
+            @mouseleave="clearHover"
+          >
+            <span class="hall-name">{{ hall.name }}</span>
+            <span class="expand-icon">▼</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中间栏：展厅地图 -->
+      <div class="composition-center">
+        <div class="panel-header">展厅布局</div>
+        <div class="hall-map">
+          <div
+            v-for="hall in halls"
+            :key="hall.id"
+            :class="['map-hall', { active: currentHallId === hall.id, hovered: hoveredItem?.type === 'hall' && hoveredItem?.id === hall.id }]"
+            @click="locateToHall(hall.id)"
+            @mouseenter="hoverItem('hall', hall.id)"
+            @mouseleave="clearHover"
+          >
+            <span class="hall-label">{{ hall.name }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右侧栏：展厅/作品介绍 -->
+      <div class="composition-right">
+        <div class="panel-header">展厅介绍</div>
+        <div class="info-content" v-if="!hoveredItem || hoveredItem.type !== 'artwork'">
+          <h3 class="info-title">{{ currentHall?.name }}</h3>
+          <p class="info-subtitle">{{ currentHall?.description }}</p>
+        </div>
+        <div class="info-content artwork-info" v-else>
+          <div class="artwork-thumbnail"></div>
+          <h3 class="info-title">{{ getHoveredArtwork?.title }}</h3>
+          <p class="info-subtitle">{{ getHoveredArtwork?.year }}</p>
+          <p class="info-desc">{{ getHoveredArtwork?.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 三维场景模式 -->
+    <div class="scene-overview" v-if="isStarted && navigationMode === 'scene'">
+      <div class="scene-header">三维场景总览</div>
+      <div class="scene-container">
+        <div
+          v-for="hall in halls"
+          :key="hall.id"
+          :class="['scene-hall', { active: currentHallId === hall.id }]"
+          @click="locateToHall(hall.id)"
+        >
+          <span>{{ hall.name }}</span>
+        </div>
       </div>
     </div>
 
@@ -115,6 +210,13 @@ export default {
       currentHallId: 'intro',
       activeArtwork: null,
       showPerformance: process.env.NODE_ENV === 'development',
+
+      // 导航模式
+      navigationMode: 'roam', // roam | composition | scene
+
+      // 展览构成模式数据
+      hoveredItem: null, // { type: 'hall' | 'region' | 'artwork', id: string }
+      selectedItem: null,
 
       // 展厅类映射
       hallClasses: {
@@ -369,6 +471,59 @@ export default {
     },
 
     /**
+       * 设置导航模式
+       */
+    setNavigationMode(mode) {
+      this.navigationMode = mode;
+      
+      // 切换到漫游模式时，恢复导航控制
+      if (mode === 'roam' && this.navigationManager) {
+        this.navigationManager.enable();
+      } else if (this.navigationManager) {
+        this.navigationManager.disable();
+      }
+    },
+
+    /**
+       * 悬停项目（展厅/区域/作品）
+       */
+    hoverItem(type, id) {
+      this.hoveredItem = { type, id };
+    },
+
+    /**
+       * 清除悬停状态
+       */
+    clearHover() {
+      this.hoveredItem = null;
+    },
+
+    /**
+       * 选择展厅
+       */
+    selectHall(hallId) {
+      this.currentHallId = hallId;
+    },
+
+    /**
+       * 定位到展厅（切换到漫游模式并切换展厅）
+       */
+    locateToHall(hallId) {
+      this.setNavigationMode('roam');
+      this.switchHall(hallId);
+    },
+
+    /**
+       * 获取当前悬停的作品信息
+       */
+    getHoveredArtwork() {
+      if (this.hoveredItem?.type === 'artwork') {
+        return { title: '示例作品', year: '1920年', description: '这是作品描述' };
+      }
+      return null;
+    },
+
+    /**
        * 清理资源
        */
     cleanup() {
@@ -575,6 +730,268 @@ export default {
 
   .controls-hint strong {
     color: #ffd700;
+  }
+
+  /* 导航工具条 */
+  .navigation-toolbar {
+    position: fixed;
+    bottom: 80px;
+    left: 20px;
+    z-index: 1000;
+    background: rgba(42, 31, 26, 0.95);
+    border-radius: 10px;
+    padding: 8px 15px;
+    backdrop-filter: blur(10px);
+    border: 2px solid #ffd700;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-mode-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .nav-mode-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #f5f0e6;
+    background: #8b7355;
+    border: 2px solid #6b5744;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .nav-mode-btn:hover {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #ffd700;
+    color: #ffd700;
+  }
+
+  .nav-mode-btn.active {
+    background: linear-gradient(135deg, #ffd700, #c9a000);
+    border-color: #ffd700;
+    color: #2a1f1a;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+
+  /* 展览构成模式 */
+  .exhibition-composition {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    z-index: 900;
+    display: flex;
+    gap: 15px;
+    pointer-events: auto;
+  }
+
+  .composition-left {
+    width: 25%;
+    min-width: 250px;
+    max-width: 300px;
+    background: rgba(42, 31, 26, 0.95);
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .composition-center {
+    flex: 1;
+    background: rgba(232, 224, 208, 0.95);
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+  .composition-right {
+    width: 25%;
+    min-width: 250px;
+    max-width: 300px;
+    background: rgba(42, 31, 26, 0.95);
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .panel-header {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #8b7355;
+  }
+
+  .hall-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hall-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: #3d2f25;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+  }
+
+  .hall-item:hover,
+  .hall-item.hovered {
+    background: #4a3728;
+    border-color: #ffd700;
+  }
+
+  .hall-item.active {
+    background: #ffd700;
+    border-color: #ffd700;
+  }
+
+  .hall-item.active .hall-name {
+    color: #2a1f1a;
+    font-weight: bold;
+  }
+
+  .hall-item .hall-name {
+    color: #f5f0e6;
+    font-size: 14px;
+  }
+
+  .expand-icon {
+    color: #ffd700;
+    font-size: 10px;
+  }
+
+  .hall-map {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .map-hall {
+    background: #c9b896;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 3px solid transparent;
+  }
+
+  .map-hall:hover,
+  .map-hall.hovered {
+    background: #ffd700;
+    border-color: #c9a000;
+  }
+
+  .map-hall.active {
+    background: #ffd700;
+    border-color: #8b7355;
+  }
+
+  .hall-label {
+    color: #5c4033;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .info-content {
+    color: #f5f0e6;
+  }
+
+  .info-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 8px;
+  }
+
+  .info-subtitle {
+    font-size: 14px;
+    color: #c9b896;
+    margin-bottom: 15px;
+  }
+
+  .info-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #e8e0d0;
+  }
+
+  .artwork-thumbnail {
+    width: 100%;
+    height: 120px;
+    background: #5c4033;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  /* 三维场景模式 */
+  .scene-overview {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    z-index: 900;
+    background: rgba(26, 26, 26, 0.95);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .scene-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .scene-container {
+    width: 100%;
+    height: calc(100% - 50px);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+
+  .scene-hall {
+    background: rgba(139, 115, 85, 0.5);
+    border: 3px solid #8b7355;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .scene-hall:hover {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #ffd700;
+  }
+
+  .scene-hall.active {
+    background: rgba(255, 215, 0, 0.5);
+    border-color: #ffd700;
+  }
+
+  .scene-hall span {
+    color: #f5f0e6;
+    font-size: 16px;
+    font-weight: bold;
   }
 
   /* 展厅导航 */

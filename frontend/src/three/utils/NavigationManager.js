@@ -440,6 +440,28 @@ export class NavigationManager {
   }
 
   /**
+   * 启用导航控制
+   */
+  enable() {
+    this.freeRoam.moveForward = false;
+    this.freeRoam.moveBackward = false;
+    this.freeRoam.moveLeft = false;
+    this.freeRoam.moveRight = false;
+    console.log('Navigation enabled');
+  }
+
+  /**
+   * 禁用导航控制
+   */
+  disable() {
+    this.freeRoam.moveForward = false;
+    this.freeRoam.moveBackward = false;
+    this.freeRoam.moveLeft = false;
+    this.freeRoam.moveRight = false;
+    console.log('Navigation disabled');
+  }
+
+  /**
    * 启用/禁用碰撞检测
    */
   setCollisionEnabled(enabled) {
