@@ -10,11 +10,12 @@ __pycache__/
 *.py
 data/*.csv
 scripts/logs/
+frontend/public/data/*.csv
 !frontend/public/data/social_network_data.json
-!frontend/public/data/chronology_full.csv
 
 # Agents mds 
 AGENTS.md
+GEMINI.md
 
 # Temporary files
 .cursor/
