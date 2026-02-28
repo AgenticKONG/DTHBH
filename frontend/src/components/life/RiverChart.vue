@@ -1,67 +1,95 @@
 <template>
-  <div class="river-chart-container" ref="container">
-    <div class="river-axis-top">
-      <span class="era-indicator">時代底色：晚清 ➔ 民國 ➔ 新中國</span>
-    </div>
-    
-    <svg id="river-svg" :width="width" :height="height">
-      <defs>
-        <filter id="river-ink-spread" x="-10%" y="-10%" width="120%" height="120%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" />
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
+  <div class="river-scroll-wrapper" ref="scrollContainer" @wheel.prevent="onWheel">
+    <div class="river-chart-inner" :style="{ width: chartWidth + 'px' }">
+      <svg :width="chartWidth" :height="height" @mousemove="onMouseMove" @mouseleave="hoverYear = null">
+        <defs>
+          <filter id="ink-spread-heavy" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G" />
+            <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" />
+          </filter>
+        </defs>
 
-      <!-- 1. 時代背景層 (Contextual Layers) -->
-      <g class="context-layer">
-        <rect v-for="era in contextEvents" :key="era.name"
-          :x="timeScale(era.start)"
-          :y="0"
-          :width="Math.max(2, timeScale(era.end) - timeScale(era.start))"
-          :height="height - margin.bottom"
-          :fill="era.color"
-        />
-        <text v-for="era in contextEvents" :key="'label-'+era.name"
-          :x="timeScale(era.start) + 5"
-          :y="20"
-          class="era-text"
-        >{{ era.name }}</text>
-      </g>
+        <!-- 1. 上部：生平大河 (Life River - 70% Height) -->
+        <g class="life-river-group" :transform="`translate(0, ${margin.top})`" filter="url(#ink-spread-heavy)">
+          <path v-for="layer in stackedData" :key="layer.key"
+            :d="areaGenerator(layer)"
+            :fill="getThemeColor(layer.key)"
+            :fill-opacity="isThemeActive(layer.key) ? 0.8 : 0.15"
+            class="river-path"
+          />
+        </g>
 
-      <!-- 2. 大河堆疊層 (Stacked Area) -->
-      <g class="river-layers" filter="url(#river-ink-spread)">
-        <path v-for="layer in stackedData" :key="layer.key"
-          :d="areaGenerator(layer)"
-          :fill="getThemeColor(layer.key)"
-          :fill-opacity="selectedThemes.length === 0 || selectedThemes.includes(layer.key) ? 0.7 : 0.1"
-          class="river-path"
-        />
-      </g>
+        <!-- 2. 中部：年份主軸 (Central Year Axis) -->
+        <g class="central-axis-group" :transform="`translate(0, ${riverBottom})`">
+          <line :x1="margin.left" :y1="0" :x2="chartWidth - margin.right" :y2="0" stroke="#8b4513" stroke-width="1" opacity="0.4" />
+          <!-- 年份刻度 -->
+          <g v-for="year in years" :key="'tick-'+year" :transform="`translate(${timeScale(year)}, 0)`">
+            <line v-if="year % 5 === 0" y1="-5" y2="5" stroke="#8b4513" stroke-width="1" opacity="0.6" />
+            <text v-if="year % 10 === 0" y="20" class="axis-year-text">{{ year }}</text>
+          </g>
+        </g>
 
-      <!-- 3. 年份交互節點 -->
-      <g class="interaction-layer">
-        <circle v-for="b in buckets" :key="b.year"
-          :cx="timeScale(b.year)"
-          :cy="height - margin.bottom - 5"
-          :r="b.year === selectedYear ? 6 : 3"
-          :fill="b.year === selectedYear ? '#c0392b' : '#8b4513'"
-          :fill-opacity="b.year === selectedYear ? 1 : 0.3"
-          class="year-anchor"
-          @click="$emit('select-year', b.year)"
-        />
-      </g>
+        <!-- 3. 下部：環境大事 (Context Stream - 30% Height) -->
+        <g class="context-stream-group" :transform="`translate(0, ${riverBottom + 30})`">
+          <g v-for="(era, idx) in contextEvents" :key="era.name" class="context-item">
+            <rect
+              :x="timeScale(era.start)"
+              :y="getLaneY(idx)"
+              :width="Math.max(4, timeScale(era.end) - timeScale(era.start))"
+              :height="12"
+              :fill="era.color"
+              rx="2"
+              class="context-rect"
+            />
+            <text
+              :x="timeScale(era.start)"
+              :y="getLaneY(idx) - 4"
+              class="context-label"
+            >{{ era.name }}</text>
+          </g>
+        </g>
 
-      <!-- 4. 座標軸 -->
-      <g class="x-axis" :transform="`translate(0, ${height - margin.bottom})`" ref="xAxis"></g>
-    </svg>
+        <!-- 4. 交互：時間垂線 (Time Ruler) -->
+        <g v-if="hoverYear" class="time-ruler">
+          <line
+            :x1="timeScale(hoverYear)"
+            :y1="0"
+            :x2="timeScale(hoverYear)"
+            :y2="height"
+            stroke="#c0392b"
+            stroke-width="1"
+            stroke-dasharray="4,2"
+          />
+          <rect
+            :x="timeScale(hoverYear) - 25"
+            :y="riverBottom - 10"
+            width="50"
+            height="20"
+            rx="10"
+            fill="#c0392b"
+          />
+          <text
+            :x="timeScale(hoverYear)"
+            :y="riverBottom + 4"
+            text-anchor="middle"
+            fill="white"
+            class="ruler-text"
+          >{{ hoverYear }}</text>
+        </g>
 
-    <div class="river-legend">
-      <div class="legend-item" v-for="t in themes" :key="t.id" :style="{ opacity: selectedThemes.length && !selectedThemes.includes(t.id) ? 0.4 : 1 }">
-        <span class="dot" :style="{ backgroundColor: t.color }"></span>
-        {{ t.label }}
-      </div>
+        <!-- 5. 點擊錨點 -->
+        <g class="click-anchors">
+          <circle v-for="b in buckets" :key="'anchor-'+b.year"
+            :cx="timeScale(b.year)"
+            :cy="riverBottom"
+            :r="b.year === selectedYear ? 5 : 2"
+            :fill="b.year === selectedYear ? '#c0392b' : '#8b4513'"
+            style="cursor: pointer"
+            @click="$emit('select-year', b.year)"
+          />
+        </g>
+      </svg>
     </div>
   </div>
 </template>
@@ -80,36 +108,38 @@ export default {
   emits: ['select-year'],
   data() {
     return {
-      width: 1200,
-      height: 300,
-      margin: { top: 40, right: 50, bottom: 40, left: 50 },
-      contextEvents: [
-        { name: "鴉片戰爭", start: 1840, end: 1842, color: "rgba(0,0,0,0.05)" },
-        { name: "甲午戰爭", start: 1894, end: 1895, color: "rgba(192,57,43,0.05)" },
-        { name: "辛亥革命", start: 1911, end: 1912, color: "rgba(39,174,96,0.05)" },
-        { name: "抗日戰爭", start: 1937, end: 1945, color: "rgba(192,57,43,0.08)" },
-        { name: "新中國", start: 1949, end: 1955, color: "rgba(192,57,43,0.1)" }
-      ],
+      chartWidth: 3200, // 長卷寬度
+      height: 450,      // 增加高度以容納雙軸
+      margin: { top: 40, right: 100, bottom: 60, left: 100 },
+      hoverYear: null,
+      contextEvents: [],
       themes: CHRONOLOGY_THEMES
     };
   },
   computed: {
+    riverBottom() {
+      return this.height * 0.65; // 大河佔比 65%
+    },
+    years() {
+      return d3.range(1864, 1956);
+    },
     timeScale() {
       return d3.scaleLinear()
         .domain([1864, 1955])
-        .range([this.margin.left, this.width - this.margin.right]);
+        .range([this.margin.left, this.chartWidth - this.margin.right]);
     },
     yScale() {
-      // 使用平根縮放，優化早年起伏
+      // 僅限於上半部
       return d3.scaleSqrt()
-        .domain([0, d3.max(this.buckets, b => b.totalWeight) * 1.2 || 100])
-        .range([this.height - this.margin.bottom, this.margin.top]);
+        .domain([0, d3.max(this.buckets, b => b.totalWeight) * 1.1 || 100])
+        .range([this.riverBottom - this.margin.top, 0]);
     },
     stackedData() {
       if (!this.buckets.length) return [];
       const stack = d3.stack()
         .keys(this.themes.map(t => t.id))
-        .value((d, key) => (d.byTheme[key]?.totalWeight || 0));
+        .value((d, key) => (d.byTheme[key]?.totalWeight || 0))
+        .offset(d3.stackOffsetNone);
       return stack(this.buckets);
     },
     areaGenerator() {
@@ -120,106 +150,110 @@ export default {
         .curve(d3.curveMonotoneX);
     }
   },
-  mounted() {
-    this.handleResize();
-    window.addEventListener('resize', this.handleResize);
-    this.renderAxis();
-  },
-  updated() {
-    this.renderAxis();
+  async mounted() {
+    try {
+      const res = await fetch('/data/context_events.json');
+      this.contextEvents = await res.json();
+    } catch (e) {
+      console.error('Failed to load context events', e);
+    }
+    this.scrollToYear(this.selectedYear || 1864);
   },
   methods: {
-    handleResize() {
-      if (this.$refs.container) {
-        this.width = this.$refs.container.clientWidth;
-      }
-    },
     getThemeColor(id) {
       return this.themes.find(t => t.id === id)?.color || '#999';
     },
-    renderAxis() {
-      const axis = d3.axisBottom(this.timeScale)
-        .ticks(20)
-        .tickFormat(d => d + "年");
-      d3.select(this.$refs.xAxis).call(axis);
+    isThemeActive(id) {
+      return this.selectedThemes.length === 0 || this.selectedThemes.includes(id);
+    },
+    getLaneY(idx) {
+      return (idx % 3) * 25; // 簡單的泳道分配
+    },
+    onMouseMove(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const year = Math.round(this.timeScale.invert(x));
+      if (year >= 1864 && year <= 1955) {
+        this.hoverYear = year;
+      }
+    },
+    onWheel(e) {
+      // 橫向滾輪支持
+      if (this.$refs.scrollContainer) {
+        this.$refs.scrollContainer.scrollLeft += e.deltaY;
+      }
+    },
+    scrollToYear(year) {
+      if (this.$refs.scrollContainer) {
+        const x = this.timeScale(year) - window.innerWidth / 2;
+        this.$refs.scrollContainer.scrollTo({ left: x, behavior: 'smooth' });
+      }
+    }
+  },
+  watch: {
+    selectedYear(newYear) {
+      if (newYear) this.scrollToYear(newYear);
     }
   }
 };
 </script>
 
 <style scoped>
-.river-chart-container {
+.river-scroll-wrapper {
   width: 100%;
+  overflow-x: auto;
   background: #fdf5e6;
-  padding: 20px 0;
   border-bottom: 1px solid #d2b48c;
+  scrollbar-width: thin;
+  scrollbar-color: #8b4513 #fdf5e6;
 }
 
-.river-axis-top {
-  padding: 0 50px;
-  margin-bottom: 10px;
+.river-scroll-wrapper::-webkit-scrollbar {
+  height: 6px;
 }
 
-.era-indicator {
-  font-family: "KaiTi", serif;
-  font-size: 14px;
-  color: #8b4513;
-  opacity: 0.6;
+.river-scroll-wrapper::-webkit-scrollbar-thumb {
+  background: #d2b48c;
+  border-radius: 3px;
 }
 
-.era-text {
-  font-size: 10px;
+.river-chart-inner {
+  position: relative;
+  cursor: crosshair;
+}
+
+.axis-year-text {
+  font-family: "Georgia", serif;
+  font-size: 11px;
   fill: #8b4513;
-  opacity: 0.4;
-  writing-mode: vertical-rl;
+  text-anchor: middle;
 }
 
 .river-path {
-  transition: all 0.5s ease;
-  cursor: pointer;
+  transition: fill-opacity 0.4s ease;
 }
 
-.river-path:hover {
-  fill-opacity: 0.9;
-}
-
-.year-anchor {
-  cursor: pointer;
-  transition: r 0.3s;
-}
-
-.year-anchor:hover {
-  r: 8;
-}
-
-.river-legend {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 15px;
-  font-size: 12px;
-  color: #5c4033;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.context-rect {
+  opacity: 0.6;
   transition: opacity 0.3s;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.context-rect:hover {
+  opacity: 1;
 }
 
-.x-axis :deep(path), .x-axis :deep(line) {
-  stroke: #d2b48c;
+.context-label {
+  font-family: "KaiTi", serif;
+  font-size: 10px;
+  fill: #5c4033;
 }
 
-.x-axis :deep(text) {
-  fill: #8b4513;
-  font-family: "Georgia", serif;
+.ruler-text {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.time-ruler {
+  pointer-events: none;
 }
 </style>
