@@ -10,6 +10,7 @@ __pycache__/
 *.py
 data/*.csv
 data/*.json
+!data/Context_Supplement.json
 scripts/logs/
 frontend/public/data/*.csv
 !frontend/public/data/social_network_data.json
