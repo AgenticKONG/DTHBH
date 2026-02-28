@@ -24,7 +24,7 @@
 | PostgreSQL 端口 | **5433**（或 5432） | 与 `application.yml` 默认 5433 一致；若本机用 5432，请在 `.env` 中设置 `DB_PORT=5432` |
 | Redis 端口 | 6379 | 无密码时 `REDIS_PASSWORD` 留空 |
 | 后端服务端口 | 8081 | 前端 dev 会代理 `/api` 到此处 |
-| 前端 dev 端口 | 3000 | `npm run serve` |
+| 前端 dev 端口 | 3001 | `npm run serve` |
 
 ### 一、安装依赖
 
