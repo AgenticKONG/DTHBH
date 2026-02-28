@@ -9,6 +9,7 @@ __pycache__/
 # Temporary Data & Scripts
 *.py
 data/*.csv
+data/*.json
 scripts/logs/
 frontend/public/data/*.csv
 !frontend/public/data/social_network_data.json
