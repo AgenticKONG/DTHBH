@@ -1,5 +1,5 @@
 <template>
-  <div class="year-detail-outer custom-scrollbar">
+  <div class="year-detail-outer">
     <div v-if="!bucket" class="placeholder-ya">
       <i class="fas fa-feather-alt"></i>
       <p>請撥動上方時光大河，點擊年份以研讀賓翁生平</p>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="themes-scroll-container custom-scrollbar">
-        <div v-for="theme in themeGroups" :key="theme.id" class="theme-column">
+        <div v-for="theme in themeGroups" :key="theme.id" class="theme-column custom-scrollbar">
           <div class="theme-banner" :style="{ color: theme.color }">
             <span class="theme-label-vertical">{{ theme.label }}</span>
           </div>
@@ -92,11 +92,17 @@ export default {
 
 <style scoped>
 .year-detail-outer {
-  flex: 1;
+  height: 100%;
+  width: 100%;
   background: #fdf5e6;
   background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
-  border-top: 2px solid #d2b48c;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.detail-content {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -113,14 +119,13 @@ export default {
   opacity: 0.6;
 }
 
-.placeholder-ya i { font-size: 40px; margin-bottom: 15px; }
-
 .detail-header-ya {
+  flex-shrink: 0;
   padding: 15px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(244, 239, 223, 0.8);
+  background: rgba(244, 239, 223, 0.9);
   border-bottom: 1px solid #d2b48c;
 }
 
@@ -149,7 +154,6 @@ export default {
   background: #d2b48c;
   border-radius: 10px;
   position: relative;
-  transition: 0.3s;
 }
 
 .switch-ball {
@@ -166,23 +170,29 @@ export default {
 .switch-ball.right { left: 22px; background: #c0392b; }
 
 .themes-scroll-container {
+  flex: 1;
   display: flex;
   padding: 20px 40px;
   gap: 30px;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .theme-column {
-  min-width: 350px;
+  min-width: 380px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  overflow-y: auto;
+  padding-right: 15px;
 }
 
 .theme-banner {
+  flex-shrink: 0;
   border-left: 4px solid currentColor;
   padding-left: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .theme-label-vertical {
@@ -198,12 +208,9 @@ export default {
   padding: 15px;
   display: flex;
   gap: 15px;
-  transition: 0.3s;
   border-radius: 2px;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
 }
-
-.ya-event-card:hover { transform: translateY(-3px); box-shadow: 5px 5px 15px rgba(0,0,0,0.1); }
 
 .loc-stamp {
   writing-mode: vertical-rl;
