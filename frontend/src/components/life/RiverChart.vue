@@ -61,6 +61,29 @@
             stroke-width="1"
             stroke-dasharray="4,2"
           />
+          
+          <!-- Hover 數據窗口 (Tooltip) -->
+          <foreignObject
+            :x="timeScale(hoverYear) + 15"
+            :y="margin.top"
+            width="280"
+            height="200"
+            class="hover-tooltip-box"
+          >
+            <div class="ink-tooltip" v-if="hoverBucket">
+              <div class="tooltip-header">公元 {{ hoverYear }} 年</div>
+              <div class="tooltip-event-list">
+                <div v-for="ev in topEvents" :key="ev.id" class="tooltip-ev-item">
+                  <span class="ev-dot" :style="{ background: getThemeColor(ev.themes[0]) }"></span>
+                  <span class="ev-summary">{{ ev.summary }}</span>
+                </div>
+                <div v-if="hoverBucket.events.length > 3" class="more-count">
+                  ... 等共 {{ hoverBucket.events.length }} 條記錄
+                </div>
+              </div>
+            </div>
+          </foreignObject>
+
           <rect
             :x="timeScale(hoverYear) - 25"
             :y="riverBottom - 10"
@@ -117,6 +140,17 @@ export default {
     };
   },
   computed: {
+    hoverBucket() {
+      if (!this.hoverYear) return null;
+      return this.buckets.find(b => b.year === this.hoverYear) || null;
+    },
+    topEvents() {
+      if (!this.hoverBucket) return [];
+      // 按權重降序，取前 3 條
+      return [...this.hoverBucket.events]
+        .sort((a, b) => b.socialWeight - a.socialWeight)
+        .slice(0, 3);
+    },
     riverBottom() {
       return this.height * 0.65; // 大河佔比 65%
     },
@@ -255,5 +289,53 @@ export default {
 
 .time-ruler {
   pointer-events: none;
+}
+
+.ink-tooltip {
+  background: rgba(253, 245, 230, 0.95);
+  border: 1px solid #d2b48c;
+  padding: 10px;
+  box-shadow: 4px 4px 12px rgba(0,0,0,0.1);
+  font-family: "KaiTi", serif;
+  pointer-events: none;
+}
+
+.tooltip-header {
+  border-bottom: 1px solid #d2b48c;
+  padding-bottom: 5px;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #c0392b;
+}
+
+.tooltip-ev-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #3d2b1f;
+}
+
+.ev-dot {
+  min-width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.ev-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.more-count {
+  font-size: 11px;
+  color: #8b7d6b;
+  font-style: italic;
+  margin-top: 5px;
 }
 </style>
