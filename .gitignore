@@ -9,15 +9,16 @@ __pycache__/
 # Temporary Data & Scripts
 *.py
 data/*.csv
+scripts/logs/
 !frontend/public/data/social_network_data.json
 !frontend/public/data/chronology_full.csv
 
 # Agents mds 
 AGENTS.md
-GEMINI.md
 
 # Temporary files
 .cursor/
 .iflow/
 .claude/
 .gemini/
+docs/snapshots/
