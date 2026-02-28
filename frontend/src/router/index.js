@@ -46,8 +46,8 @@ const routes = [
   },
   {
     path: '/art-footprints',
-    name: 'TimelinePage',
-    component: TimelinePage
+    name: 'LifeRiver',
+    component: LifeRiverView
   },
   {
     path: '/life-river',

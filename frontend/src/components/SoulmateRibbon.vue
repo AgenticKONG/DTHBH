@@ -23,6 +23,11 @@
               <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="blur" />
               <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
             </filter>
+            <filter id="density-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+              <feComponentTransfer in="blur"><feFuncA type="linear" slope="0.7" /></feComponentTransfer>
+              <feMerge><feMergeNode /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
             <radialGradient id="seed-grad"><stop offset="0%" stop-color="#c0392b" /><stop offset="100%" stop-color="transparent" /></radialGradient>
           </defs>
         </svg>
@@ -32,7 +37,7 @@
             <div class="card-sidebar-right">
               <div class="sidebar-identity"><div class="sender-name">{{ getSenderName(selectedEvent) }}</div></div>
               <div class="sidebar-meta">
-                <div class="sidebar-tag">{{ selectedEvent.topic }}</div>
+                <div class="sidebar-tag">{{ getAutoTopic(selectedEvent) }}</div>
                 <div class="sidebar-info">{{ selectedEvent.date }}</div>
               </div>
               <div v-if="selectedEvent.details" class="sidebar-action-btn" @click="showDeepArchive = true">研讀原文</div>
@@ -55,7 +60,7 @@
         <transition name="ya-fade">
           <div v-if="showDeepArchive && selectedEvent" class="deep-archive-overlay" @click.self="showDeepArchive = false">
             <div class="archive-scroll-paper">
-              <div class="paper-header">史料原文：{{ selectedEvent.topic }}</div>
+              <div class="paper-header">史料原文：{{ getAutoTopic(selectedEvent) }}</div>
               <div class="paper-body custom-scrollbar">{{ selectedEvent.details }}</div>
               <div class="paper-footer">
                 <span v-if="selectedEvent.Artifact_Refs">【文獻出處】{{ selectedEvent.Artifact_Refs }}</span>
@@ -69,8 +74,10 @@
 
     <div class="ribbon-legend-ya">
       <div class="legend-unit"><i class="seed-dot-big"></i> 宿命初識</div>
+      <div class="legend-unit"><i class="dna-weave-sample"></i> 同城聚會</div>
+      <div class="legend-unit"><i class="string-resonance-multi-leg"></i> 情感磁吸</div>
       <div class="legend-unit"><i class="line-hbh"></i> 黃賓虹 (焦墨)</div>
-      <div class="legend-unit"><i class="line-friend"></i> 知音 (石青)</div>
+      <div class="legend-unit"><i class="line-friend-leg"></i> 知音 (石青)</div>
       <div class="legend-unit"><i class="farewell-node"></i> 物理終點</div>
       <div class="legend-unit" v-if="selectedFriend==='傅雷'"><i class="echo-dot-sample"></i> 跨時空回響</div>
     </div>
@@ -95,7 +102,7 @@ export default {
       clusterIdx: 0,
       tooltipPos: { x: 0, y: 0 },
       canvasWidth: 6000,
-      margin: { top: 150, right: 350, bottom: 100, left: 150 }
+      margin: { top: 150, right: 450, bottom: 100, left: 150 }
     };
   },
   async mounted() {
@@ -131,11 +138,21 @@ export default {
     },
     getSenderName(ev) {
       if (ev.is_echo) return "跨時空回響";
-      const friendList = this.allData[this.selectedFriend];
-      const livingOnly = friendList.filter(d => !d.is_echo);
-      if (ev.norm_date === livingOnly[0].norm_date) return "宿命相逢";
-      if (ev.norm_date === "1955.03.25") return "終成永訣";
+      if (ev.is_start) return "宿命相逢";
+      if (ev.is_final) return "終成永訣";
       return (ev.hbh_loc === ev.friend_loc && !ev.is_letter) ? "莫逆相契" : "錦書遙寄";
+    },
+    getAutoTopic(ev) {
+      if (ev.is_final) return "終成永訣";
+      // 優先使用數據自帶的 Topic，除非它是默認值
+      if (ev.topic && ev.topic !== "藝術交流") return ev.topic;
+      
+      const t = (ev.summary + (ev.details || "")).toLowerCase();
+      if (anyIn(t, ["二十年前", "往事", "曾記", "回憶"])) return "回憶往事";
+      if (anyIn(t, ["米", "匯", "三仟", "萬元", "濟", "窘"])) return "生活冷暖";
+      if (t.includes("展")) return "籌辦畫展";
+      if (anyIn(t, ["知言", "答客問", "神髓", "筆墨"])) return "靈魂共鳴";
+      return "藝術交流";
     },
     prevInCluster() {
       this.clusterIdx = (this.clusterIdx - 1 + this.currentCluster.length) % this.currentCluster.length;
@@ -146,106 +163,105 @@ export default {
       this.selectedEvent = this.currentCluster[this.clusterIdx];
     },
     drawRibbon() {
-      const friendData = this.allData[this.selectedFriend];
-      if (!friendData || !friendData.length) return;
+      const friendDataRaw = this.allData[this.selectedFriend];
+      if (!friendDataRaw || !friendDataRaw.length) return;
       const container = this.$refs.scrollContainer;
       if (!container) return;
 
       const parseDate = d3.timeParse("%Y.%m.%d");
       const deathDate = parseDate("1955.03.25");
-      const livingOnly = friendData.filter(d => !d.is_echo);
-      
-      const startDate = parseDate(livingOnly[0].norm_date);
-      const endDate = deathDate; // 軸嚴格截斷
-      
-      const timeScale = d3.scaleTime().domain([startDate, endDate]).range([this.margin.left, this.canvasWidth - this.margin.right]);
+      const sortedData = [...friendDataRaw].filter(d => parseDate(d.norm_date)).sort((a, b) => parseDate(a.norm_date) - parseDate(b.norm_date));
+      const livingOnly = sortedData.filter(d => !d.is_echo);
+      const echoEvents = sortedData.filter(d => d.is_echo);
+
+      const startDate = new Date(parseDate(livingOnly[0].norm_date).getFullYear(), 0, 1);
+      const timeScale = d3.scaleTime().domain([startDate, deathDate]).range([this.margin.left, this.canvasWidth - this.margin.right]);
       const h = container.clientHeight, centerY = h / 2 - 20, baseOffset = 95; 
       const svg = d3.select('#ribbon-svg').attr('width', this.canvasWidth).attr('height', h);
       svg.selectAll('*').remove();
 
-      // 時期背景
-      this.dynamicEras = [];
-      const eraColors = { "歙縣": "rgba(244, 224, 224, 0.2)", "上海": "rgba(244, 239, 223, 0.3)", "北平": "rgba(230, 230, 230, 0.3)", "杭州": "rgba(224, 244, 224, 0.3)" };
-      this.hbhHistory.forEach((hbh, i) => {
-        const next = this.hbhHistory[i+1]; if(!next) return;
-        const s = parseDate(hbh.date), e = parseDate(next.date);
-        const x = timeScale(Math.max(s, startDate)), w = timeScale(Math.min(e, endDate)) - x;
-        if(w > 0) this.dynamicEras.push({ name: hbh.loc + '時期', x, w, color: eraColors[hbh.loc] || "rgba(0,0,0,0.02)" });
-      });
-
-      // 聚類與節點定位
+      // 聚類邏輯
       const clusters = [];
       livingOnly.forEach(ev => {
         const x = timeScale(parseDate(ev.norm_date));
-        if (clusters.length > 0 && Math.abs(x - clusters[clusters.length-1].x) < 45) { clusters[clusters.length-1].events.push(ev); }
-        else { clusters.push({ x, events: [ev], isSameLoc: (ev.hbh_loc === ev.friend_loc && !ev.is_letter), is_echo: false }); }
+        const isMeeting = (ev.hbh_loc === ev.friend_loc) && !ev.is_letter;
+        if (clusters.length > 0 && Math.abs(x - clusters[clusters.length-1].x) < 45) { 
+          const c = clusters[clusters.length-1];
+          c.events.push(ev);
+          if(ev.is_final) c.is_final = true;
+          if(isMeeting) c.isSameLoc = true;
+          if(ev.is_letter) c.hasLetter = true;
+        } else {
+          clusters.push({ x, events: [ev], isSameLoc: isMeeting, hasLetter: ev.is_letter, is_echo: false, is_start: ev.is_start, is_final: ev.is_final });
+        }
       });
-      // 回響點：終點右側平鋪
-      const deathX = timeScale(deathDate);
-      friendData.filter(d => d.is_echo).forEach((ev, idx) => {
-        clusters.push({ x: deathX + 100 + (idx * 60), events: [ev], isSameLoc: false, is_echo: true });
+      const dX = timeScale(deathDate);
+      echoEvents.forEach((ev, idx) => {
+        clusters.push({ x: dX + 120 + (idx * 100), events: [ev], isSameLoc: false, is_echo: true });
       });
 
-      // 構建路徑 (1:1成對推入，杜絕亂跳)
-      const timelineNodes = [];
+      // 構建路徑節點 (實現 終點匯聚)
+      const hbhPoints = [], friendPoints = [];
+      let lastOffset = 5, lineStarted = false;
+
+      const pathAnchors = [];
       this.hbhHistory.forEach(node => {
         const d = parseDate(node.date);
-        if (d >= startDate && d <= deathDate) timelineNodes.push({ ...node, date: node.date, is_hbh_move: true });
+        if (d >= startDate && d <= deathDate) pathAnchors.push({ x: timeScale(d), type: 'move', loc: node.loc });
       });
-      clusters.filter(c => !c.is_echo).forEach(c => timelineNodes.push({ ...c, date: c.events[0].norm_date, is_hbh_move: false }));
-      timelineNodes.sort((a, b) => parseDate(a.date) - parseDate(b.date) || (a.is_hbh_move ? -1 : 1));
+      clusters.filter(c => !c.is_echo).forEach(c => pathAnchors.push({ x: c.x, type: 'event', cluster: c }));
+      pathAnchors.sort((a, b) => a.x - b.x);
 
-      const hbhPoints = [], friendPoints = [];
-      let currentHBHLoc = "上海", lastPhysicalOffset = 5, lineStarted = false;
+      pathAnchors.forEach((anc, i) => {
+        const x = anc.x;
+        let isSameLoc = false, isLetter = false, count = 1, isFinalNode = false;
+        if (anc.type === 'event') {
+          isSameLoc = anc.cluster.isSameLoc; isLetter = anc.cluster.hasLetter; 
+          count = anc.cluster.events.length; isFinalNode = anc.cluster.is_final;
+          lineStarted = true;
+        } else {
+          isSameLoc = (anc.loc === (livingOnly[0].friend_loc || "上海"));
+        }
 
-      timelineNodes.forEach((node, i) => {
-        const x = timeScale(parseDate(node.date));
-        if (node.is_hbh_move) currentHBHLoc = node.loc;
-        if (parseDate(node.date) > deathDate) return;
-
-        let isSameLoc = false, isLetter = false, clusterSize = 1;
-        if (!node.is_hbh_move) {
-          isSameLoc = node.isSameLoc; isLetter = node.events.some(e => e.is_letter); clusterSize = node.events.length; lineStarted = true;
-        } else { isSameLoc = (node.loc === livingOnly[0].friend_loc); }
-        
-        const currentPhysicalOffset = isSameLoc ? 5 : baseOffset;
-        const visualOffset = (isLetter && !isSameLoc) ? Math.max(15, 45 - (clusterSize * 6)) : currentPhysicalOffset;
+        const off = isFinalNode ? 0 : (isSameLoc ? 5 : baseOffset);
+        const vOff = (isLetter && !isSameLoc) ? Math.max(15, 45 - (count * 6)) : off;
 
         if (lineStarted) {
-          const epsilon = 20;
+          const eps = 25;
           if (hbhPoints.length > 0 && x > hbhPoints[hbhPoints.length-1][0] + 1) {
-            hbhPoints.push([x - epsilon, centerY - lastPhysicalOffset]);
-            friendPoints.push([x - epsilon, centerY + lastPhysicalOffset]);
+            hbhPoints.push([x - eps, centerY - lastOffset]); friendPoints.push([x - eps, centerY + lastOffset]);
           }
-          // 觸發點：絕對對齊
-          hbhPoints.push([x, centerY - visualOffset]);
-          friendPoints.push([x, centerY + visualOffset]);
-          
-          if (i < timelineNodes.length - 1 && timeScale(parseDate(timelineNodes[i+1].date)) > x + 1) {
-            hbhPoints.push([x + 1, centerY - currentPhysicalOffset]);
-            friendPoints.push([x + 1, centerY + currentPhysicalOffset]);
-            hbhPoints.push([x + epsilon, centerY - currentPhysicalOffset]);
-            friendPoints.push([x + epsilon, centerY + currentPhysicalOffset]);
+          if (isSameLoc && anc.type === 'event' && !isFinalNode) {
+            const wPts = 6;
+            for(let j=0; j<=wPts; j++) {
+              const wx = x - 10 + (j/wPts)*20, ph = (j/wPts) * Math.PI * 2;
+              hbhPoints.push([wx, centerY + Math.sin(ph) * 12]); friendPoints.push([wx, centerY - Math.sin(ph) * 12]);
+            }
+          } else {
+            hbhPoints.push([x, centerY - vOff]); friendPoints.push([x, centerY + vOff]);
+          }
+          if (i < pathAnchors.length - 1 && pathAnchors[i+1].x > x + 1) {
+            hbhPoints.push([x + 1, centerY - off]); friendPoints.push([x + 1, centerY + off]);
+            hbhPoints.push([x + eps, centerY - off]); friendPoints.push([x + eps, centerY + off]);
           }
         }
-        lastPhysicalOffset = currentPhysicalOffset;
+        lastOffset = off;
       });
 
       const lineGen = d3.line().curve(d3.curveMonotoneX);
       svg.append('path').datum(hbhPoints).attr('d', lineGen).attr('fill', 'none').attr('stroke', '#1a1a1a').attr('stroke-width', 4).attr('filter', 'url(#ink-spread-ya)');
       svg.append('path').datum(friendPoints).attr('d', lineGen).attr('fill', 'none').attr('stroke', '#4a5a6a').attr('stroke-width', 3).attr('filter', 'url(#ink-spread-ya)');
 
-      // 繪製節點
       const nodes = svg.append('g').selectAll('g').data(clusters).enter().append('g')
         .on('click', (e, d) => {
           this.currentCluster = d.events; this.clusterIdx = 0; this.selectedEvent = d.events[0];
-          let targetX = d.x + 40; if (d.x > this.canvasWidth - 550) targetX = d.x - 540;
-          this.tooltipPos = { x: targetX, y: 30 };
+          let tx = d.x + 40; if (d.x > this.canvasWidth - 550) tx = d.x - 540;
+          this.tooltipPos = { x: tx, y: 30 };
           svg.selectAll('.echo-arc').remove();
           if (d.is_echo) {
-            const resNode = clusters.find(c => c.events.some(ev => ev.date.includes("1943.09")));
-            const tx = resNode ? resNode.x : this.margin.left + 1500;
-            svg.append('path').attr('class', 'echo-arc').attr('d', `M${d.x},${centerY} C${d.x},${centerY-250} ${tx},${centerY-250} ${tx},${centerY}`).attr('fill', 'none').attr('stroke', 'rgba(192, 57, 43, 0.4)').attr('stroke-width', 3).attr('stroke-dasharray', '8,4');
+            const res = clusters.find(c => c.events.some(ev => ev.date && ev.date.includes("1943.09")));
+            const tX = res ? res.x : this.margin.left + 1500;
+            svg.append('path').attr('class', 'echo-arc').attr('d', `M${d.x},${centerY} C${d.x},40 ${tX},40 ${tX},${centerY}`).attr('fill', 'none').attr('stroke', 'rgba(192, 57, 43, 0.4)').attr('stroke-width', 3).attr('stroke-dasharray', '8,4');
           }
         });
 
@@ -255,21 +271,23 @@ export default {
           group.append('circle').attr('cx', d.x).attr('cy', centerY).attr('r', 15).attr('fill', 'rgba(255,255,255,0.01)').style('cursor','pointer');
           group.append('circle').attr('cx', d.x).attr('cy', centerY).attr('r', 12).attr('fill', 'none').attr('stroke', 'rgba(192, 57, 43, 0.5)').attr('stroke-dasharray', '2,2');
           group.append('text').attr('x', d.x).attr('y', centerY + 4).attr('text-anchor', 'middle').attr('fill', 'rgba(192, 57, 43, 0.7)').attr('font-size', '10px').text('回');
-        } else if (d.events[0].norm_date === livingOnly[0].norm_date) {
+        } else if (d.is_final) {
+          group.append('rect').attr('x', d.x - 14).attr('y', centerY - 14).attr('width', 28).attr('height', 28).attr('fill', 'none').attr('stroke', '#c0392b').attr('stroke-dasharray', '2,2').attr('stroke-width', 2);
+          group.append('text').attr('x', d.x).attr('y', centerY + 6).attr('text-anchor', 'middle').attr('fill', '#c0392b').attr('font-size', '12px').attr('font-weight', 'bold').text('终');
+        } else if (d.is_start) {
           group.append('circle').attr('cx', d.x).attr('cy', centerY).attr('r', 30).attr('fill', 'url(#seed-grad)').attr('opacity', 0.7);
           group.append('circle').attr('cx', d.x).attr('cy', centerY).attr('r', 8).attr('fill', '#c0392b');
           group.append('text').attr('x', d.x).attr('y', centerY + 5).attr('text-anchor', 'middle').attr('fill', '#fff').attr('font-size', '14px').attr('font-weight', 'bold').text(count);
-        } else if (d.events[0].norm_date === "1955.03.25") {
-          group.append('rect').attr('x', d.x - 14).attr('y', centerY - 14).attr('width', 28).attr('height', 28).attr('fill', 'none').attr('stroke', '#c0392b').attr('stroke-dasharray', '2,2').attr('stroke-width', 2);
-          group.append('text').attr('x', d.x).attr('y', centerY + 6).attr('text-anchor', 'middle').attr('fill', '#c0392b').attr('font-size', '12px').attr('font-weight', 'bold').text('终');
         } else if (d.isSameLoc) {
           group.append('rect').attr('x', d.x - size/2).attr('y', centerY - size/2).attr('width', size).attr('height', size).attr('fill', '#c0392b').attr('rx', 2);
           group.append('text').attr('x', d.x).attr('y', centerY + 6).attr('text-anchor', 'middle').attr('fill', '#fff').attr('font-size', '14px').attr('font-weight', 'bold').text(count);
         } else {
-          const magneticDip = Math.max(15, 45 - (count * 6)), y1 = centerY - magneticDip, y2 = centerY + magneticDip;
-          svg.append('line').attr('x1', d.x).attr('y1', y1).attr('x2', d.x).attr('y2', y2).attr('stroke', 'rgba(166, 123, 91, 0.4)').attr('stroke-dasharray', '2,2');
-          group.append('circle').attr('cx', d.x).attr('cy', y1).attr('r', 6).attr('fill', '#1a1a1a');
-          group.append('circle').attr('cx', d.x).attr('cy', y2).attr('r', 6).attr('fill', '#4a5a6a');
+          if(d.hasLetter) {
+            const mDip = Math.max(15, 45 - (count * 6)), y1 = centerY - mDip, y2 = centerY + mDip;
+            svg.append('line').attr('x1', d.x).attr('y1', y1).attr('x2', d.x).attr('y2', y2).attr('stroke', 'rgba(166, 123, 91, 0.4)').attr('stroke-dasharray', '2,2');
+            group.append('circle').attr('cx', d.x).attr('cy', y1).attr('r', 6).attr('fill', '#1a1a1a');
+            group.append('circle').attr('cx', d.x).attr('cy', y2).attr('r', 6).attr('fill', '#4a5a6a');
+          }
           group.append('circle').attr('cx', d.x).attr('cy', centerY).attr('r', size/2 - 2).attr('fill', '#fdf5e6').attr('stroke', '#c0392b').attr('stroke-width', 2);
           group.append('text').attr('x', d.x).attr('y', centerY + 5).attr('text-anchor', 'middle').attr('fill', '#c0392b').attr('font-size', '13px').attr('font-weight', 'bold').text(count);
         }
@@ -280,6 +298,7 @@ export default {
     }
   }
 };
+function anyIn(text, list) { return list.some(x => text.includes(x)); }
 </script>
 
 <style scoped>
@@ -295,14 +314,12 @@ export default {
 .era-label-bg { position: absolute; bottom: 80px; left: 20px; writing-mode: vertical-rl; font-size: 24px; color: #8b7d6b; opacity: 0.15; letter-spacing: 10px; font-weight: bold; }
 .social-vertical-card { position: absolute; width: 500px; height: 260px; background: #fff; border: 1.5px solid #d2b48c; box-shadow: 20px 20px 60px rgba(0,0,0,0.15); display: flex; flex-direction: row-reverse; padding: 20px 15px; background-image: url('https://www.transparenttextures.com/patterns/parchment.png'); border-radius: 4px; z-index: 100; top: 30px !important; }
 .card-sidebar-right { writing-mode: vertical-rl; border-left: 2px solid #c0392b; padding-left: 10px; margin-left: 10px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; position: relative; }
-.sidebar-name { font-size: 22px; font-weight: bold; color: #1a1a1a; line-height: 1.2; letter-spacing: 2px; margin-bottom: 5px; }
 .sidebar-action-btn { margin-top: auto; color: #fff; background: #c0392b; cursor: pointer; font-size: 12px; font-weight: bold; padding: 10px 2px; text-align: center; border-radius: 2px; writing-mode: vertical-rl; letter-spacing: 2px; transition: 0.3s; z-index: 120; }
-.sidebar-action-btn:hover { background: #a93226; transform: scale(1.05); }
 .card-content-left { flex: 1; height: 100%; overflow-x: auto; overflow-y: hidden; }
 .narrative-text { writing-mode: vertical-rl; height: 100%; padding-right: 8px; display: flex; flex-direction: column; }
 .text-quote { font-size: 16px; font-weight: bold; color: #1a1a1a; line-height: 1.5; margin-bottom: 10px; }
 .text-summary { font-size: 13px; line-height: 1.8; color: #3d2b1f; text-align: justify; }
-.card-pag-dock { position: absolute; bottom: 15px; left: 15px; display: column; align-items: center; gap: 3px; background: rgba(244, 239, 223, 0.95); padding: 5px 3px; border: 1px solid #d2b48c; border-radius: 10px; z-index: 110; }
+.card-pag-dock { position: absolute; bottom: 15px; left: 15px; display: flex; flex-direction: column; align-items: center; gap: 3px; background: rgba(244, 239, 223, 0.95); padding: 5px 3px; border: 1px solid #d2b48c; border-radius: 10px; z-index: 110; }
 .pag-arrow { cursor: pointer; color: #c0392b; font-size: 10px; }
 .pag-label { display: flex; flex-direction: column; align-items: center; font-family: Georgia; line-height: 1; }
 .close-card-btn { position: absolute; top: 8px; left: 8px; cursor: pointer; font-size: 20px; color: #8b7d6b; z-index: 120; }
@@ -315,14 +332,14 @@ export default {
 .ribbon-legend-ya { height: 50px; display: flex; justify-content: center; gap: 40px; align-items: center; background: #f4efdf; border-top: 1px solid #d2b48c; font-size: 14px; color: #4a2e18; }
 .legend-unit { display: flex; align-items: center; gap: 8px; }
 .seed-dot-big { width: 16px; height: 16px; background: #c0392b; border-radius: 50%; box-shadow: 0 0 12px #c0392b; }
+.dna-weave-sample { width: 20px; height: 20px; background: #c0392b; border-radius: 2px; }
+.string-resonance-multi-leg { width: 24px; height: 10px; border-left: 2px dashed rgba(166, 123, 91, 0.8); border-right: 2px dashed rgba(166, 123, 91, 0.8); margin: 0 5px; }
 .line-hbh { width: 30px; height: 4px; background: #1a1a1a; }
-.line-friend { width: 30px; height: 4px; background: #4a5a6a; }
+.line-friend-leg { width: 30px; height: 4px; background: #4a5a6a; }
 .farewell-node { width: 14px; height: 14px; border: 1.5px dashed #c0392b; position: relative; }
 .farewell-node::after { content: '终'; font-size: 8px; color: #c0392b; position: absolute; left: 1px; top: -1px; }
-.string-resonance-multi { width: 30px; height: 6px; border-top: 1px dashed #a67b5b; border-bottom: 1px dashed #a67b5b; opacity: 0.6; }
 .echo-dot-sample { width: 12px; height: 12px; border: 1.2px dashed #c0392b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 7px; color: #c0392b; }
 .echo-dot-sample::after { content: '回'; }
-.custom-scrollbar { scroll-behavior: smooth; }
 .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 8px; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #8b4513; border-radius: 10px; }
 .ya-fade-enter-active, .ya-fade-leave-active { transition: opacity 0.4s; }

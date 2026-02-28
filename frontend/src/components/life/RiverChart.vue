@@ -1,214 +1,225 @@
 <template>
-  <div class="river-chart" ref="container">
-    <svg v-if="points.length" :width="width" :height="height">
+  <div class="river-chart-container" ref="container">
+    <div class="river-axis-top">
+      <span class="era-indicator">時代底色：晚清 ➔ 民國 ➔ 新中國</span>
+    </div>
+    
+    <svg id="river-svg" :width="width" :height="height">
       <defs>
-        <linearGradient id="river-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#8e682f" stop-opacity="0.9" />
-          <stop offset="100%" stop-color="#8e682f" stop-opacity="0.1" />
-        </linearGradient>
+        <filter id="river-ink-spread" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="2" xChannelSelector="R" yChannelSelector="G" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+        </filter>
       </defs>
 
-      <!-- 面积填充 -->
-      <path
-        :d="areaPath"
-        fill="url(#river-grad)"
-        stroke="none"
-      />
+      <!-- 1. 時代背景層 (Contextual Layers) -->
+      <g class="context-layer">
+        <rect v-for="era in contextEvents" :key="era.name"
+          :x="timeScale(era.start)"
+          :y="0"
+          :width="Math.max(2, timeScale(era.end) - timeScale(era.start))"
+          :height="height - margin.bottom"
+          :fill="era.color"
+        />
+        <text v-for="era in contextEvents" :key="'label-'+era.name"
+          :x="timeScale(era.start) + 5"
+          :y="20"
+          class="era-text"
+        >{{ era.name }}</text>
+      </g>
 
-      <!-- 上边界线 -->
-      <path
-        :d="linePath"
-        fill="none"
-        stroke="#5a3f21"
-        stroke-width="2"
-      />
-
-      <!-- 年份节点 -->
-      <g v-for="p in points" :key="p.year">
-        <circle
-          :cx="p.x"
-          :cy="p.y"
-          r="4"
-          :fill="p.year === selectedYear ? '#c0392b' : '#fff'"
-          :stroke="p.year === selectedYear ? '#c0392b' : '#8e682f'"
-          stroke-width="1.5"
-          class="year-dot"
-          @mouseenter="hoverYear(p.year)"
-          @mouseleave="hoverYear(null)"
-          @click="selectYear(p.year)"
+      <!-- 2. 大河堆疊層 (Stacked Area) -->
+      <g class="river-layers" filter="url(#river-ink-spread)">
+        <path v-for="layer in stackedData" :key="layer.key"
+          :d="areaGenerator(layer)"
+          :fill="getThemeColor(layer.key)"
+          :fill-opacity="selectedThemes.length === 0 || selectedThemes.includes(layer.key) ? 0.7 : 0.1"
+          class="river-path"
         />
       </g>
+
+      <!-- 3. 年份交互節點 -->
+      <g class="interaction-layer">
+        <circle v-for="b in buckets" :key="b.year"
+          :cx="timeScale(b.year)"
+          :cy="height - margin.bottom - 5"
+          :r="b.year === selectedYear ? 6 : 3"
+          :fill="b.year === selectedYear ? '#c0392b' : '#8b4513'"
+          :fill-opacity="b.year === selectedYear ? 1 : 0.3"
+          class="year-anchor"
+          @click="$emit('select-year', b.year)"
+        />
+      </g>
+
+      <!-- 4. 座標軸 -->
+      <g class="x-axis" :transform="`translate(0, ${height - margin.bottom})`" ref="xAxis"></g>
     </svg>
 
-    <!-- hover 提示 -->
-    <div v-if="hoverInfo" class="tooltip" :style="{ left: hoverInfo.left + 'px', top: hoverInfo.top + 'px' }">
-      <div class="tooltip-year">{{ hoverInfo.year }} 年</div>
-      <div class="tooltip-line">事件数：{{ hoverInfo.count }}</div>
-      <div class="tooltip-line">权重：{{ hoverInfo.weight }}</div>
+    <div class="river-legend">
+      <div class="legend-item" v-for="t in themes" :key="t.id" :style="{ opacity: selectedThemes.length && !selectedThemes.includes(t.id) ? 0.4 : 1 }">
+        <span class="dot" :style="{ backgroundColor: t.color }"></span>
+        {{ t.label }}
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import * as d3 from 'd3';
+import { CHRONOLOGY_THEMES } from '@/config/chronologyThemes';
+
 export default {
   name: 'RiverChart',
   props: {
-    buckets: {
-      type: Array,
-      required: true
-    },
-    selectedThemes: {
-      type: Array,
-      default: () => []
-    },
-    selectedYear: {
-      type: Number,
-      default: null
-    }
+    buckets: Array,
+    selectedThemes: Array,
+    selectedYear: Number
   },
   emits: ['select-year'],
   data() {
     return {
-      width: 0,
-      height: 180,
-      points: [],
-      hoverInfo: null
+      width: 1200,
+      height: 300,
+      margin: { top: 40, right: 50, bottom: 40, left: 50 },
+      contextEvents: [
+        { name: "鴉片戰爭", start: 1840, end: 1842, color: "rgba(0,0,0,0.05)" },
+        { name: "甲午戰爭", start: 1894, end: 1895, color: "rgba(192,57,43,0.05)" },
+        { name: "辛亥革命", start: 1911, end: 1912, color: "rgba(39,174,96,0.05)" },
+        { name: "抗日戰爭", start: 1937, end: 1945, color: "rgba(192,57,43,0.08)" },
+        { name: "新中國", start: 1949, end: 1955, color: "rgba(192,57,43,0.1)" }
+      ],
+      themes: CHRONOLOGY_THEMES
     };
   },
   computed: {
-    linePath() {
-      if (!this.points.length) return '';
-      return this.points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+    timeScale() {
+      return d3.scaleLinear()
+        .domain([1864, 1955])
+        .range([this.margin.left, this.width - this.margin.right]);
     },
-    areaPath() {
-      if (!this.points.length) return '';
-      const top = this.points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-      const last = this.points[this.points.length - 1];
-      const first = this.points[0];
-      const bottom = `L ${last.x} ${this.height - 10} L ${first.x} ${this.height - 10} Z`;
-      return `${top} ${bottom}`;
-    }
-  },
-  watch: {
-    buckets: {
-      handler() {
-        this.recompute();
-      },
-      deep: true,
-      immediate: true
+    yScale() {
+      // 使用平根縮放，優化早年起伏
+      return d3.scaleSqrt()
+        .domain([0, d3.max(this.buckets, b => b.totalWeight) * 1.2 || 100])
+        .range([this.height - this.margin.bottom, this.margin.top]);
     },
-    selectedThemes() {
-      this.recompute();
+    stackedData() {
+      if (!this.buckets.length) return [];
+      const stack = d3.stack()
+        .keys(this.themes.map(t => t.id))
+        .value((d, key) => (d.byTheme[key]?.totalWeight || 0));
+      return stack(this.buckets);
+    },
+    areaGenerator() {
+      return d3.area()
+        .x(d => this.timeScale(d.data.year))
+        .y0(d => this.yScale(d[0]))
+        .y1(d => this.yScale(d[1]))
+        .curve(d3.curveMonotoneX);
     }
   },
   mounted() {
-    this.resize();
-    window.addEventListener('resize', this.resize);
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize);
+    this.renderAxis();
   },
-  beforeUnmount() {
-    window.removeEventListener('resize', this.resize);
+  updated() {
+    this.renderAxis();
   },
   methods: {
-    resize() {
-      const el = this.$refs.container;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      this.width = rect.width || 800;
-      this.recompute();
-    },
-    visibleWeight(bucket) {
-      if (!this.selectedThemes.length) return bucket.totalWeight || 0;
-      let sum = 0;
-      this.selectedThemes.forEach((id) => {
-        const t = bucket.byTheme[id];
-        if (t) sum += t.totalWeight || 0;
-      });
-      return sum || 0;
-    },
-    recompute() {
-      if (!this.width || !this.buckets.length) {
-        this.points = [];
-        return;
+    handleResize() {
+      if (this.$refs.container) {
+        this.width = this.$refs.container.clientWidth;
       }
-      const paddingX = 32;
-      const innerW = this.width - paddingX * 2;
-      const years = this.buckets.map((b) => b.year);
-      const minYear = Math.min(...years);
-      const maxYear = Math.max(...years);
-      const span = maxYear - minYear || 1;
-
-      const weights = this.buckets.map((b) => this.visibleWeight(b));
-      const maxWeight = Math.max(...weights, 1);
-
-      this.points = this.buckets.map((b) => {
-        const ratioX = (b.year - minYear) / span;
-        const w = this.visibleWeight(b);
-        const norm = Math.log(1 + w) / Math.log(1 + maxWeight);
-        const x = paddingX + ratioX * innerW;
-        const y = this.height - 10 - norm * (this.height - 40);
-        return { year: b.year, x, y };
-      });
     },
-    hoverYear(year) {
-      if (!year) {
-        this.hoverInfo = null;
-        return;
-      }
-      const bucket = this.buckets.find((b) => b.year === year);
-      const pt = this.points.find((p) => p.year === year);
-      if (!bucket || !pt) return;
-      const weight = this.visibleWeight(bucket);
-      const rect = this.$refs.container.getBoundingClientRect();
-      this.hoverInfo = {
-        year,
-        count: bucket.events.length,
-        weight,
-        left: pt.x - rect.left,
-        top: pt.y - rect.top - 50
-      };
+    getThemeColor(id) {
+      return this.themes.find(t => t.id === id)?.color || '#999';
     },
-    selectYear(year) {
-      this.$emit('select-year', year);
+    renderAxis() {
+      const axis = d3.axisBottom(this.timeScale)
+        .ticks(20)
+        .tickFormat(d => d + "年");
+      d3.select(this.$refs.xAxis).call(axis);
     }
   }
 };
 </script>
 
 <style scoped>
-.river-chart {
-  position: relative;
+.river-chart-container {
   width: 100%;
-  height: 200px;
+  background: #fdf5e6;
+  padding: 20px 0;
+  border-bottom: 1px solid #d2b48c;
 }
 
-svg {
-  display: block;
+.river-axis-top {
+  padding: 0 50px;
+  margin-bottom: 10px;
 }
 
-.year-dot {
+.era-indicator {
+  font-family: "KaiTi", serif;
+  font-size: 14px;
+  color: #8b4513;
+  opacity: 0.6;
+}
+
+.era-text {
+  font-size: 10px;
+  fill: #8b4513;
+  opacity: 0.4;
+  writing-mode: vertical-rl;
+}
+
+.river-path {
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 
-.tooltip {
-  position: absolute;
-  transform: translate(-50%, -100%);
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 6px;
-  padding: 6px 10px;
+.river-path:hover {
+  fill-opacity: 0.9;
+}
+
+.year-anchor {
+  cursor: pointer;
+  transition: r 0.3s;
+}
+
+.year-anchor:hover {
+  r: 8;
+}
+
+.river-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
   font-size: 12px;
-  color: #4a3a1f;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
-  pointer-events: none;
-  white-space: nowrap;
+  color: #5c4033;
 }
 
-.tooltip-year {
-  font-weight: 600;
-  margin-bottom: 2px;
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: opacity 0.3s;
 }
 
-.tooltip-line {
-  opacity: 0.8;
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.x-axis :deep(path), .x-axis :deep(line) {
+  stroke: #d2b48c;
+}
+
+.x-axis :deep(text) {
+  fill: #8b4513;
+  font-family: "Georgia", serif;
 }
 </style>
-

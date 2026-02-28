@@ -4,11 +4,6 @@
 
 import { CHRONOLOGY_THEMES } from '@/config/chronologyThemes';
 
-/**
- * 简单 CSV 解析器（假设首行为表头，逗号分隔，内容中如有逗号已在源文件中处理）
- * @param {string} text
- * @returns {Array<Object>}
- */
 export function parseCsv(text) {
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
   if (!lines.length) return [];
@@ -24,118 +19,94 @@ export function parseCsv(text) {
 
     for (let j = 0; j < line.length; j += 1) {
       const ch = line[j];
-      if (ch === '"') {
-        inQuotes = !inQuotes;
-      } else if (ch === ',' && !inQuotes) {
-        cols.push(current);
-        current = '';
-      } else {
-        current += ch;
-      }
+      if (ch === '"') { inQuotes = !inQuotes; } 
+      else if (ch === ',' && !inQuotes) { cols.push(current); current = ''; } 
+      else { current += ch; }
     }
     cols.push(current);
 
     const row = {};
-    headers.forEach((h, idx) => {
-      row[h] = (cols[idx] || '').trim();
-    });
+    headers.forEach((h, idx) => { row[h] = (cols[idx] || '').trim(); });
     rows.push(row);
   }
   return rows;
 }
 
-/**
- * 从字符串日期中提取年份
- * @param {string} raw
- * @returns {{ year: number, month: (number|null), day: (number|null) }}
- */
 export function parseDateToYMD(raw) {
   if (!raw) return { year: NaN, month: null, day: null };
   const parts = raw.split('.');
   const year = parseInt(parts[0], 10);
-  if (Number.isNaN(year)) {
-    return { year: NaN, month: null, day: null };
-  }
+  if (Number.isNaN(year)) return { year: NaN, month: null, day: null };
   const month = parts[1] && /^\d+$/.test(parts[1]) ? parseInt(parts[1], 10) : null;
   const day = parts[2] && /^\d+$/.test(parts[2]) ? parseInt(parts[2], 10) : null;
   return { year, month, day };
 }
 
 /**
- * 依据 Subject_Action / Summary_Text / Details_Evidence 打主题标签
- * @param {Object} ev
- * @returns {string[]}
+ * 依據專業關鍵詞優化打標邏輯
  */
 export function assignThemes(ev) {
   const themes = new Set();
   const action = (ev.action || '').toLowerCase();
   const text = `${ev.summary || ''} ${ev.details || ''}`.toLowerCase();
 
-  const includesAny = (target, keywords) =>
-    keywords.some((k) => target.includes(k));
+  const includesAny = (target, keywords) => keywords.some((k) => target.includes(k));
 
-  // 学业与科举
+  // 1. 學業與科舉 (Education)
   if (
-    includesAny(action, ['書信', '书信', '聘任', '應試', '应试']) ||
-    includesAny(text, ['童子試', '童子试', '府試', '府试', '院試', '院试', '書院', '书院', '講學', '讲学', '科舉', '科举'])
+    includesAny(action, ['聘任', '應試', '授課', '講學', '主講', '校長']) ||
+    includesAny(text, ['童子試', '府試', '院試', '書院', '入學', '留學', '科舉', '貢生', '教授'])
   ) {
     themes.add('education');
   }
 
-  // 行旅与山水
+  // 2. 行旅與山水 (Travel)
   if (
-    includesAny(action, ['紀游', '纪游', '位移']) ||
-    includesAny(text, ['遊', '游', '行旅', '登', '寫生', '写生', '山', '江', '湖'])
+    includesAny(action, ['紀游', '位移', '考察', '寫生']) ||
+    includesAny(text, ['游', '行旅', '登', '至', '抵', '山', '峽', '江', '湖', '名勝', '入蜀', '歸粵'])
   ) {
     themes.add('travel');
   }
 
-  // 师承与交游
+  // 3. 師承與交游 (Networking)
   if (
-    includesAny(text, ['從', '从', '問學', '问学', '為師', '为师', '門人', '门人', '弟子', '友人', '同學', '同学'])
+    includesAny(action, ['雅集', '書信', '函', '訪', '晤']) ||
+    includesAny(text, ['從', '問學', '友人', '同門', '同學', '致', '酬唱', '詩友', '結社', '知音'])
   ) {
     themes.add('teachers');
   }
 
-  // 创作与鉴藏
+  // 4. 創作與鑒藏 (Artistic Practice)
   if (
-    includesAny(text, ['作畫', '作画', '山水圖', '山水图', '刻印', '印譜', '印谱', '藏書', '藏画', '鑒定', '鉴定', '畫展', '画展'])
+    includesAny(action, ['展覽', '出版', '編纂']) ||
+    includesAny(text, ['畫', '墨', '印', '藏', '鑒', '鑒定', '出版', '國光', '神州', '變法', '黑密', '厚重', '簡筆', '題跋'])
   ) {
     themes.add('creation');
   }
 
-  // 时代与政局
+  // 5. 時代與政局 (History & Politics)
   if (
-    includesAny(text, ['戰爭', '战争', '革命', '起義', '起义', '太平軍', '甲午', '抗日', '政局', '官', '督學', '学政'])
+    includesAny(text, ['戰爭', '革命', '軍', '甲午', '抗日', '政局', '新中國', '太平', '清', '官', '職', '沒收', '亂', '局'])
   ) {
     themes.add('politics');
   }
 
-  // 家族与日常
+  // 6. 家族與日常 (Family & Daily)
   if (
-    includesAny(text, ['父', '母', '祖父', '祖母', '兄弟', '妻', '子女', '家道', '葬', '婚', '遷居', '迁居'])
+    includesAny(text, ['父', '母', '祖', '兄', '弟', '妻', '子', '女', '葬', '婚', '遷', '病', '壽', '生', '卒'])
   ) {
     themes.add('family');
   }
 
-  // 确保至少有一个主题，避免空集合
-  if (themes.size === 0) {
-    themes.add('family'); // 兜底归入日常/家族，可根据需要调整
-  }
+  // 兜底邏輯
+  if (themes.size === 0) themes.add('family');
 
-  // 只返回在 CHRONOLOGY_THEMES 中声明过的主题 id
   const allowed = new Set(CHRONOLOGY_THEMES.map((t) => t.id));
   return Array.from(themes).filter((id) => allowed.has(id));
 }
 
-/**
- * 构建年度聚合桶
- * @param {Array<Object>} events
- * @returns {Array<Object>}
- */
 export function buildYearBuckets(events) {
   const map = new Map();
-
   events.forEach((ev) => {
     if (!Number.isFinite(ev.year)) return;
     if (!map.has(ev.year)) {
@@ -161,7 +132,5 @@ export function buildYearBuckets(events) {
       bucket.byTheme[themeId].totalWeight += w;
     });
   });
-
   return Array.from(map.values()).sort((a, b) => a.year - b.year);
 }
-

@@ -1,16 +1,11 @@
 <template>
   <div class="life-river-wrapper">
-    <div class="header-spacer"></div>
-
-    <div class="title-bar">
-      <div class="title-main">黄宾虹生平大河</div>
-      <div class="title-sub">基于年谱数据的宏观时间叙事</div>
-    </div>
-
+    <!-- 移除 redundant title-bar，與全局 Navbar 對接 -->
     <div v-if="loading" class="loading-state">
-      正在载入年谱数据……
+      <div class="ink-loader"></div>
+      正在載入編年數據……
     </div>
-    <div v-else>
+    <div v-else class="river-main-content">
       <RiverChart
         :buckets="yearBuckets"
         :selected-themes="selectedThemes"
@@ -63,7 +58,8 @@ export default {
   },
   async mounted() {
     try {
-      const res = await fetch('/data/chronology_full.csv');
+      // 修正數據源為 Master CSV
+      const res = await fetch('/data/HBH_Full_Chronology_Master.csv');
       const text = await res.text();
       const rows = parseCsv(text);
       const events = rows.map((row) => {
@@ -92,14 +88,14 @@ export default {
 
       this.events = events;
       this.yearBuckets = buildYearBuckets(events);
+      console.log('Life River Buckets Built:', this.yearBuckets.length);
+      
       if (this.yearBuckets.length) {
-        this.selectedYear = this.yearBuckets[0].year;
+        this.selectedYear = this.yearBuckets[this.yearBuckets.length - 1].year;
       }
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to load chronology_full.csv', e);
-    } finally {
       this.loading = false;
+    } catch (e) {
+      console.error('CRITICAL: Failed to load or parse Master CSV', e);
     }
   },
   methods: {
@@ -112,40 +108,42 @@ export default {
 
 <style scoped>
 .life-river-wrapper {
-  width: 100%;
-  min-height: 100vh;
-  background-image: url('@/assets/images/timeline.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  padding: 0 40px 24px;
-  box-sizing: border-box;
-}
-
-.header-spacer {
-  height: 72px;
-}
-
-.title-bar {
-  margin-bottom: 12px;
-}
-
-.title-main {
-  font-size: 24px;
-  letter-spacing: 4px;
-  color: #3b2a18;
-}
-
-.title-sub {
-  font-size: 13px;
-  color: rgba(0, 0, 0, 0.6);
-  margin-top: 2px;
+  height: 100vh;
+  background: #fdf5e6;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px; /* 為全局 Navbar 留位 */
 }
 
 .loading-state {
-  padding: 24px 0;
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.65);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "KaiTi", serif;
+  font-size: 24px;
+  color: #5c4033;
+}
+
+.ink-loader {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #5c4033;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.river-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 </style>
-
