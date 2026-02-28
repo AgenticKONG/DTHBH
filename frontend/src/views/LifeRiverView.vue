@@ -1,31 +1,33 @@
 <template>
   <div class="life-river-wrapper">
     <div v-if="loading" class="loading-state">
-      <div class="ink-loader"></div>
       正在載入編年數據……
     </div>
-    <div v-else class="river-main-content">
-      <!-- 頂部視口：大河圖 + 懸浮工具條 -->
-      <div class="river-viewport">
-        <!-- 1. 懸浮工具條：絕對定位，不佔空間，不隨年份滾動 -->
-        <div class="floating-toolbar">
+    <div v-else class="river-layout-root">
+      <!-- 左側：長卷區 -->
+      <div class="river-left-pane">
+        <div class="river-scroll-box" ref="scrollContainer" @wheel.prevent="onWheel">
+          <!-- 核心內容：寬 3200px，高 500px 的實體區塊 -->
+          <div class="river-canvas-entity">
+            <RiverChart
+              :buckets="yearBuckets"
+              :selected-themes="selectedThemes"
+              :selected-year="selectedYear"
+              @select-year="onSelectYear"
+            />
+          </div>
+        </div>
+        <!-- 底部圖例 -->
+        <div class="river-footer-legend">
           <ThemeFilterBar
             :themes="themes"
             v-model="selectedThemes"
           />
         </div>
-
-        <!-- 2. 背景長卷：可橫向滾動 -->
-        <RiverChart
-          :buckets="yearBuckets"
-          :selected-themes="selectedThemes"
-          :selected-year="selectedYear"
-          @select-year="onSelectYear"
-        />
       </div>
 
-      <!-- 底部詳情區：佔據絕對優勢空間 -->
-      <div class="detail-viewport">
+      <!-- 右側：詳情區 (固定 320px) -->
+      <div class="river-right-detail">
         <YearDetailPanel
           :bucket="currentBucket"
           :selected-themes="selectedThemes"
@@ -44,11 +46,7 @@ import { parseCsv, parseDateToYMD, assignThemes, buildYearBuckets } from '@/util
 
 export default {
   name: 'LifeRiverView',
-  components: {
-    RiverChart,
-    ThemeFilterBar,
-    YearDetailPanel
-  },
+  components: { RiverChart, ThemeFilterBar, YearDetailPanel },
   data() {
     return {
       loading: true,
@@ -61,8 +59,7 @@ export default {
   },
   computed: {
     currentBucket() {
-      if (!this.selectedYear) return null;
-      return this.yearBuckets.find((b) => b.year === this.selectedYear) || null;
+      return this.selectedYear ? (this.yearBuckets.find(b => b.year === this.selectedYear) || null) : null;
     }
   },
   async mounted() {
@@ -72,19 +69,15 @@ export default {
       const rows = parseCsv(text);
       const events = rows.map((row) => {
         const { year, month, day } = parseDateToYMD(row.Exact_Date);
-        const socialWeight = parseInt(row.Social_Weight, 10);
         const ev = {
-          id: row.Event_ID,
-          year,
-          month,
-          day,
+          id: row.Event_ID, year, month, day,
           rawDate: row.Exact_Date,
           location: row.Master_Location || null,
           action: row.Subject_Action || '',
           summary: row.Summary_Text || '',
           details: row.Details_Evidence || '',
           artifacts: (row.Artifact_Refs || '').split(/[;，,]/).map(s => s.trim()).filter(Boolean),
-          socialWeight: isNaN(socialWeight) ? 0 : socialWeight
+          socialWeight: parseInt(row.Social_Weight, 10) || 0
         };
         ev.themes = assignThemes(ev);
         return ev;
@@ -97,8 +90,11 @@ export default {
     } catch (e) { console.error(e); }
   },
   methods: {
-    onSelectYear(year) {
-      this.selectedYear = year;
+    onSelectYear(year) { this.selectedYear = year; },
+    onWheel(e) {
+      if (this.$refs.scrollContainer) {
+        this.$refs.scrollContainer.scrollLeft += e.deltaY;
+      }
     }
   }
 };
@@ -106,74 +102,46 @@ export default {
 
 <style scoped>
 .life-river-wrapper {
-  width: 100vw;
-  height: 100vh;
-  background: #fdf5e6;
-  display: flex;
-  flex-direction: column;
-  padding-top: 60px; /* Navbar space */
-  overflow: hidden;
-  box-sizing: border-box;
+  width: 100vw; height: 100vh; background: #fffef9;
+  padding-top: 60px; overflow: hidden;
 }
 
-.river-main-content {
+.river-layout-root {
+  display: flex; width: 100%; height: calc(100vh - 60px);
+}
+
+.river-left-pane {
+  flex: 1; min-width: 0; display: flex; flex-direction: column;
+}
+
+.river-scroll-box {
   flex: 1;
+  overflow-x: auto; /* 回歸原生滾動 */
+  overflow-y: hidden;
   display: flex;
-  flex-direction: column;
-  height: calc(100vh - 60px);
-}
-
-/* 大河圖視口區域 */
-.river-viewport {
-  position: relative;
-  height: 320px; /* 再次精簡高度 */
-  flex-shrink: 0;
-  border-bottom: 1.5px solid #d2b48c;
+  align-items: center; /* 大河垂直居中 */
   background: #fffef9;
 }
 
-/* 真正的懸浮工具條 */
-.floating-toolbar {
-  position: absolute;
-  top: 15px; /* 懸浮在大河上方 */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  border-radius: 40px;
-  border: 1px solid rgba(139, 69, 19, 0.2);
-  padding: 2px 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  pointer-events: auto; /* 確保可以點擊標籤 */
+.river-canvas-entity {
+  width: 3200px;
+  height: 500px; /* 給予確定物理高度 */
+  flex-shrink: 0;
 }
 
-/* 下方詳情區：佔據最大空間 */
-.detail-viewport {
-  flex: 1;
-  height: 0; /* 鎖定填充 */
-  overflow: hidden;
+.river-footer-legend {
+  height: 60px; background: #fffef9;
+  border-top: 1px solid rgba(139, 69, 19, 0.1);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.river-right-detail {
+  width: 320px; flex-shrink: 0;
+  background: #fdf5e6; border-left: 1px solid #d2b48c;
 }
 
 .loading-state {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "KaiTi", serif;
-  font-size: 24px;
-  color: #5c4033;
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: "KaiTi", serif; font-size: 24px; color: #5c4033;
 }
-
-.ink-loader {
-  width: 40px;
-  height: 40px;
-  border: 3px solid #5c4033;
-  border-top-color: transparent;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
 </style>
