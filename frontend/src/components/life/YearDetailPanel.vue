@@ -1,128 +1,70 @@
-<!--
-  YearDetailPanel.vue - 年份详情面板组件
-  
-  功能:
-  - 显示选中年份的事件详情
-  - 支持主题翻页
-  - 支持摘要/史料模式切换
-  
-  布局:
-  ┌────────────────────────────────────────┐
-  │  顶部: 年份标题 + 摘要/史料切换开关        │
-  ├────────────────────────────────────────┤
-  │  主体: 主题内容区域                       │
-  │  ┌──────────────────────────────────┐  │
-  │  │  主题标签 + 翻页器               │  │
-  │  ├──────────────────────────────────┤  │
-  │  │  事件卡片列表 (可滚动)            │  │
-  │  │  ┌────────────────────────────┐  │  │
-  │  │  │ 地点印章 │ 事件内容         │  │  │
-  │  │  └────────────────────────────┘  │  │
-  │  └──────────────────────────────────┘  │
-  └────────────────────────────────────────┘
--->
-
 <template>
-  <!-- 最外层容器 -->
-  <div class="year-detail-outer">
-    
-    <!-- 无选中年份时的占位提示 -->
-    <div v-if="!bucket" class="placeholder-ya">
+  <div class="year-detail-side-panel">
+    <!-- 無選中年份時的占位提示 (NULL Pointer Exception Guard) -->
+    <div v-if="!bucket" class="placeholder-side">
       <i class="fas fa-feather-alt"></i>
-      <p>請撥動上方時光大河，點擊年份以研讀賓翁生平</p>
+      <p>請點擊左側大河年份<br/>研讀賓翁生平</p>
     </div>
     
-    <!-- 有选中年份时显示详情 -->
-    <div v-else class="detail-content">
-      <!-- 顶部: 年份标题 + 模式切换 -->
-      <div class="detail-header-ya">
-        <div class="year-title">公元 {{ bucket.year }} 年</div>
+    <!-- 有選中年份時顯示詳情 (View Render) -->
+    <div v-else class="side-content">
+      <!-- 1. 面板 Header：年份標題與模式開關 -->
+      <div class="side-header">
+        <div class="side-year-title">公元 {{ bucket.year }} 年</div>
         
-        <!-- 摘要/史料模式切换开关 -->
-        <div class="study-mode-toggle">
-          <!-- 摘要模式按钮 -->
-          <span :class="{ active: !studyMode }" @click="studyMode = false">
-            敘事摘要
-          </span>
-          
-          <!-- 开关 -->
-          <div class="toggle-switch" @click="studyMode = !studyMode">
-            <div class="switch-ball" :class="{ right: studyMode }"></div>
+        <!-- 摘要/史料模式切換 (Display Mode Toggle) -->
+        <div class="side-mode-switch" @click="studyMode = !studyMode">
+          <span :class="{ active: !studyMode }">摘要</span>
+          <div class="mini-toggle">
+            <div class="mini-ball" :class="{ right: studyMode }"></div>
           </div>
-          
-          <!-- 史料模式按钮 -->
-          <span :class="{ active: studyMode }" @click="studyMode = true">
-            史料研讀
-          </span>
+          <span :class="{ active: studyMode }">史料</span>
         </div>
       </div>
 
-      <!-- 主体: 主题内容区域 -->
-      <!-- 
-        key 属性: currentPage + '-' + bucket?.year
-        作用: 切换年份或翻页时强制重新渲染
-      -->
-      <div v-if="currentTheme" class="theme-page" :key="currentPage + '-' + bucket?.year">
+      <!-- 2. 分頁容器 (Pager Content)：受 currentPage 驅動 -->
+      <div v-if="currentTheme" class="theme-page-container" :key="currentPage + '-' + bucket?.year">
         
-        <!-- 主题标题行 -->
-        <div class="theme-header-row">
-          <!-- 主题标签 (彩色边框) -->
-          <div class="theme-banner" :style="{ color: currentTheme.color }">
-            <span class="theme-label-vertical">{{ currentTheme.label }}</span>
+        <!-- 當前主題標題與導航 -->
+        <div class="theme-header-nav">
+          <div class="side-theme-banner" :style="{ color: currentTheme.color }">
+            {{ currentTheme.label }}
           </div>
           
-          <!-- 悬浮翻页器 (只有超过1页时显示) -->
-          <div v-if="totalPages > 1" class="page-nav">
-            <button class="page-btn" 
+          <!-- 主題分頁器 (Pager Controls) -->
+          <div v-if="totalPages > 1" class="side-pager">
+            <button class="pager-btn" 
                     @click="currentPage = Math.max(0, currentPage - 1)" 
                     :disabled="currentPage === 0">‹</button>
-            <span class="page-text">{{ currentPage + 1 }}/{{ totalPages }}</span>
-            <button class="page-btn" 
+            <span class="pager-text">{{ currentPage + 1 }}/{{ totalPages }}</span>
+            <button class="pager-btn" 
                     @click="currentPage = Math.min(totalPages - 1, currentPage + 1)" 
                     :disabled="currentPage === totalPages - 1">›</button>
           </div>
         </div>
         
-        <!-- 事件列表 (可滚动) -->
-        <div class="events-list custom-scrollbar" :key="currentPage">
-          <!-- 
-            v-for 遍历当前主题的事件
-            studyMode 控制显示摘要还是详情
-          -->
+        <!-- 3. 垂直事件隊列 (Event Stack)：可滾動區域 -->
+        <div class="side-scroll-area custom-scrollbar-ya">
           <div v-for="ev in currentTheme.events" 
                :key="ev.id" 
-               class="ya-event-card" 
+               class="side-event-card" 
                :class="{ 'study-view': studyMode }">
             
-            <!-- 左侧: 地点印章 (竖排) -->
-            <div class="card-left">
-              <div class="loc-stamp">{{ ev.location || '游蹤' }}</div>
+            <!-- 卡片頂部：地點印章與日期 -->
+            <div class="side-card-top">
+              <span class="side-loc-tag">{{ ev.location || '游蹤' }}</span>
+              <span class="side-ev-date">{{ ev.rawDate }}</span>
             </div>
             
-            <!-- 右侧: 事件内容 -->
-            <div class="card-right">
-              <!-- 日期 -->
-              <div class="ev-date">{{ ev.rawDate }}</div>
-              
-              <!-- 文本内容 -->
-              <div class="ev-text">
-                <!-- 史料模式: 显示完整详情 -->
-                <template v-if="studyMode">
-                  <div class="details-full">{{ ev.details }}</div>
-                </template>
-                
-                <!-- 摘要模式: 显示摘要 -->
-                <template v-else>
-                  <div class="summary-line">{{ ev.summary }}</div>
-                </template>
-              </div>
-              
-              <!-- 艺术品标签 -->
-              <div v-if="ev.artifacts && ev.artifacts.length" class="ev-artifacts">
-                <span v-for="art in ev.artifacts" :key="art" class="art-tag">
-                  # {{ art }}
-                </span>
-              </div>
+            <!-- 卡片主體：正文內容 (摘要 vs 完整詳情) -->
+            <div class="side-card-body">
+              <div v-if="studyMode" class="side-details">{{ ev.details }}</div>
+              <div v-else class="side-summary">{{ ev.summary }}</div>
+            </div>
+            
+            <!-- 卡片底部：文物/作品引用 -->
+            <div v-if="ev.artifacts && ev.artifacts.length" class="side-artifacts">
+              <span v-for="art in ev.artifacts" :key="art" class="side-art-tag"># {{ art }}</span>
             </div>
           </div>
         </div>
@@ -133,101 +75,58 @@
 
 <script>
 /**
- * YearDetailPanel 组件
- * 
- * 功能:
- * - 显示选中年份的事件详情
- * - 按主题分页 (翻页器)
- * - 切换摘要/史料模式
+ * YearDetailPanel - 側邊研讀面板
+ * 功能：按主題分頁展示特定年份的事件，支持摘要與史料模式切換。
  */
-
 import { CHRONOLOGY_THEMES } from '@/config/chronologyThemes';
 
 export default {
   name: 'YearDetailPanel',
-  
-  // 接收父组件的属性
   props: {
-    // 年份桶数据 (包含该年所有事件)
-    bucket: Object,
-    // 主题过滤数组
-    selectedThemes: Array
+    bucket: Object,         // 選中的年份數據對象
+    selectedThemes: Array   // 外部傳入的主題過濾器
   },
-  
   data() {
     return {
-      // false = 摘要模式, true = 史料模式
-      studyMode: false,
-      // 当前翻页页码 (从0开始)
-      currentPage: 0
+      studyMode: false,     // 顯示模式：false=摘要, true=史料
+      currentPage: 0        // 分頁索引
     };
   },
-  
   computed: {
     /**
-     * 过滤后的事件列表
-     * 根据 selectedThemes 过滤
+     * 數據預處理：根據過濾器篩選事件
      */
     filteredEvents() {
       if (!this.bucket) return [];
-      
-      // 如果没有主题过滤，返回全部
       if (!this.selectedThemes.length) return this.bucket.events;
-      
-      // 过滤出包含选中主题的事件
       return this.bucket.events.filter(ev => 
         ev.themes.some(t => this.selectedThemes.includes(t))
       );
     },
-    
     /**
-     * 主题分组
-     * 将事件按主题分类，每组一个"页面"
-     * 
-     * 结构: [{ id, label, color, events: [...] }, ...]
+     * 數據重構：將事件按主題 ID 進行 GroupBy 操作，形成分頁隊列
      */
     themeGroups() {
       if (!this.bucket) return [];
-      
       const groups = [];
-      
-      // 确定需要显示的主题ID列表
       const activeIds = this.selectedThemes.length > 0 
         ? this.selectedThemes 
         : CHRONOLOGY_THEMES.map(t => t.id);
-      
-      // 按主题ID分组
+
       activeIds.forEach(id => {
         const meta = CHRONOLOGY_THEMES.find(t => t.id === id);
         const evs = this.filteredEvents.filter(ev => ev.themes.includes(id));
-        if (evs.length) {
-          groups.push({ ...meta, events: evs });
-        }
+        if (evs.length) groups.push({ ...meta, events: evs });
       });
-      
       return groups;
     },
-    
-    /**
-     * 当前显示的主题 (当前页)
-     */
-    currentTheme() {
-      return this.themeGroups[this.currentPage] || null;
-    },
-    
-    /**
-     * 总页数
-     */
-    totalPages() {
-      return this.themeGroups.length;
-    }
+    currentTheme() { return this.themeGroups[this.currentPage] || null; },
+    totalPages() { return this.themeGroups.length; }
   },
-  
-  /**
-   * 监听 bucket 变化
-   * 切换年份时重置翻页到第一页
-   */
   watch: {
+    /**
+     * 監聽器：當選中年份改變時，自動重置分頁指針到第一頁
+     */
     bucket() {
       this.currentPage = 0;
     }
@@ -236,252 +135,52 @@ export default {
 </script>
 
 <style scoped>
-/* ========== 容器样式 ========== */
-
-/* 最外层 */
-.year-detail-outer {
-  height: 100%;
-  width: 100%;
-  background: #fdf5e6;
+/* 側邊欄容器：物理鎖定，防止撐開視口 */
+.year-detail-side-panel {
+  height: 100%; width: 100%; display: flex; flex-direction: column;
+  background-color: #fdf5e6;
   background-image: url('https://www.transparenttextures.com/patterns/parchment.png');
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  overflow: hidden; box-sizing: border-box;
 }
 
-/* 详情内容 */
-.detail-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+.side-content { height: 100%; display: flex; flex-direction: column; }
+
+/* 頂部固定 Header 樣式 */
+.side-header {
+  padding: 20px; background: rgba(244, 239, 223, 0.95);
+  border-bottom: 2px solid #c0392b; flex-shrink: 0;
+  display: flex; justify-content: space-between; align-items: center;
 }
 
-/* 无数据占位 */
-.placeholder-ya {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #8b7d6b;
-  font-family: "KaiTi", serif;
-  font-size: 18px;
-  opacity: 0.6;
+.side-year-title { font-family: "KaiTi", serif; font-size: 22px; font-weight: bold; color: #5c4033; }
+
+/* 自定義膠囊切換開關 */
+.side-mode-switch { display: flex; align-items: center; gap: 6px; font-size: 12px; cursor: pointer; color: #8b7d6b; }
+.side-mode-switch span.active { color: #c0392b; font-weight: bold; }
+.mini-toggle { width: 30px; height: 14px; background: #d2b48c; border-radius: 7px; position: relative; }
+.mini-ball { width: 10px; height: 10px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s; }
+.mini-ball.right { left: 18px; background: #c0392b; }
+
+/* 分頁內容區佈局 */
+.theme-page-container { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.theme-header-nav { padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); flex-shrink: 0; }
+.side-theme-banner { font-family: "KaiTi", serif; font-size: 16px; font-weight: bold; border-left: 4px solid currentColor; padding-left: 10px; letter-spacing: 2px; }
+
+/* 獨立滾動區 (Scrollable Stack) */
+.side-scroll-area {
+  flex: 1; overflow-y: scroll !important; /* 強制常駐滾軸，供分析校準 */
+  padding: 15px 20px; box-sizing: border-box;
 }
 
-/* ========== 顶部标题栏 ========== */
+/* 卡片與印章樣式 */
+.side-event-card { background: #fff; border: 1px solid #d2b48c; padding: 15px; margin-bottom: 15px; border-radius: 2px; box-shadow: 2px 2px 5px rgba(0,0,0,0.03); }
+.side-loc-tag { font-family: "KaiTi", serif; font-size: 11px; background: #c0392b; color: #fff; padding: 1px 6px; border-radius: 2px; }
+.side-ev-date { font-size: 11px; color: #8b7d6b; font-family: "Georgia"; }
+.side-summary { font-size: 14px; line-height: 1.6; color: #3d2b1f; }
+.side-details { font-size: 13.5px; line-height: 1.8; color: #5c4033; text-align: justify; white-space: pre-wrap; }
 
-.detail-header-ya {
-  flex-shrink: 0;
-  padding: 15px 40px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(244, 239, 223, 0.9);
-  border-bottom: 1px solid #d2b48c;
-}
-
-/* 年份标题 */
-.year-title {
-  font-family: "KaiTi", serif;
-  font-size: 24px;
-  font-weight: bold;
-  color: #5c4033;
-}
-
-/* 模式切换 */
-.study-mode-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  font-family: "KaiTi", serif;
-  color: #8b7d6b;
-  cursor: pointer;
-}
-
-.study-mode-toggle span.active { 
-  color: #c0392b; 
-  font-weight: bold; 
-}
-
-/* 开关 */
-.toggle-switch {
-  width: 40px;
-  height: 20px;
-  background: #d2b48c;
-  border-radius: 10px;
-  position: relative;
-}
-
-/* 开关圆球 */
-.switch-ball {
-  width: 16px;
-  height: 16px;
-  background: #fff;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  transition: 0.3s;
-}
-
-/* 开关圆球 - 右侧 (史料模式) */
-.switch-ball.right { 
-  left: 22px; 
-  background: #c0392b; 
-}
-
-/* ========== 主题内容区域 ========== */
-
-.theme-page {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 15px 20px;
-  overflow: hidden;
-}
-
-/* 主题标题行 */
-.theme-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-/* 主题标签 */
-.theme-banner {
-  border-left: 4px solid currentColor;
-  padding-left: 10px;
-}
-
-/* ========== 翻页器 ========== */
-
-.page-nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 10px;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
-  border: 1px solid #d2b48c;
-}
-
-.page-text {
-  font-family: "Georgia", serif;
-  font-size: 13px;
-  color: #8b7d6b;
-  min-width: 30px;
-  text-align: center;
-}
-
-.page-btn {
-  width: 24px;
-  height: 24px;
-  border: none;
-  background: transparent;
-  border-radius: 50%;
-  font-size: 16px;
-  color: #5c4033;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.page-btn:hover:not(:disabled) {
-  background: #c0392b;
-  color: #fff;
-}
-
-.page-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-/* ========== 事件列表 ========== */
-
-.events-list {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-right: 8px;
-}
-
-/* 事件卡片 */
-.ya-event-card {
-  background: #fff;
-  border: 1px solid #d2b48c;
-  padding: 12px;
-  display: flex;
-  gap: 12px;
-  border-radius: 2px;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
-}
-
-/* 地点印章 */
-.loc-stamp {
-  writing-mode: vertical-rl;
-  border: 1.5px solid #c0392b;
-  color: #c0392b;
-  padding: 5px 2px;
-  font-family: "KaiTi", serif;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-/* 右侧内容 */
-.card-right { 
-  flex: 1; 
-}
-
-/* 日期 */
-.ev-date { 
-  font-size: 12px; 
-  color: #8b7d6b; 
-  font-family: "Georgia"; 
-  margin-bottom: 5px; 
-}
-
-/* 摘要文字 */
-.summary-line { 
-  font-size: 15px; 
-  line-height: 1.6; 
-  color: #3d2b1f; 
-}
-
-/* 详情文字 */
-.details-full { 
-  font-size: 14px; 
-  line-height: 1.8; 
-  color: #5c4033; 
-  text-align: justify; 
-  white-space: pre-wrap; 
-}
-
-/* 艺术品标签 */
-.art-tag {
-  display: inline-block;
-  font-size: 11px;
-  color: #c0392b;
-  background: rgba(192, 57, 43, 0.05);
-  padding: 2px 8px;
-  margin-right: 5px;
-  margin-top: 8px;
-  border-radius: 10px;
-}
-
-/* 滚动条 */
-.custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-.custom-scrollbar::-webkit-scrollbar-thumb { 
-  background: #d2b48c; 
-  border-radius: 10px; 
-}
+/* 滾動條美化 (Webkit) */
+.custom-scrollbar-ya::-webkit-scrollbar { width: 8px !important; display: block !important; }
+.custom-scrollbar-ya::-webkit-scrollbar-track { background: rgba(244, 239, 223, 0.3); }
+.custom-scrollbar-ya::-webkit-scrollbar-thumb { background-color: #8b4513 !important; border-radius: 4px; }
 </style>
