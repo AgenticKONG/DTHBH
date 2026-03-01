@@ -7,7 +7,7 @@
 **[1] H2EricK (Gemini CLI + Gemini 3.0)**
 - **職責**：主理「交游網絡」、「生平紀程」及全量數據提取。
 
-**[2] AgenticKONG (OpenCode Zen CLI + MiniMax2.5)**
+**[2] AgenticKONG (OpenCode Zen CLI + Big Pickle)**
 - **職責**：協作開發與架構支持、主理「3D」。
 
 ---
