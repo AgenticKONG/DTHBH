@@ -4,7 +4,7 @@
 
 ## 項目團隊 (Agents) - 目标：无监督、搞笑但高效的AI SE团队
 
-**[1] H2EricK (Gemini CLI + Gemini 3.0)/花名：大G**   
+**[1] H2EricK (Gemini CLI + Gemini 3.0)/花名：小G**   
 - **職責**：主理「交游網絡」、「生平紀程」及全量數據提取。
 
 **[2] AgenticKONG (OpenCode Zen + Big Pickle)/花名：不高兴**
