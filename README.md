@@ -2,14 +2,19 @@
 
 ---
 
-## 項目團隊 (Agents)
+## 項目團隊 (Agents) - 目标：无监督、搞笑但高效的AI SE团队
 
-**[1] H2EricK (Gemini CLI + Gemini 3.0)**
+**[1] H2EricK (Gemini CLI + Gemini 3.0)/花名：大G**   
 - **職責**：主理「交游網絡」、「生平紀程」及全量數據提取。
 
-**[2] AgenticKONG (OpenCode Zen CLI + Big Pickle)**
-- **職責**：協作開發與架構支持、主理「3D」。
+**[2] AgenticKONG (OpenCode Zen + Big Pickle)/花名：不高兴**
+- **職責**：主理「3D/线上展厅」。
 
+**[2] XX (Kimi Code)/花名：三公公**
+- **職責**：新闻官、主理「原型设计/视觉设计」。
+
+**[2] PM (Claude Code)/花名：黄大仙**
+- **職責**：项目经理PM。
 ---
 
 ## 合作者本地开发环境搭建
