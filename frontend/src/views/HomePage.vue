@@ -1,37 +1,69 @@
 <template>
-  <div class="home-page">
-    <!-- 导航栏 -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <div class="nav-brand">黄宾虹数字艺术展</div>
-        <div class="nav-links">
-          <router-link to="/" class="nav-link">首页</router-link>
-          <router-link to="/gallery" class="nav-link">作品画廊</router-link>
-          <router-link to="/3d-exhibition" class="nav-link active">3D数字展厅</router-link>
-          <router-link to="/art-footprints" class="nav-link">艺术足迹</router-link>
-          <router-link to="/map" class="nav-link">地图</router-link>
+  <div class="home-page-ya">
+    <!-- 主內容區 -->
+    <main class="main-content-ya">
+      
+      <!-- 英雄區 (Hero Section) -->
+      <section class="hero-ya">
+        <div class="portrait-box">
+          <img src="/images/huangbinhong.jpg" alt="黃賓虹肖像" class="artist-img" />
+          <div class="lifespan-stamp">1865 - 1955</div>
         </div>
-      </div>
-    </nav>
+        
+        <h1 class="artist-name-ya">黃賓虹</h1>
+        <p class="artist-bio-ya">
+          中國近現代國畫大師、書法家、藝術教育家<br/>
+          山水畫「黑密厚重、渾厚華滋」一代宗師
+        </p>
+        
+        <div class="quote-box-ya">
+          <span class="quote-marks">“</span>
+          中華大地，無山不美，無水不秀。
+          <span class="quote-marks">”</span>
+        </div>
+      </section>
 
-    <!-- 主内容区 -->
-    <main class="main-content">
-      <!-- 英雄区域 -->
-      <section class="hero-section">
-        <img src="/images/huangbinhong.jpg" alt="黄宾虹肖像" class="artist-portrait" id="artistPortrait" />
-        <h1 class="hero-title">黄宾虹</h1>
-        <p class="hero-subtitle">中国近现代国画家、书法家、艺术教育家，山水画一代宗师</p>
-        <div class="lifespan">1865 - 1955</div>
+      <!-- 四大核心入口 (Modules Grid) -->
+      <section class="modules-grid-ya">
+        <!-- 1. 作品 -->
+        <router-link to="/gallery" class="module-card">
+          <div class="card-icon"><i class="fas fa-palette"></i></div>
+          <h3 class="card-title">作品畫廊</h3>
+          <p class="card-desc">金石入畫，五筆七墨<br/>探索賓翁筆墨乾坤</p>
+          <div class="card-btn">進入 <i class="fas fa-arrow-right"></i></div>
+        </router-link>
 
-        <div class="hero-quote">"中华大地，无山不美，无水不秀。" —— 黄宾虹</div>
+        <!-- 2. 生平 -->
+        <router-link to="/life-river" class="module-card card-accent">
+          <div class="card-icon"><i class="fas fa-history"></i></div>
+          <h3 class="card-title">生平大河</h3>
+          <p class="card-desc">九一載編年敘事<br/>與時代背景精準對齊</p>
+          <div class="card-btn">研讀 <i class="fas fa-arrow-right"></i></div>
+        </router-link>
 
-        <!-- 3D展厅入口按钮 -->
-        <router-link to="/3d-exhibition" class="cta-button">
-          <span>进入3D数字展厅</span>
-          <span class="arrow">→</span>
+        <!-- 3. 交遊 -->
+        <router-link to="/friends-network" class="module-card">
+          <div class="card-icon"><i class="fas fa-users"></i></div>
+          <h3 class="card-title">交遊網絡</h3>
+          <p class="card-desc">墨海星圖，知音長卷<br/>還原一代藝術生態圈</p>
+          <div class="card-btn">尋訪 <i class="fas fa-arrow-right"></i></div>
+        </router-link>
+
+        <!-- 4. 線上展廳 -->
+        <router-link to="/3d-exhibition" class="module-card card-highlight">
+          <div class="card-icon"><i class="fas fa-vr-cardboard"></i></div>
+          <h3 class="card-title">線上展廳</h3>
+          <p class="card-desc">沉浸式 3D 空間<br/>身臨其境品味大師真蹟</p>
+          <div class="card-btn">開啟 <i class="fas fa-arrow-right"></i></div>
         </router-link>
       </section>
+
     </main>
+    
+    <!-- 頁腳 -->
+    <footer class="footer-ya">
+      <p>數字黃賓虹項目 © 2026 | 基於學術研究的藝術數字化實踐</p>
+    </footer>
   </div>
 </template>
 
@@ -39,303 +71,140 @@
 export default {
   name: 'HomePage',
   mounted() {
-    // 可以在这里添加组件挂载后的逻辑
-  },
-  methods: {
-    // 正确的语法：冒号 + 对象
-    // 如果需要，在这里添加方法
-    onImageClick() {
-      console.log('图片被点击');
-    }
+    // 進入頁面時平滑滾動到頂部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 };
 </script>
 
-<style>
-  /* 样式保持不变，但要修正背景图片路径 */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+<style scoped>
+.home-page-ya {
+  min-height: 100vh;
+  background-color: #fdf5e6;
+  background-image: 
+    linear-gradient(rgba(253, 245, 230, 0.8), rgba(253, 245, 230, 0.8)),
+    url('../assets/qiushan.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: #3d2b1f;
+  font-family: "SimSun", serif;
+  display: flex;
+  flex-direction: column;
+}
 
-  /* 导航栏 */
-  .nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(245, 240, 230, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-  }
+.main-content-ya {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 20px 60px;
+  width: 100%;
+}
 
-  .nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-  }
+/* 英雄區樣式 */
+.hero-ya {
+  text-align: center;
+  margin-bottom: 80px;
+}
 
-  .nav-brand {
-    font-size: 20px;
-    font-weight: bold;
-    color: #5c4033;
-  }
+.portrait-box {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 30px;
+}
 
-  .nav-links {
-    display: flex;
-    gap: 30px;
-  }
+.artist-img {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  border: 6px solid #d2b48c;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  filter: sepia(0.2);
+}
 
-  .nav-link {
-    text-decoration: none;
-    color: #8b4513;
-    font-size: 16px;
-    transition: all 0.3s;
-    position: relative;
-  }
+.lifespan-stamp {
+  position: absolute; bottom: -10px; right: -20px;
+  background: #c0392b; color: #fff;
+  padding: 4px 12px; font-weight: bold;
+  font-family: "Georgia", serif;
+  transform: rotate(-5deg);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
 
-  .nav-link:hover,
-  .nav-link.active {
-    color: #5c4033;
-    font-weight: 600;
-  }
+.artist-name-ya {
+  font-family: "Ma Shan Zheng", cursive;
+  font-size: 64px; margin-bottom: 10px;
+  color: #3d2b1f; text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
 
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #d2b48c, #8b4513);
-    transition: width 0.3s;
-  }
+.artist-bio-ya {
+  font-family: "KaiTi", serif;
+  font-size: 20px; color: #8b7d6b;
+  line-height: 1.6; margin-bottom: 40px;
+}
 
-  .nav-link:hover::after,
-  .nav-link.active::after {
-    width: 100%;
-  }
+.quote-box-ya {
+  font-family: "KaiTi", serif;
+  font-size: 24px; font-style: italic;
+  color: #5c4033; opacity: 0.9;
+  display: flex; align-items: center; justify-content: center; gap: 15px;
+}
 
-  /* CTA按钮 */
-  .cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 40px;
-    background: linear-gradient(135deg, #d2b48c, #8b4513);
-    color: white;
-    text-decoration: none;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 40px;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
-  }
+.quote-marks { font-size: 48px; color: #d2b48c; font-family: "Georgia", serif; line-height: 0; }
 
-  .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(139, 69, 19, 0.4);
-  }
+/* 入口卡片網格 */
+.modules-grid-ya {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
 
-  .cta-button .arrow {
-    transition: transform 0.3s;
-  }
+.module-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(5px);
+  border: 1px solid #d2b48c;
+  padding: 35px 25px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border-radius: 4px;
+}
 
-  .cta-button:hover .arrow {
-    transform: translateX(5px);
-  }
+.module-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(139, 69, 19, 0.15);
+  border-color: #c0392b;
+}
 
-  .home-page {
-    font-family: 'SimSun', 'STSong', serif;
-    color: #333;
-    min-height: 100vh;
-    overflow-x: hidden;
-    /* 添加蒙版和背景图 - 修正图片路径 */
-    background:
-      linear-gradient(rgba(245, 240, 230, 0.75), rgba(245, 240, 230, 0.75)),
-      /* 蒙版 */ url('../assets/qiushan.jpg') no-repeat center 60% fixed; /* 背景图 */
-    background-size: 100% auto; /* 宽度100%填满，高度按比例自适应 */
-    background-attachment: fixed; /* 背景图固定 */
-    background-color: #f5f0e6; /* 顶部和底部可能会有空白，用颜色填充 */
-  }
-  /* 主内容区 */
-  .main-content {
-    padding-top: 120px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+.card-icon { font-size: 32px; color: #d2b48c; margin-bottom: 20px; transition: color 0.3s; }
+.module-card:hover .card-icon { color: #c0392b; }
 
-  /* 英雄区域 */
-  .hero-section {
-    text-align: center;
-    padding: 80px 20px;
-    margin-top: 60px;
-    position: relative;
-  }
+.card-title {
+  font-family: "KaiTi", serif;
+  font-size: 22px; font-weight: bold;
+  margin-bottom: 15px; color: #3d2b1f;
+}
 
-  .artist-portrait {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 8px solid #d2b48c;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    margin-bottom: 30px;
-    filter: sepia(0.3);
-  }
+.card-desc {
+  font-size: 14px; color: #8b7d6b;
+  line-height: 1.8; margin-bottom: 25px;
+}
 
-  .hero-title {
-    font-size: 48px;
-    color: #5c4033;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    font-weight: 700; /* 加粗标题 */
-  }
+.card-btn {
+  font-size: 13px; font-weight: bold; color: #8b7d6b;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+.module-card:hover .card-btn { color: #c0392b; }
 
-  .hero-subtitle {
-    font-size: 20px;
-    color: #8b4513;
-    max-width: 800px;
-    margin: 0 auto 30px;
-    line-height: 1.6;
-    font-weight: 600; /* 加粗副标题 */
-  }
+.footer-ya {
+  padding: 40px 20px; text-align: center;
+  border-top: 1px solid rgba(210, 180, 140, 0.2);
+  font-size: 13px; color: #b8a48c;
+}
 
-  .lifespan {
-    font-size: 18px;
-    color: #a67c52;
-    margin-bottom: 40px;
-    font-weight: 700; /* 加粗生卒年份 */
-  }
-
-  .hero-quote {
-    font-size: 18px;
-    color: #8b4513;
-    font-style: italic;
-    max-width: 600px;
-    margin: 0 auto;
-    font-weight: 600; /* 加粗名言 */
-  }
-
-  .copyright {
-    margin-top: 20px;
-    color: #b8a48c;
-    font-size: 14px;
-  }
-
-  /* 响应式设计 */
-  @media (max-width: 768px) {
-    .mobile-menu-btn {
-      display: block;
-    }
-
-    .hero-title {
-      font-size: 36px;
-      font-weight: 700; /* 移动端也保持加粗 */
-    }
-
-    .hero-subtitle {
-      font-size: 18px;
-      font-weight: 600; /* 移动端也保持加粗 */
-    }
-
-    .section-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 15px;
-    }
-
-    .features-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .lifespan {
-      font-weight: 700; /* 移动端也保持加粗 */
-    }
-
-    .hero-quote {
-      font-weight: 600; /* 移动端也保持加粗 */
-    }
-  }
-
-  /* 模态框 */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal-content {
-    background-color: #fffbf0;
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
-    border: 3px solid #d2b48c;
-    position: relative;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #8b4513;
-    cursor: pointer;
-  }
-
-  .modal-title {
-    color: #5c4033;
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: 700; /* 加粗模态框标题 */
-  }
-
-  .modal-text {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 20px;
-  }
-
-  .modal-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-  }
-
-  .modal-btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-  }
-
-  .modal-btn.confirm {
-    background-color: #d2b48c;
-    color: #333;
-    font-weight: 600; /* 加粗确认按钮 */
-  }
-
-  .modal-btn.cancel {
-    background-color: #f0e6d6;
-    color: #666;
-    border: 1px solid #d2b48c;
-    font-weight: 600; /* 加粗取消按钮 */
-  }
+@media (max-width: 768px) {
+  .artist-name-ya { font-size: 48px; }
+  .modules-grid-ya { grid-template-columns: 1fr; }
+}
 </style>
