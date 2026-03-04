@@ -61,6 +61,11 @@
                   </div>
                   <div v-if="step.image" class="tiba-img-side" @click.stop="openAppreciation(step)">
                     <img :src="step.image" />
+                    <!-- 懸浮提示層 -->
+                    <div class="img-hover-tip">
+                      <i class="fas fa-search-plus"></i>
+                      <span>點擊鑒賞</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -220,16 +225,61 @@ export default {
 .tiba-main-event { font-size: 15px; font-weight: bold; color: #1a1a1a; line-height: 1.4; }
 .tiba-meta-row { display: flex; gap: 10px; font-size: 12px; color: #8b7d6b; }
 .tiba-social-box { font-size: 12px; color: #8b4513; background: #fdf5e6; padding: 4px 10px; }
-.tiba-img-side { width: 100px; height: 120px; border: 1px solid #eee; overflow: hidden; }
-.tiba-img-side img { width: 100%; height: 100%; object-fit: cover; }
+.tiba-img-side { 
+  width: 100px; height: 120px; border: 1px solid #eee; overflow: hidden; position: relative; 
+}
+.tiba-img-side img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.tiba-img-side:hover img { transform: scale(1.1); }
+
+/* 縮略圖懸浮提示 */
+.img-hover-tip {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+  color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; font-size: 12px; opacity: 0; transition: opacity 0.3s ease;
+}
+.tiba-img-side:hover .img-hover-tip { opacity: 1; }
+
 .custom-scrollbar::-webkit-scrollbar { height: 8px; width: 8px; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #8b4513; border-radius: 10px; }
+
 .appreciation-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 2000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-.silk-mounting { background: #fdf5e6; padding: 40px; border: 1px solid #d2b48c; display: flex; gap: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-.painting-wrap { position: relative; max-height: 80vh; border: 4px solid #fff; }
+.silk-mounting { background: #fdf5e6; padding: 40px; border: 1px solid #d2b48c; display: flex; gap: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); position: relative; }
+
+.painting-wrap { position: relative; max-height: 80vh; border: 4px solid #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 .full-painting { max-height: 70vh; max-width: 50vw; object-fit: contain; }
-.inscription-area { writing-mode: vertical-rl; padding: 20px; color: #1a1a1a; min-width: 150px; }
-.ins-seal { margin-top: 30px; color: #c0392b; font-size: 20px; border: 2px solid #c0392b; padding: 5px; font-weight: bold; display: grid; grid-template-columns: 1fr 1fr; }
+
+/* 畫軸裝飾 */
+.scroll-axis { position: absolute; left: -10px; right: -10px; height: 12px; background: #5c4033; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+.scroll-axis.top { top: -6px; }
+.scroll-axis.bottom { bottom: -6px; }
+
+.inscription-area { 
+  writing-mode: vertical-rl; padding: 20px; color: #1a1a1a; min-width: 180px; 
+  display: flex; flex-direction: column; /* 在垂直排版中，這會控制水平對齊 */
+}
+
+.ins-title { font-size: 20px; font-weight: bold; margin-bottom: 20px; color: #c0392b; }
+.ins-content { font-size: 16px; line-height: 1.8; letter-spacing: 2px; }
+.ins-meta { margin-top: 30px; font-size: 13px; color: #8b7d6b; }
+
+/* 印章：精準方印並推到底部 */
+.ins-seal { 
+  margin-top: auto; /* 在 vertical-rl 下，這會將元素推向「文本流」的末尾底部 */
+  margin-right: 20px; /* 與上一行文字拉開距離 */
+  color: #c0392b; 
+  font-size: 18px; 
+  border: 2px solid #c0392b; 
+  padding: 4px; 
+  font-weight: bold; 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  width: 52px; 
+  height: 52px; 
+  line-height: 1.1;
+  text-align: center;
+  flex-shrink: 0;
+  background: rgba(192, 57, 43, 0.05);
+}
 .tour-ruler-final { height: 40px; display: flex; flex-direction: row-reverse; justify-content: center; align-items: center; gap: 20px; background: #f4efdf; border-top: 1px solid #d2b48c; }
 .ruler-tick { cursor: pointer; display: flex; flex-direction: column; align-items: center; opacity: 0.5; }
 .ruler-tick.active { opacity: 1; }
