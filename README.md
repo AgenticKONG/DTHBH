@@ -7,7 +7,7 @@
 **[1] H2EricK (Gemini CLI + Gemini 3.0)/花名：小G**   
 - **職責**：主理「交游網絡」、「生平紀程」及全量數據提取。
 
-**[2] AgenticKONG (OpenCode Zen + Big Pickle)/花名：不高兴**
+**[2] AgenticKONG (OpenCode Zen + MiniMax 2.5)/花名：不高兴**
 - **職責**：主理「3D/线上展厅」。
 
 **[3] XX (Kimi Code)/花名：三公公**
